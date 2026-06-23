@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AgentGo Demo — AI 에이전트 체험</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--blue:#1A56C8;--blue2:#2563EB;--navy:#0A1628;--ice:#E8F0FB;--slate:#64748B;--green:#059669;--white:#FFFFFF;--bg:#FAFBFC;--bg2:#F1F5F9;--border:#E2E8F0;--text:#1E293B;--text2:#475569}
 html{font-size:16px}
-body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 
 .topbar{height:56px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px;flex-shrink:0}
-.topbar-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:8px}
+.topbar-logo{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:1.1rem;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:8px}
 .topbar-logo svg{width:24px;height:24px}
 .topbar-divider{width:1px;height:24px;background:var(--border)}
 .topbar-title{font-size:.9rem;font-weight:600;color:var(--text2)}
@@ -25,22 +25,22 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 
 .sidebar{width:300px;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
 .sidebar-header{padding:20px;border-bottom:1px solid var(--border)}
-.sidebar-header h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:4px}
+.sidebar-header h2{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:4px}
 .sidebar-header p{font-size:.8rem;color:var(--slate)}
 .scenario-list{flex:1;overflow-y:auto;padding:12px}
 .scenario-btn{width:100%;text-align:left;padding:16px;border:1px solid var(--border);border-radius:12px;background:var(--white);cursor:pointer;margin-bottom:8px;transition:all .2s}
 .scenario-btn:hover{border-color:rgba(26,86,200,0.3);background:var(--ice)}
 .scenario-btn.active{border-color:var(--blue);background:var(--ice);box-shadow:0 0 0 2px rgba(26,86,200,0.15)}
 .scenario-icon{font-size:1.4rem;margin-bottom:8px;display:block}
-.scenario-btn h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:4px}
+.scenario-btn h3{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:4px}
 .scenario-btn p{font-size:.75rem;color:var(--slate);line-height:1.5}
 .scenario-modules{display:flex;gap:4px;margin-top:8px}
 .scenario-mod{font-size:.65rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(26,86,200,0.08);color:var(--blue)}
 
 .chat-area{flex:1;display:flex;flex-direction:column;background:var(--bg)}
 .chat-header{padding:16px 24px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.chat-agent-icon{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:.85rem;flex-shrink:0}
-.chat-agent-info h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy)}
+.chat-agent-icon{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:.85rem;flex-shrink:0}
+.chat-agent-info h3{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:700;font-size:.95rem;color:var(--navy)}
 .chat-agent-info p{font-size:.75rem;color:var(--green);font-weight:500}
 
 .chat-messages{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px}
@@ -74,14 +74,14 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 
 .chat-input-area{padding:16px 24px;background:var(--white);border-top:1px solid var(--border)}
 .quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0}
-.quick-btn{padding:9px 16px;border:1px solid var(--border);border-radius:100px;background:var(--white);cursor:pointer;font-size:.82rem;font-weight:500;color:var(--text);transition:all .2s;font-family:'Noto Sans KR',sans-serif}
+.quick-btn{padding:9px 16px;border:1px solid var(--border);border-radius:100px;background:var(--white);cursor:pointer;font-size:.82rem;font-weight:500;color:var(--text);transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif}
 .quick-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--ice)}
 .quick-btn:disabled{opacity:.4;cursor:default;pointer-events:none}
 
 .welcome{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px}
 .welcome-inner{max-width:400px}
 .welcome-icon{font-size:3rem;margin-bottom:16px}
-.welcome h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.5rem;color:var(--navy);margin-bottom:8px}
+.welcome h2{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:1.5rem;color:var(--navy);margin-bottom:8px}
 .welcome p{font-size:.9rem;color:var(--slate);line-height:1.6}
 
 @media(max-width:768px){
@@ -92,7 +92,7 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 .mobile-toggle{display:none;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--white);cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text)}
 
 .chat-input-row{display:flex;gap:8px;margin-top:12px}
-.chat-text-input{flex:1;padding:11px 16px;border:1px solid var(--border);border-radius:100px;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s}
+.chat-text-input{flex:1;padding:11px 16px;border:1px solid var(--border);border-radius:100px;font-size:.9rem;font-family:'Pretendard Variable',Pretendard,sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s}
 .chat-text-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,200,0.1)}
 .chat-text-input::placeholder{color:var(--slate)}
 .chat-send-btn{width:40px;height:40px;border-radius:50%;border:none;background:var(--blue);color:#fff;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
@@ -102,21 +102,21 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 .data-panel{display:none;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;animation:msgIn .3s ease}
 .data-panel.open{display:block}
 .data-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.data-panel-header h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy)}
+.data-panel-header h3{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:700;font-size:.95rem;color:var(--navy)}
 .data-panel-close{background:none;border:none;font-size:1.2rem;color:var(--slate);cursor:pointer}
 .data-panel-close:hover{color:var(--text)}
 .data-field{margin-bottom:12px}
 .data-field label{display:block;font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:4px}
 .data-field .field-hint{font-size:.7rem;color:var(--slate);margin-bottom:4px;display:block}
-.data-field input,.data-field textarea,.data-field select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s;resize:vertical}
+.data-field input,.data-field textarea,.data-field select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:'Pretendard Variable',Pretendard,sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s;resize:vertical}
 .data-field input:focus,.data-field textarea:focus,.data-field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,200,0.08)}
 .data-field textarea{min-height:80px;max-height:200px;line-height:1.5}
 .data-field .char-count{font-size:.65rem;color:var(--slate);text-align:right;margin-top:2px}
 .data-field .char-count.over{color:#DC2626}
-.data-submit{width:100%;padding:10px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-weight:600;font-size:.85rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s}
+.data-submit{width:100%;padding:10px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-weight:600;font-size:.85rem;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s}
 .data-submit:hover{background:var(--blue2)}
 .data-submit:disabled{opacity:.4;cursor:default}
-.data-toggle{padding:7px 14px;border:1px dashed rgba(26,86,200,0.3);border-radius:8px;background:rgba(26,86,200,0.04);color:var(--blue);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.data-toggle{padding:7px 14px;border:1px dashed rgba(26,86,200,0.3);border-radius:8px;background:rgba(26,86,200,0.04);color:var(--blue);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif;display:inline-flex;align-items:center;gap:6px}
 .data-toggle:hover{background:rgba(26,86,200,0.08);border-color:var(--blue)}
 </style>
 </head>
