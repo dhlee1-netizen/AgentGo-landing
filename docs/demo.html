@@ -90,6 +90,14 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
   .mobile-toggle{display:flex!important}
 }
 .mobile-toggle{display:none;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--white);cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text)}
+
+.chat-input-row{display:flex;gap:8px;margin-top:12px}
+.chat-text-input{flex:1;padding:11px 16px;border:1px solid var(--border);border-radius:100px;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s}
+.chat-text-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,200,0.1)}
+.chat-text-input::placeholder{color:var(--slate)}
+.chat-send-btn{width:40px;height:40px;border-radius:50%;border:none;background:var(--blue);color:#fff;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.chat-send-btn:hover{background:var(--blue2);transform:scale(1.05)}
+.chat-send-btn:disabled{opacity:.4;cursor:default;transform:none}
 </style>
 </head>
 <body>
@@ -157,6 +165,10 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
     <div class="chat-messages" id="chatMessages" style="display:none"></div>
     <div class="chat-input-area" id="chatInput" style="display:none">
       <div class="quick-actions" id="quickActions"></div>
+      <div class="chat-input-row">
+        <input type="text" class="chat-text-input" id="chatTextInput" placeholder="메시지를 입력하세요..." onkeydown="if(event.key==='Enter')sendUserInput()">
+        <button class="chat-send-btn" id="chatSendBtn" onclick="sendUserInput()">↑</button>
+      </div>
     </div>
   </div>
 </div>
@@ -423,6 +435,81 @@ function runFlow(key){
     }
   }
   next();
+}
+
+var FREE_RESPONSES={
+  automation:[
+    {keywords:['보고서','보고','리포트','주간','월간','일간'],response:'보고서 자동 생성 기능을 체험해 보세요!',flow:'report'},
+    {keywords:['메일','이메일','mail','초안','회신'],response:'메일 초안 작성 기능을 체험해 보세요!',flow:'email'},
+    {keywords:['결재','승인','비용','정산','경비'],response:'결재 요청 자동화를 체험해 보세요!',flow:'approval'},
+    {keywords:['회의록','미팅','회의','논의'],response:'미팅 후속 업무 자동화를 지원합니다. 메일 초안 작성 시나리오를 추천합니다.',flow:'email'},
+    {keywords:['일정','캘린더','스케줄'],response:'일정 관리 자동화는 Flow 모듈의 핵심 기능입니다.\n\n현재 체험 가능한 시나리오:\n• 📋 주간 보고서 자동 생성\n• ✉️ 미팅 후 메일 초안 작성\n• ✅ 결재 요청 자동화\n\n아래 버튼을 눌러 체험해 보세요!'},
+  ],
+  knowledge:[
+    {keywords:['연차','휴가','반차','휴일','연가','병가'],response:'연차 관련 규정을 검색해 보세요!',flow:'leave'},
+    {keywords:['보안','기밀','외부','클라우드','유출'],response:'보안 정책을 확인해 보세요!',flow:'security'},
+    {keywords:['사양','스펙','서버','GPU','설치'],response:'제품 스펙 조회를 체험해 보세요!',flow:'spec'},
+    {keywords:['급여','연봉','성과급','인센티브'],response:'📄 <strong>HR 정책 검색 결과</strong>\n\n급여 관련 정보는 인사규정 제31조~제35조에서 확인할 수 있습니다.\n\n• 급여일: 매월 25일 (주말·공휴일 시 전 영업일)\n• 성과급: 반기별 평가 후 지급 (7월, 1월)\n• 연봉 조정: 매년 3월 (인사평가 결과 반영)\n\n상세 규정은 그룹웨어 > HR > 인사규정에서 확인하세요.'},
+    {keywords:['복지','복리후생','식대','교통'],response:'📄 <strong>복리후생 검색 결과</strong>\n\n출처: 복리후생규정 제5조\n\n• 식대: 월 20만원 (비과세)\n• 교통비: 월 10만원\n• 자기개발비: 연 100만원 (도서, 강의, 자격증)\n• 건강검진: 연 1회 (배우자 포함)\n• 경조사비: 본인 결혼 50만원, 자녀 출생 30만원'},
+    {keywords:['출퇴근','근무','재택','원격','유연근무'],response:'📄 <strong>근무 제도 검색 결과</strong>\n\n출처: 근무규정 제8조\n\n• 기본 근무: 09:00~18:00 (점심 12:00~13:00)\n• 유연근무: 코어타임 10:00~16:00, 전후 자율\n• 재택근무: 주 2회까지 (팀장 승인)\n• 초과근무: 사전 신청 필수, 월 52시간 한도'},
+  ],
+  dev:[
+    {keywords:['api','엔드포인트','rest','endpoint'],response:'API 생성 시나리오를 체험해 보세요!',flow:'api'},
+    {keywords:['보안','점검','취약','injection','xss'],response:'코드 보안 점검을 체험해 보세요!',flow:'review'},
+    {keywords:['테스트','test','단위','통합','pytest'],response:'테스트 코드 작성을 체험해 보세요!',flow:'test'},
+    {keywords:['파이썬','python','함수','클래스','코드'],response:'코드 생성을 지원합니다. 어떤 기능의 코드가 필요하신가요?\n\n현재 체험 가능한 시나리오:\n• 🔧 REST API 엔드포인트 생성\n• 🛡️ 코드 보안 점검\n• 🧪 테스트 코드 작성\n\n아래 버튼을 눌러 체험해 보세요!'},
+    {keywords:['리뷰','review','코드리뷰','PR'],response:'코드 리뷰 기능은 Guard 모듈과 연동하여 보안 취약점까지 함께 점검합니다.\n\n🛡️ Guard 자동 검사 항목:\n• SQL Injection, XSS, CSRF\n• 하드코딩된 시크릿 키\n• 인증/인가 누락\n• 의존성 취약점\n\n코드 보안 점검 시나리오를 체험해 보세요!'},
+    {keywords:['배포','deploy','ci','cd'],response:'배포 관련 지원 기능입니다.\n\n🚀 Coder 모듈 배포 지원:\n• CI/CD 파이프라인 자동 생성\n• K8s 매니페스트 작성\n• Docker 이미지 빌드 설정\n• 배포 전 Guard 보안 게이트 자동 적용\n\n현재 체험에서는 API 생성 → 보안 점검 → 테스트 플로우를 체험할 수 있습니다.'},
+  ],
+  ops:[
+    {keywords:['장애','에러','오류','느려','다운','timeout','500','503'],response:'장애 원인 분석을 체험해 보세요!',flow:'incident'},
+    {keywords:['상태','모니터링','대시보드','헬스','health'],response:'시스템 상태 조회를 체험해 보세요!',flow:'status'},
+    {keywords:['이상','탐지','알림','경고','alert','anomaly'],response:'이상 탐지 알림을 확인해 보세요!',flow:'anomaly'},
+    {keywords:['cpu','메모리','디스크','memory','용량'],response:'📊 <strong>리소스 현황 요약</strong>\n\n<table><tr><th>서버</th><th>CPU</th><th>메모리</th><th>디스크</th></tr><tr><td>app-01</td><td>45%</td><td>72%</td><td>58%</td></tr><tr><td>app-02</td><td>38%</td><td>65%</td><td>55%</td></tr><tr><td>db-primary</td><td>52%</td><td>81%</td><td>73%</td></tr><tr><td>redis-01</td><td>12%</td><td>55%</td><td>22%</td></tr></table>\n\n⚠️ db-primary 메모리 사용률이 80%를 초과했습니다.\n시스템 상태 조회에서 더 자세한 정보를 확인하세요.'},
+    {keywords:['로그','log','트래픽','요청'],response:'📋 <strong>최근 트래픽 요약</strong> (최근 1시간)\n\n• 총 요청 수: 24,580건\n• 평균 응답 시간: 187ms\n• 에러율: 0.3% (72건)\n• 최다 호출 API: GET /api/users (8,420건)\n• 최장 응답 API: POST /api/reports (2.1초)\n\n장애 원인 분석 시나리오에서 더 자세한 로그를 확인할 수 있습니다.'},
+  ]
+};
+
+function sendUserInput(){
+  if(isTyping||!currentScenario)return;
+  var input=document.getElementById('chatTextInput');
+  var text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  addUserMsg(text);
+  isTyping=true;
+  disableActions();
+  showTyping();
+
+  var lower=text.toLowerCase();
+  var responses=FREE_RESPONSES[currentScenario]||[];
+  var matched=null;
+  for(var i=0;i<responses.length;i++){
+    var r=responses[i];
+    for(var j=0;j<r.keywords.length;j++){
+      if(lower.indexOf(r.keywords[j])!==-1){matched=r;break}
+    }
+    if(matched)break;
+  }
+
+  setTimeout(function(){
+    hideTyping();
+    if(matched&&matched.flow){
+      addBotMsg(matched.response);
+      setTimeout(function(){isTyping=false;runFlow(matched.flow)},600);
+    } else if(matched){
+      if(matched.response.indexOf('<')!==-1){addBotMsgHtml(matched.response)}
+      else{addBotMsg(matched.response)}
+      isTyping=false;
+      var s=SCENARIOS[currentScenario];
+      setActions(s.actions);
+    } else {
+      addBotMsg('입력하신 내용을 분석했습니다. 현재 체험 버전에서는 아래 시나리오를 통해 AgentGo의 주요 기능을 경험하실 수 있습니다.\n\n아래 버튼을 클릭해 주세요!');
+      isTyping=false;
+      var s=SCENARIOS[currentScenario];
+      setActions(s.actions);
+    }
+  },1000+Math.random()*500);
 }
 </script>
 </body>
