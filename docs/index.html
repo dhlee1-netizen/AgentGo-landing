@@ -174,6 +174,27 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 .footer-logo-text{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:rgba(255,255,255,0.8)}
 .footer-copy{font-size:.8rem;color:rgba(255,255,255,0.4)}
 
+/* === MODAL === */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,22,40,0.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:20px;padding:40px;max-width:480px;width:100%;position:relative;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.6rem;color:var(--slate);cursor:pointer;line-height:1;padding:4px}
+.modal-close:hover{color:var(--text)}
+.modal-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.5rem;color:var(--navy);margin-bottom:6px}
+.modal-desc{font-size:.9rem;color:var(--text2);margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.required{color:#DC2626}
+.form-group input,.form-group select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:var(--radius-btn);font-size:.9rem;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);transition:border-color .2s;outline:none}
+.form-group input:focus,.form-group select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,200,0.1)}
+.form-group input::placeholder{color:var(--slate)}
+.modal-submit{width:100%;justify-content:center;margin-top:8px;padding:14px}
+.modal-success{text-align:center;padding:20px 0}
+.success-icon{width:56px;height:56px;border-radius:50%;background:#D1FAE5;color:var(--green);font-size:1.6rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.modal-success h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy);margin-bottom:8px}
+.modal-success p{font-size:.9rem;color:var(--text2);line-height:1.6}
+
 /* === SCROLL ANIMATION === */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -232,7 +253,7 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
       <li><a href="#editions">에디션</a></li>
       <li><a href="#process">도입 프로세스</a></li>
     </ul>
-    <a href="#cta" class="nav-cta desktop">데모 신청</a>
+    <a href="#" class="nav-cta desktop" onclick="openDemoModal(event)">데모 신청</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
       <span></span><span></span><span></span>
     </button>
@@ -248,8 +269,8 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
     <h1>기업의 AI 에이전트를<br><span class="grad">개발·운영·통제</span>하는<br>통합 플랫폼</h1>
     <p class="hero-sub">보안·거버넌스·운영 체계를 갖춘 엔터프라이즈 Agentic AI 플랫폼.<br>개발부터 배포·운영까지 하나의 환경에서 관리합니다.</p>
     <div class="hero-buttons">
-      <a href="#cta" class="btn-primary">데모 신청하기 →</a>
-      <a href="#" class="btn-secondary">소개서 다운로드</a>
+      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청하기 →</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
     </div>
   </div>
   <div class="scroll-indicator"><span class="line"></span>scroll</div>
@@ -585,11 +606,54 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
     <h2 class="sec-h2">AI 도입의 첫 걸음은<br><span class="grad">30분 데모</span>로 충분합니다</h2>
     <p class="sec-desc">현재 조직의 Pain point를 공유해 주시면, 맞춤형 데모와 POC 설계를 무료로 제공해 드립니다.</p>
     <div class="hero-buttons">
-      <a href="mailto:contact@itcen.com" class="btn-primary" style="font-size:1.05rem;padding:16px 40px">데모 신청하기 →</a>
-      <a href="#" class="btn-secondary">소개서 받기</a>
+      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">데모 신청하기 →</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 받기</a>
     </div>
   </div>
 </section>
+
+<!-- DEMO MODAL -->
+<div class="modal-overlay" id="demoModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDemoModal()" aria-label="닫기">&times;</button>
+    <h2 class="modal-title">데모 신청</h2>
+    <p class="modal-desc">아래 정보를 입력해 주시면, 맞춤형 데모 일정을 안내해 드립니다.</p>
+    <form id="demoForm" onsubmit="submitDemo(event)">
+      <div class="form-group">
+        <label for="company">회사명 <span class="required">*</span></label>
+        <input type="text" id="company" name="company" required placeholder="예: ITCEN CLOIT">
+      </div>
+      <div class="form-group">
+        <label for="name">담당자명 <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+      </div>
+      <div class="form-group">
+        <label for="email">이메일 <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="예: hong@company.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">연락처</label>
+        <input type="tel" id="phone" name="phone" placeholder="예: 010-1234-5678">
+      </div>
+      <div class="form-group">
+        <label for="edition">관심 에디션</label>
+        <select id="edition" name="edition">
+          <option value="">선택해 주세요</option>
+          <option value="chatbot">AgentGo Chatbot</option>
+          <option value="standard">AgentGo Standard</option>
+          <option value="enterprise">AgentGo Enterprise</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primary modal-submit">신청하기 →</button>
+    </form>
+    <div class="modal-success" id="demoSuccess" style="display:none">
+      <div class="success-icon">✓</div>
+      <h3>신청이 완료되었습니다</h3>
+      <p>입력하신 이메일로 데모 일정 안내를 보내드리겠습니다.<br>빠른 시일 내 연락드리겠습니다.</p>
+      <button class="btn-secondary" onclick="closeDemoModal()" style="margin-top:16px">확인</button>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -601,6 +665,17 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 </footer>
 
 <script>
+function openDemoModal(e){e.preventDefault();document.getElementById('demoModal').classList.add('open');document.body.style.overflow='hidden'}
+function closeDemoModal(){document.getElementById('demoModal').classList.remove('open');document.body.style.overflow='';document.getElementById('demoForm').reset();document.getElementById('demoForm').style.display='';document.getElementById('demoSuccess').style.display='none'}
+function submitDemo(e){
+  e.preventDefault();
+  var f=e.target,d={company:f.company.value,name:f.name.value,email:f.email.value,phone:f.phone.value,edition:f.edition.value,timestamp:new Date().toISOString()};
+  var prev=JSON.parse(localStorage.getItem('agentgo_demos')||'[]');prev.push(d);localStorage.setItem('agentgo_demos',JSON.stringify(prev));
+  f.style.display='none';document.getElementById('demoSuccess').style.display='block';
+}
+document.getElementById('demoModal').addEventListener('click',function(e){if(e.target===this)closeDemoModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDemoModal()});
+
 (function(){
   // NAV scroll
   const nav=document.getElementById('nav');
