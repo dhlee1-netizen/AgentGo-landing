@@ -215,8 +215,12 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 .kpi-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:2.2rem;color:var(--blue);letter-spacing:-1px}
 .kpi-label{font-size:.82rem;color:var(--text2);margin-top:4px}
 
-/* === VIDEO === */
-.video-wrap{margin-top:48px;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+/* === VIDEO SECTION === */
+.video-section{padding:64px 24px;background:var(--bg)}
+.video-inner{max-width:800px;margin:0 auto;text-align:center}
+.video-inner h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.6rem;color:var(--navy);margin-bottom:8px}
+.video-inner p{font-size:.9rem;color:var(--text2);margin-bottom:28px}
+.video-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,0.06)}
 .video-wrap video{width:100%;display:block}
 
 /* === INLINE CTA === */
@@ -295,16 +299,28 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="hero" id="hero">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> Enterprise AI Agent Platform</div>
-    <h1>AI를 안전하게 운영하는<br><span class="grad">엔터프라이즈 플랫폼</span></h1>
-    <p class="hero-sub">보안·권한·감사를 갖춘 AI 운영 체계.<br>보고서 작성 시간 80% 단축, 장애 분석 60% 단축.</p>
+    <div class="hero-badge"><span class="hero-badge-dot"></span> 엔터프라이즈 AI 운영 플랫폼</div>
+    <h1>AI를 도입하는 것이 아니라<br><span class="grad">안전하게 운영</span>하는 것이<br>진짜 과제입니다</h1>
+    <p class="hero-sub">보안·권한·감사 체계를 갖춘 AI 운영 플랫폼.<br>챗봇이 아닌, 기업 AI의 운영 기준을 만듭니다.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" onclick="openDemoModal(event)">30분 데모 요청</a>
-      <a href="demo.html" class="btn-secondary">직접 체험하기</a>
+      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
     </div>
-    <p style="font-size:.75rem;color:var(--slate);margin-top:16px">소개서가 필요하신가요? <a href="AgentGo_소개서.pdf" download style="color:var(--blue);text-decoration:underline">PDF 다운로드</a></p>
   </div>
   <div class="scroll-indicator"><span class="line"></span>scroll</div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="video">
+  <div class="video-inner">
+    <h2>AgentGo를 60초 안에 경험해보세요</h2>
+    <p>AI 에이전트가 어떻게 연결되고 운영되는지 영상으로 확인해보세요</p>
+    <div class="video-wrap reveal">
+      <video controls preload="metadata" muted>
+        <source src="AgentGo_teaser.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
 </section>
 
 <!-- PROBLEM -->
@@ -363,18 +379,9 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
         <p>장애 원인 분석 60% 단축. 이상 탐지부터 대응까지 자동화.</p>
       </div>
     </div>
-    <div class="video-wrap reveal">
-      <video controls preload="metadata" poster="">
-        <source src="AgentGo_teaser.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="inline-cta reveal">
-      <h3>2분 안에 직접 체험해 보세요</h3>
-      <p>샘플 데이터로 Agent 동작을 바로 확인할 수 있습니다.</p>
-      <div class="hero-buttons">
-        <a href="demo.html" class="btn-primary">직접 체험하기 →</a>
-        <a href="#" class="btn-secondary" onclick="openDemoModal(event)">30분 데모 요청</a>
-      </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청</a>
+      <a href="demo.html" class="btn-secondary" style="margin-left:12px">직접 체험하기 →</a>
     </div>
   </div>
 </section>
@@ -608,20 +615,20 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
         <div class="faq-a"><div class="faq-a-inner">업무·데이터·시스템 환경을 검토하여 우선 적용 가능한 시나리오부터 PoC로 검증합니다.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">Claude와 무엇이 다른가요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">Claude가 하나의 AI를 활용하는 도구라면, AgentGo는 여러 AI와 업무 시스템을 연결하고 운영하는 엔터프라이즈 플랫폼입니다. 기업 환경에 필요한 보안, 권한, 운영, 거버넌스를 통합 관리할 수 있습니다.</div></div>
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">기존 시스템과 연동되나요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">ERP, 그룹웨어, 문서 저장소 등 기존 환경과 연계하여 단계적으로 적용할 수 있습니다.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">기존 시스템과 연동되나요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">ERP·그룹웨어·문서 저장소 등 기존 환경과 연계하여 단계적으로 적용할 수 있습니다.</div></div>
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">Claude, Copilot과 무엇이 다른가요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Claude나 Copilot은 개인 생산성 중심 AI 도구입니다. AgentGo는 여러 AI와 업무 시스템을 연결하고 운영하는 엔터프라이즈 AI 운영 플랫폼입니다. 기업 환경에 필요한 보안, 권한, 운영, 거버넌스를 통합 관리할 수 있습니다.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">데이터가 외부로 유출되지는 않나요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">온프레미스·폐쇄망·권한 정책을 지원하며, 접근 이력과 감사 로그를 관리합니다.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">온프레미스·폐쇄망·권한 정책을 지원하며 접근 이력과 감사 로그를 관리합니다.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">도입 효과는 어떻게 확인하나요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">PoC 단계에서 사용량, 처리 시간, 업무 성과 지표를 기반으로 효과를 검증합니다.</div></div>
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">도입까지 얼마나 걸리나요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">적용 시나리오 검토(1~2주) → PoC(1~2개월) → 운영 확장 순으로 단계적으로 진행합니다.</div></div>
       </div>
     </div>
   </div>
@@ -631,13 +638,12 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="final-cta" id="cta">
   <div class="container">
     <span class="sec-label">지금 시작하세요</span>
-    <h2 class="sec-h2">AI 운영의 첫 단계,<br><span class="grad">30분 데모</span>로 충분합니다</h2>
+    <h2 class="sec-h2">AI 운영 체계 구축,<br><span class="grad">데모 한 번</span>이면 충분합니다</h2>
     <p class="sec-desc">현재 조직의 과제를 공유해 주시면,<br>맞춤형 시나리오와 PoC 설계를 제공합니다.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">30분 데모 요청</a>
-      <a href="demo.html" class="btn-secondary">직접 체험하기</a>
+      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">데모 신청</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
     </div>
-    <p style="font-size:.75rem;color:var(--slate);margin-top:16px">소개서가 필요하신가요? <a href="AgentGo_소개서.pdf" download style="color:var(--blue);text-decoration:underline">PDF 다운로드</a></p>
   </div>
 </section>
 
