@@ -92,6 +92,7 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 .core-tag{font-size:.7rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
 .core-cell h3{font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:8px}
 .core-cell p{font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:14px}
+.core-pills{display:flex;flex-wrap:wrap;gap:6px}
 .core-pill{display:inline-block;font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:100px;background:rgba(26,86,200,0.08);color:var(--blue)}
 
 /* === VALUE CARDS === */
@@ -252,6 +253,7 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
       <li><a href="#usecases">활용 사례</a></li>
       <li><a href="#editions">에디션</a></li>
       <li><a href="#process">도입 프로세스</a></li>
+      <li><a href="demo.html" style="color:var(--blue)">Agent 체험</a></li>
     </ul>
     <a href="#" class="nav-cta desktop" onclick="openDemoModal(event)">데모 신청</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
@@ -319,37 +321,37 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
         <div class="core-tag">인프라</div>
         <h3>Platform</h3>
         <p>온프레미스부터 퍼블릭 클라우드, 완전 폐쇄망까지. 벤더 Lock-in 없이 어디서든 실행됩니다.</p>
-        <span class="core-pill">K8s 오토스케일링</span>
+        <div class="core-pills"><span class="core-pill">K8s 오토스케일링</span><span class="core-pill">온프레미스</span><span class="core-pill">퍼블릭 클라우드</span><span class="core-pill">폐쇄망 지원</span><span class="core-pill">멀티 테넌트</span></div>
       </div>
       <div class="core-cell reveal">
         <div class="core-tag">보안</div>
         <h3>Guard</h3>
         <p>사내 업무 규정을 자동 반영해 AI의 권한과 접근 범위를 관리하고, 전체 감사 로그를 기록합니다.</p>
-        <span class="core-pill">암호화 + 가드레일</span>
+        <div class="core-pills"><span class="core-pill">암호화 + 가드레일</span><span class="core-pill">접근 권한 제어</span><span class="core-pill">감사 로그</span><span class="core-pill">데이터 주권</span><span class="core-pill">정책 자동 반영</span></div>
       </div>
       <div class="core-cell reveal">
         <div class="core-tag">운영</div>
         <h3>Management</h3>
         <p>AI 에이전트의 상태, 사용량, 비용을 실시간 대시보드로 한눈에 파악합니다.</p>
-        <span class="core-pill">실시간 모니터링</span>
+        <div class="core-pills"><span class="core-pill">실시간 모니터링</span><span class="core-pill">사용량 분석</span><span class="core-pill">비용 대시보드</span><span class="core-pill">에이전트 상태 관리</span></div>
       </div>
       <div class="core-cell reveal">
         <div class="core-tag">마켓플레이스</div>
         <h3>Marketplace</h3>
         <p>검증된 AI 에이전트를 즉시 배포합니다. 개발 리소스 없이도 업무 자동화를 시작할 수 있습니다.</p>
-        <span class="core-pill">즉시 배포</span>
+        <div class="core-pills"><span class="core-pill">즉시 배포</span><span class="core-pill">검증된 에이전트</span><span class="core-pill">카테고리 탐색</span><span class="core-pill">원클릭 설치</span></div>
       </div>
       <div class="core-cell reveal">
         <div class="core-tag">개발</div>
         <h3>Coder</h3>
         <p>MCP 표준 프로토콜 기반의 AI 에이전트 개발 도구. 파편화된 AI 시스템을 하나로 통합합니다.</p>
-        <span class="core-pill">MCP 표준</span>
+        <div class="core-pills"><span class="core-pill">MCP 표준</span><span class="core-pill">에이전트 SDK</span><span class="core-pill">API 연동</span><span class="core-pill">템플릿 제공</span><span class="core-pill">시스템 통합</span></div>
       </div>
       <div class="core-cell reveal">
         <div class="core-tag">자동화</div>
         <h3>Flow</h3>
         <p>업무 자동화 워크플로를 시각적으로 설계하고 실행합니다. 대화 한 마디로 복잡한 업무가 시작됩니다.</p>
-        <span class="core-pill">노코드 워크플로</span>
+        <div class="core-pills"><span class="core-pill">노코드 워크플로</span><span class="core-pill">드래그 앤 드롭</span><span class="core-pill">조건 분기</span><span class="core-pill">스케줄링</span><span class="core-pill">대화형 실행</span></div>
       </div>
     </div>
   </div>
@@ -435,6 +437,9 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
         <p>로그·장애·오류 패턴 기반 원인 분석과 대응을 지원합니다.</p>
         <span class="usecase-modules">Management + Guard</span>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="demo.html" class="btn-primary">Agent 시나리오 직접 체험하기 →</a>
     </div>
   </div>
 </section>
