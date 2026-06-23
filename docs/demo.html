@@ -98,6 +98,26 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 .chat-send-btn{width:40px;height:40px;border-radius:50%;border:none;background:var(--blue);color:#fff;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .chat-send-btn:hover{background:var(--blue2);transform:scale(1.05)}
 .chat-send-btn:disabled{opacity:.4;cursor:default;transform:none}
+
+.data-panel{display:none;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;animation:msgIn .3s ease}
+.data-panel.open{display:block}
+.data-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.data-panel-header h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy)}
+.data-panel-close{background:none;border:none;font-size:1.2rem;color:var(--slate);cursor:pointer}
+.data-panel-close:hover{color:var(--text)}
+.data-field{margin-bottom:12px}
+.data-field label{display:block;font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.data-field .field-hint{font-size:.7rem;color:var(--slate);margin-bottom:4px;display:block}
+.data-field input,.data-field textarea,.data-field select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s;resize:vertical}
+.data-field input:focus,.data-field textarea:focus,.data-field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,200,0.08)}
+.data-field textarea{min-height:80px;max-height:200px;line-height:1.5}
+.data-field .char-count{font-size:.65rem;color:var(--slate);text-align:right;margin-top:2px}
+.data-field .char-count.over{color:#DC2626}
+.data-submit{width:100%;padding:10px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-weight:600;font-size:.85rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s}
+.data-submit:hover{background:var(--blue2)}
+.data-submit:disabled{opacity:.4;cursor:default}
+.data-toggle{padding:7px 14px;border:1px dashed rgba(26,86,200,0.3);border-radius:8px;background:rgba(26,86,200,0.04);color:var(--blue);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.data-toggle:hover{background:rgba(26,86,200,0.08);border-color:var(--blue)}
 </style>
 </head>
 <body>
@@ -164,7 +184,11 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
     </div>
     <div class="chat-messages" id="chatMessages" style="display:none"></div>
     <div class="chat-input-area" id="chatInput" style="display:none">
+      <div class="data-panel" id="dataPanel"></div>
       <div class="quick-actions" id="quickActions"></div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+        <button class="data-toggle" id="dataToggle" onclick="toggleDataPanel()" style="display:none">📋 내 데이터로 체험</button>
+      </div>
       <div class="chat-input-row">
         <input type="text" class="chat-text-input" id="chatTextInput" placeholder="메시지를 입력하세요..." onkeydown="if(event.key==='Enter')sendUserInput()">
         <button class="chat-send-btn" id="chatSendBtn" onclick="sendUserInput()">↑</button>
@@ -360,6 +384,9 @@ function loadScenario(key){
   var msgs=document.getElementById('chatMessages');
   msgs.innerHTML='';
   addBotMsg(s.greeting,s.actions);
+  var dt=document.getElementById('dataToggle');
+  dt.style.display=DATA_FORMS[key]?'inline-flex':'none';
+  document.getElementById('dataPanel').classList.remove('open');
   document.querySelector('.sidebar').classList.remove('open');
 }
 
@@ -443,6 +470,228 @@ function runFlow(key){
     }
   }
   next();
+}
+
+var DATA_FORMS={
+  automation:{
+    title:'업무 데이터 입력',
+    fields:[
+      {id:'a_type',type:'select',label:'업무 유형',options:['주간 보고서','미팅 후속 메일','결재 요청'],required:true},
+      {id:'a_team',type:'text',label:'팀/부서명',placeholder:'예: 마케팅팀',maxlen:20,required:true},
+      {id:'a_tasks',type:'textarea',label:'완료 업무 (줄바꿈으로 구분)',placeholder:'예:\n랜딩 페이지 배포 완료\nA/B 테스트 분석\n소개서 초안 작성',maxlen:300,required:true,hint:'최대 5개, 각 50자 이내'},
+      {id:'a_progress',type:'textarea',label:'진행 중 업무',placeholder:'예:\n웨비나 기획 (60%)\n고객 인터뷰 조율',maxlen:200,hint:'최대 3개, 각 50자 이내'},
+      {id:'a_plan',type:'textarea',label:'다음 주 계획',placeholder:'예:\n발표자료 제작\n콘텐츠 발행',maxlen:200,hint:'최대 3개, 각 50자 이내'}
+    ],
+    generate:function(d){
+      var tasks=d.a_tasks.split('\n').filter(function(s){return s.trim()}).slice(0,5);
+      var prog=d.a_progress?d.a_progress.split('\n').filter(function(s){return s.trim()}).slice(0,3):[];
+      var plan=d.a_plan?d.a_plan.split('\n').filter(function(s){return s.trim()}).slice(0,3):[];
+      var type=d.a_type;
+      if(type==='주간 보고서'){
+        var html='<strong>📝 ['+d.a_team+'] 주간 보고서</strong><br><br>';
+        html+='<strong>1. 완료 업무</strong><ul>'+tasks.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>';
+        if(prog.length)html+='<strong>2. 진행 중</strong><ul>'+prog.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>';
+        if(plan.length)html+='<strong>3. 다음 주 계획</strong><ul>'+plan.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>';
+        return [{from:'bot',text:d.a_team+' 주간 보고서를 생성합니다.\n\n📊 입력하신 데이터를 기반으로 보고서를 작성 중...'},
+          {from:'bot',html:html,actions:[{label:'📧 팀장에게 전송',key:'report_send'},{label:'📎 Confluence에 저장',key:'report_save'}]}];
+      } else if(type==='미팅 후속 메일'){
+        return [{from:'bot',text:'입력하신 내용을 기반으로 미팅 후속 메일을 작성합니다...'},
+          {from:'bot',html:'<strong>✉️ 메일 초안</strong><br><br>제목: ['+esc(d.a_team)+'] 미팅 후속 안내<br><br>안녕하세요.<br>미팅에서 논의된 내용을 정리하여 공유드립니다.<br><br><strong>논의 사항</strong><ul>'+tasks.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>'+(prog.length?'<strong>후속 액션</strong><ul>'+prog.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>':'')+'감사합니다.',actions:[{label:'✏️ 톤 수정 (더 격식체)',key:'email_formal'},{label:'📧 바로 발송',key:'email_send'}]}];
+      } else {
+        return [{from:'bot',text:'결재 요청서를 준비합니다...'},
+          {from:'bot',html:'<strong>📋 결재 요청서 — '+esc(d.a_team)+'</strong><br><br><strong>요청 내용:</strong><ul>'+tasks.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>'+(prog.length?'<strong>참고 사항:</strong><ul>'+prog.map(function(t){return '<li>'+esc(t.trim())+'</li>'}).join('')+'</ul>':''),actions:[{label:'📤 결재 라인에 제출',key:'approval_submit'}]}];
+      }
+    }
+  },
+  knowledge:{
+    title:'검색할 문서 입력',
+    fields:[
+      {id:'k_title',type:'text',label:'문서/규정 제목',placeholder:'예: 재택근무 규정',maxlen:30,required:true},
+      {id:'k_content',type:'textarea',label:'문서 내용 (핵심 조항만)',placeholder:'예:\n제8조 재택근무는 주 2회까지 가능하다.\n코어타임은 10:00~16:00이다.\n사전 신청은 3일 전까지 한다.',maxlen:500,required:true,hint:'최대 500자. 조항/규정 형태로 입력하면 정확도가 높습니다'},
+      {id:'k_question',type:'text',label:'검색 질문',placeholder:'예: 재택근무 몇 번까지 가능해?',maxlen:80,required:true}
+    ],
+    generate:function(d){
+      var lines=d.k_content.split('\n').filter(function(s){return s.trim()}).slice(0,10);
+      var html='📄 <strong>출처: '+esc(d.k_title)+'</strong><br><br>';
+      html+='<strong>검색 결과:</strong><ul>'+lines.map(function(l){return '<li>'+esc(l.trim())+'</li>'}).join('')+'</ul>';
+      html+='<br>💡 위 내용은 "<strong>'+esc(d.k_title)+'</strong>" 문서에서 검색된 결과입니다.';
+      return [{from:'bot',text:'"'+d.k_question+'" 에 대해 사내 문서를 검색합니다...\n\n🔍 '+d.k_title+' 문서에서 관련 내용을 찾았습니다.'},
+        {from:'bot',html:html}];
+    }
+  },
+  dev:{
+    title:'코드 입력',
+    fields:[
+      {id:'d_lang',type:'select',label:'언어',options:['Python','JavaScript','TypeScript','Java','Go'],required:true},
+      {id:'d_task',type:'select',label:'요청 작업',options:['보안 점검','테스트 코드 작성','코드 리뷰'],required:true},
+      {id:'d_code',type:'textarea',label:'코드 입력',placeholder:'분석할 코드를 붙여넣기 하세요',maxlen:800,required:true,hint:'최대 800자 / 30줄 이내. 함수 1~2개 단위가 적합합니다',mono:true}
+    ],
+    generate:function(d){
+      var codeLines=d.d_code.split('\n').slice(0,30);
+      var code=codeLines.join('\n');
+      var issues=[];
+      var low=code.toLowerCase();
+      if(low.indexOf('eval(')!==-1)issues.push({item:'eval() 사용',sev:'Critical',desc:'임의 코드 실행 위험. 제거하거나 안전한 대안을 사용하세요.'});
+      if(low.match(/f["'].*\{.*\}/)||low.match(/\$\{/))issues.push({item:'문자열 삽입',sev:'Warning',desc:'SQL/명령어 삽입 취약점 가능성. 파라미터 바인딩을 사용하세요.'});
+      if(low.indexOf('password')!==-1&&(low.indexOf('=')||low.indexOf(':')))issues.push({item:'하드코딩 시크릿',sev:'Critical',desc:'비밀번호가 코드에 포함되어 있습니다. 환경 변수를 사용하세요.'});
+      if(low.indexOf('http://')!==-1)issues.push({item:'비암호화 통신',sev:'Warning',desc:'HTTP 사용 감지. HTTPS로 변경하세요.'});
+      if(low.indexOf('try')!==-1&&low.indexOf('except')!==-1&&low.indexOf('pass')!==-1)issues.push({item:'빈 예외 처리',sev:'Info',desc:'예외를 무시하면 디버깅이 어렵습니다. 로깅을 추가하세요.'});
+      if(low.indexOf('import os')!==-1&&low.indexOf('system')!==-1)issues.push({item:'OS 명령 실행',sev:'Critical',desc:'os.system() 사용은 명령어 삽입에 취약합니다. subprocess를 사용하세요.'});
+      if(!issues.length){
+        issues.push({item:'기본 구조',sev:'OK',desc:'명백한 보안 취약점이 발견되지 않았습니다.'});
+        if(code.indexOf('//')===-1&&code.indexOf('#')===-1)issues.push({item:'주석 부족',sev:'Info',desc:'핵심 로직에 주석을 추가하면 유지보수성이 향상됩니다.'});
+      }
+      if(d.d_task==='보안 점검'){
+        var html='🛡️ <strong>Guard 보안 점검 결과</strong> ('+esc(d.d_lang)+')<br><br><table><tr><th>항목</th><th>심각도</th><th>설명</th></tr>';
+        issues.forEach(function(i){
+          var cls=i.sev==='Critical'?'status-err':i.sev==='Warning'?'status-warn':'status-ok';
+          html+='<tr><td>'+esc(i.item)+'</td><td class="'+cls+'">'+i.sev+'</td><td>'+esc(i.desc)+'</td></tr>';
+        });
+        html+='</table><br>📌 Guard 모듈은 커밋 전 자동으로 위 패턴을 감지하고 차단합니다.';
+        return [{from:'bot',text:d.d_lang+' 코드를 분석합니다...\n\n🔍 '+codeLines.length+'줄 스캔 중...'},
+          {from:'bot',html:html}];
+      } else if(d.d_task==='테스트 코드 작성'){
+        var fns=code.match(/(?:def |function |async |const |let |var )\s*(\w+)/g)||['main'];
+        var testNames=fns.slice(0,3).map(function(f){return f.replace(/^(def |function |async |const |let |var )/,'').trim()});
+        var html='<strong>🧪 테스트 코드 생성 결과</strong> ('+esc(d.d_lang)+')<br><br>감지된 함수: '+testNames.map(function(n){return '<code>'+esc(n)+'</code>'}).join(', ')+'<br><br>';
+        html+='<strong>생성된 테스트 케이스:</strong><ul>';
+        testNames.forEach(function(n){
+          html+='<li><code>test_'+esc(n)+'_정상_동작</code> — 기본 입력으로 정상 결과 확인</li>';
+          html+='<li><code>test_'+esc(n)+'_예외_처리</code> — 잘못된 입력 시 예외 발생 확인</li>';
+        });
+        html+='</ul><br>✅ 총 '+testNames.length*2+'개 테스트 케이스 생성. Guard 보안 테스트도 함께 추가되었습니다.';
+        return [{from:'bot',text:'코드를 분석하여 테스트 케이스를 생성합니다...'},
+          {from:'bot',html:html}];
+      } else {
+        var html='<strong>📝 코드 리뷰 결과</strong> ('+esc(d.d_lang)+')<br><br>';
+        html+='<strong>코드 품질:</strong><ul>';
+        html+='<li>라인 수: '+codeLines.length+'줄</li>';
+        html+='<li>함수 수: '+(code.match(/(?:def |function )/g)||[]).length+'개 감지</li>';
+        if(issues.some(function(i){return i.sev==='Critical'}))html+='<li class="status-err">🔴 심각한 보안 이슈가 발견되었습니다</li>';
+        else html+='<li class="status-ok">✅ 심각한 보안 이슈 없음</li>';
+        html+='</ul>';
+        if(issues.length){
+          html+='<strong>개선 제안:</strong><ul>';
+          issues.forEach(function(i){html+='<li><strong>'+esc(i.item)+'</strong>: '+esc(i.desc)+'</li>'});
+          html+='</ul>';
+        }
+        return [{from:'bot',text:'코드 리뷰를 진행합니다...\n\n📋 '+codeLines.length+'줄 분석 중...'},
+          {from:'bot',html:html}];
+      }
+    }
+  },
+  ops:{
+    title:'로그 데이터 입력',
+    fields:[
+      {id:'o_type',type:'select',label:'분석 유형',options:['장애 원인 분석','성능 분석','보안 이벤트 분석'],required:true},
+      {id:'o_service',type:'text',label:'서비스명',placeholder:'예: api-gateway',maxlen:30,required:true},
+      {id:'o_logs',type:'textarea',label:'로그 데이터',placeholder:'예:\n[14:23:15] ERROR Connection timeout (5.1s)\n[14:23:18] WARN Memory usage 91%\n[14:23:25] ERROR 503 Service Unavailable',maxlen:600,required:true,hint:'최대 600자 / 15줄. 타임스탬프 포함 시 정확도 향상',mono:true}
+    ],
+    generate:function(d){
+      var lines=d.o_logs.split('\n').filter(function(s){return s.trim()}).slice(0,15);
+      var low=d.o_logs.toLowerCase();
+      var errors=lines.filter(function(l){return l.toLowerCase().match(/error|err|fail|exception|critical/)});
+      var warnings=lines.filter(function(l){return l.toLowerCase().match(/warn|warning|slow|timeout/)});
+      var svc=d.o_service;
+      var html='<strong>📊 '+esc(svc)+' '+esc(d.o_type)+' 리포트</strong><br><br>';
+      html+='<strong>로그 요약:</strong><ul>';
+      html+='<li>분석 라인: '+lines.length+'줄</li>';
+      html+='<li>에러: <span class="status-err">'+errors.length+'건</span></li>';
+      html+='<li>경고: <span class="status-warn">'+warnings.length+'건</span></li>';
+      html+='</ul>';
+      if(errors.length){
+        html+='<strong>🔴 에러 상세:</strong><table><tr><th>로그</th><th>심각도</th></tr>';
+        errors.slice(0,5).forEach(function(e){html+='<tr><td><code>'+esc(e.trim().substring(0,80))+'</code></td><td class="status-err">Error</td></tr>'});
+        html+='</table><br>';
+      }
+      if(warnings.length){
+        html+='<strong>🟡 경고 상세:</strong><table><tr><th>로그</th><th>심각도</th></tr>';
+        warnings.slice(0,5).forEach(function(w){html+='<tr><td><code>'+esc(w.trim().substring(0,80))+'</code></td><td class="status-warn">Warning</td></tr>'});
+        html+='</table><br>';
+      }
+      var suggestions=[];
+      if(low.indexOf('timeout')!==-1||low.indexOf('connection')!==-1)suggestions.push('커넥션 풀 확장 또는 타임아웃 임계값 조정 권장');
+      if(low.indexOf('memory')!==-1||low.indexOf('oom')!==-1)suggestions.push('메모리 증설 또는 메모리 누수 점검 필요');
+      if(low.indexOf('503')!==-1||low.indexOf('502')!==-1)suggestions.push('서버 가용성 확인 및 로드밸런서 설정 점검');
+      if(low.indexOf('cpu')!==-1)suggestions.push('CPU 바운드 프로세스 식별 및 수평 확장 검토');
+      if(low.indexOf('disk')!==-1||low.indexOf('storage')!==-1)suggestions.push('디스크 용량 확보 및 로그 로테이션 설정 확인');
+      if(low.indexOf('denied')!==-1||low.indexOf('unauthorized')!==-1||low.indexOf('forbidden')!==-1)suggestions.push('접근 권한 설정 확인 및 Guard 보안 로그 검토');
+      if(!suggestions.length)suggestions.push('로그 패턴을 기반으로 추가 모니터링 설정 권장');
+      html+='<strong>💡 조치 제안:</strong><ul>'+suggestions.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul>';
+      html+='<br>🛡️ Guard: 분석 이력이 감사 로그에 기록되었습니다.<br>📊 Management: '+esc(svc)+' 대시보드에서 실시간 추적 가능합니다.';
+      return [{from:'bot',text:svc+' 로그를 분석합니다...\n\n📋 '+lines.length+'줄 스캔 중...'},
+        {from:'bot',html:html,actions:[{label:'🔧 즉시 조치 방안',key:'incident_fix'},{label:'📈 시스템 상태 조회',key:'status'}]}];
+    }
+  }
+};
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function toggleDataPanel(){
+  var panel=document.getElementById('dataPanel');
+  if(panel.classList.contains('open')){panel.classList.remove('open');return}
+  var form=DATA_FORMS[currentScenario];
+  if(!form)return;
+  var html='<div class="data-panel-header"><h3>📋 '+form.title+'</h3><button class="data-panel-close" onclick="toggleDataPanel()">&times;</button></div>';
+  form.fields.forEach(function(f){
+    html+='<div class="data-field">';
+    html+='<label for="'+f.id+'">'+f.label+(f.required?' <span style="color:#DC2626">*</span>':'')+'</label>';
+    if(f.hint)html+='<span class="field-hint">'+f.hint+'</span>';
+    if(f.type==='text')html+='<input type="text" id="'+f.id+'" placeholder="'+(f.placeholder||'')+'" maxlength="'+(f.maxlen||50)+'"'+(f.required?' required':'')+'>';
+    else if(f.type==='textarea')html+='<textarea id="'+f.id+'" placeholder="'+(f.placeholder||'')+'" maxlength="'+(f.maxlen||300)+'"'+(f.required?' required':'')+' oninput="updateCharCount(this,'+(f.maxlen||300)+')"'+(f.mono?' style="font-family:Courier New,monospace;font-size:.82rem"':'')+'></textarea><div class="char-count" id="'+f.id+'_cc">0/'+(f.maxlen||300)+'</div>';
+    else if(f.type==='select'){
+      html+='<select id="'+f.id+'">';
+      f.options.forEach(function(o){html+='<option value="'+o+'">'+o+'</option>'});
+      html+='</select>';
+    }
+    html+='</div>';
+  });
+  html+='<button class="data-submit" onclick="submitDataForm()">입력한 데이터로 실행하기 →</button>';
+  panel.innerHTML=html;
+  panel.classList.add('open');
+}
+
+function updateCharCount(el,max){
+  var cc=document.getElementById(el.id+'_cc');
+  if(!cc)return;
+  cc.textContent=el.value.length+'/'+max;
+  cc.className='char-count'+(el.value.length>max?' over':'');
+}
+
+function submitDataForm(){
+  if(isTyping||!currentScenario)return;
+  var form=DATA_FORMS[currentScenario];
+  if(!form)return;
+  var data={};
+  var valid=true;
+  form.fields.forEach(function(f){
+    var el=document.getElementById(f.id);
+    if(!el)return;
+    var v=el.value.trim();
+    if(f.required&&!v){el.style.borderColor='#DC2626';valid=false}
+    else{el.style.borderColor=''}
+    if(f.maxlen&&v.length>f.maxlen){v=v.substring(0,f.maxlen)}
+    data[f.id]=v;
+  });
+  if(!valid)return;
+  document.getElementById('dataPanel').classList.remove('open');
+  var steps=form.generate(data);
+  addUserMsg('내 데이터로 '+form.title+' 실행');
+  isTyping=true;disableActions();
+  var i=0;
+  function next(){
+    if(i>=steps.length){isTyping=false;return}
+    var step=steps[i];i++;
+    showTyping();
+    setTimeout(function(){
+      hideTyping();
+      if(step.html)addBotMsgHtml(step.html,step.actions);
+      else addBotMsg(step.text,step.actions);
+      if(i<steps.length)setTimeout(next,600);
+      else{isTyping=false}
+    },800+Math.random()*500);
+  }
+  setTimeout(next,400);
 }
 
 var FREE_RESPONSES={
