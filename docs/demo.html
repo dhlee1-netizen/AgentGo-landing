@@ -118,6 +118,20 @@ body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:var
 .data-submit:disabled{opacity:.4;cursor:default}
 .data-toggle{padding:7px 14px;border:1px dashed rgba(26,86,200,0.3);border-radius:8px;background:rgba(26,86,200,0.04);color:var(--blue);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif;display:inline-flex;align-items:center;gap:6px}
 .data-toggle:hover{background:rgba(26,86,200,0.08);border-color:var(--blue)}
+
+.file-upload-zone{border:2px dashed var(--border);border-radius:10px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg)}
+.file-upload-zone:hover,.file-upload-zone.dragover{border-color:var(--blue);background:rgba(26,86,200,0.04)}
+.file-upload-zone input{display:none}
+.file-upload-icon{font-size:1.6rem;margin-bottom:6px}
+.file-upload-text{font-size:.82rem;color:var(--text2);line-height:1.5}
+.file-upload-text strong{color:var(--blue);font-weight:600}
+.file-upload-hint{font-size:.7rem;color:var(--slate);margin-top:4px}
+.file-preview{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--ice);border-radius:8px;margin-top:8px;font-size:.82rem;color:var(--text)}
+.file-preview-name{flex:1;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-preview-size{font-size:.72rem;color:var(--slate);flex-shrink:0}
+.file-preview-remove{background:none;border:none;color:var(--slate);cursor:pointer;font-size:1rem;padding:0 4px}
+.file-preview-remove:hover{color:#DC2626}
+.file-content-preview{margin-top:8px;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:.78rem;color:var(--text2);max-height:120px;overflow-y:auto;line-height:1.5;font-family:'Courier New',monospace;white-space:pre-wrap;word-break:break-all}
 </style>
 </head>
 <body>
@@ -484,7 +498,8 @@ var DATA_FORMS={
     fields:[
       {id:'a_type',type:'select',label:'업무 유형',options:['주간 보고서','미팅 후속 메일','결재 요청'],required:true},
       {id:'a_team',type:'text',label:'팀/부서명',placeholder:'예: 마케팅팀',maxlen:20,required:true},
-      {id:'a_tasks',type:'textarea',label:'완료 업무 (줄바꿈으로 구분)',placeholder:'예:\n랜딩 페이지 배포 완료\nA/B 테스트 분석\n소개서 초안 작성',maxlen:300,required:true,hint:'최대 5개, 각 50자 이내'},
+      {id:'a_file',type:'file',label:'업무 자료 업로드',accept:'.txt,.csv,.md,.json',maxsize:512000,hint:'TXT, CSV, MD, JSON (최대 500KB). 업무 목록, 회의록, 비용 내역 등'},
+      {id:'a_tasks',type:'textarea',label:'또는 직접 입력: 완료 업무',placeholder:'예:\n랜딩 페이지 배포 완료\nA/B 테스트 분석\n소개서 초안 작성',maxlen:300,hint:'최대 5개, 각 50자 이내. 파일 업로드 시 자동 채움'},
       {id:'a_progress',type:'textarea',label:'진행 중 업무',placeholder:'예:\n웨비나 기획 (60%)\n고객 인터뷰 조율',maxlen:200,hint:'최대 3개, 각 50자 이내'},
       {id:'a_plan',type:'textarea',label:'다음 주 계획',placeholder:'예:\n발표자료 제작\n콘텐츠 발행',maxlen:200,hint:'최대 3개, 각 50자 이내'}
     ],
@@ -513,7 +528,8 @@ var DATA_FORMS={
     title:'검색할 문서 입력',
     fields:[
       {id:'k_title',type:'text',label:'문서/규정 제목',placeholder:'예: 재택근무 규정',maxlen:30,required:true},
-      {id:'k_content',type:'textarea',label:'문서 내용 (핵심 조항만)',placeholder:'예:\n제8조 재택근무는 주 2회까지 가능하다.\n코어타임은 10:00~16:00이다.\n사전 신청은 3일 전까지 한다.',maxlen:500,required:true,hint:'최대 500자. 조항/규정 형태로 입력하면 정확도가 높습니다'},
+      {id:'k_file',type:'file',label:'문서 파일 업로드',accept:'.txt,.md,.csv,.json',maxsize:512000,hint:'TXT, MD, CSV, JSON (최대 500KB). 규정, 매뉴얼, 정책 문서 등'},
+      {id:'k_content',type:'textarea',label:'또는 직접 입력: 문서 내용',placeholder:'예:\n제8조 재택근무는 주 2회까지 가능하다.\n코어타임은 10:00~16:00이다.',maxlen:500,hint:'최대 500자. 파일 업로드 시 자동 채움'},
       {id:'k_question',type:'text',label:'검색 질문',placeholder:'예: 재택근무 몇 번까지 가능해?',maxlen:80,required:true}
     ],
     generate:function(d){
@@ -530,7 +546,8 @@ var DATA_FORMS={
     fields:[
       {id:'d_lang',type:'select',label:'언어',options:['Python','JavaScript','TypeScript','Java','Go'],required:true},
       {id:'d_task',type:'select',label:'요청 작업',options:['보안 점검','테스트 코드 작성','코드 리뷰'],required:true},
-      {id:'d_code',type:'textarea',label:'코드 입력',placeholder:'분석할 코드를 붙여넣기 하세요',maxlen:800,required:true,hint:'최대 800자 / 30줄 이내. 함수 1~2개 단위가 적합합니다',mono:true}
+      {id:'d_file',type:'file',label:'코드 파일 업로드',accept:'.py,.js,.ts,.java,.go,.txt',maxsize:102400,hint:'소스 코드 파일 (최대 100KB). 함수 1~2개 단위가 적합합니다'},
+      {id:'d_code',type:'textarea',label:'또는 직접 입력',placeholder:'분석할 코드를 붙여넣기 하세요',maxlen:800,hint:'최대 800자 / 30줄. 파일 업로드 시 자동 채움',mono:true}
     ],
     generate:function(d){
       var codeLines=d.d_code.split('\n').slice(0,30);
@@ -591,7 +608,8 @@ var DATA_FORMS={
     fields:[
       {id:'o_type',type:'select',label:'분석 유형',options:['장애 원인 분석','성능 분석','보안 이벤트 분석'],required:true},
       {id:'o_service',type:'text',label:'서비스명',placeholder:'예: api-gateway',maxlen:30,required:true},
-      {id:'o_logs',type:'textarea',label:'로그 데이터',placeholder:'예:\n[14:23:15] ERROR Connection timeout (5.1s)\n[14:23:18] WARN Memory usage 91%\n[14:23:25] ERROR 503 Service Unavailable',maxlen:600,required:true,hint:'최대 600자 / 15줄. 타임스탬프 포함 시 정확도 향상',mono:true}
+      {id:'o_file',type:'file',label:'로그 파일 업로드',accept:'.log,.txt,.csv,.json',maxsize:512000,hint:'LOG, TXT, CSV, JSON (최대 500KB). 서버 로그, 에러 로그 등'},
+      {id:'o_logs',type:'textarea',label:'또는 직접 입력',placeholder:'예:\n[14:23:15] ERROR Connection timeout (5.1s)\n[14:23:18] WARN Memory usage 91%\n[14:23:25] ERROR 503 Service Unavailable',maxlen:600,hint:'최대 600자 / 15줄. 파일 업로드 시 자동 채움',mono:true}
     ],
     generate:function(d){
       var lines=d.o_logs.split('\n').filter(function(s){return s.trim()}).slice(0,15);
@@ -643,7 +661,16 @@ function toggleDataPanel(){
     html+='<div class="data-field">';
     html+='<label for="'+f.id+'">'+f.label+(f.required?' <span style="color:#DC2626">*</span>':'')+'</label>';
     if(f.hint)html+='<span class="field-hint">'+f.hint+'</span>';
-    if(f.type==='text')html+='<input type="text" id="'+f.id+'" placeholder="'+(f.placeholder||'')+'" maxlength="'+(f.maxlen||50)+'"'+(f.required?' required':'')+'>';
+    if(f.type==='file'){
+      html+='<div class="file-upload-zone" id="'+f.id+'_zone" onclick="document.getElementById(\''+f.id+'\').click()" ondragover="event.preventDefault();this.classList.add(\'dragover\')" ondragleave="this.classList.remove(\'dragover\')" ondrop="event.preventDefault();this.classList.remove(\'dragover\');handleFileDrop(event,\''+f.id+'\',\''+f.accept+'\','+(f.maxsize||512000)+')">';
+      html+='<input type="file" id="'+f.id+'" accept="'+(f.accept||'')+'" onchange="handleFileSelect(this,\''+f.id+'\','+(f.maxsize||512000)+')">';
+      html+='<div class="file-upload-icon">📎</div>';
+      html+='<div class="file-upload-text"><strong>클릭하여 파일 선택</strong> 또는 드래그 앤 드롭</div>';
+      html+='<div class="file-upload-hint">'+(f.accept||'')+' · 최대 '+(f.maxsize>=1048576?Math.round(f.maxsize/1048576)+'MB':Math.round(f.maxsize/1024)+'KB')+'</div>';
+      html+='</div>';
+      html+='<div id="'+f.id+'_preview" style="display:none"></div>';
+    }
+    else if(f.type==='text')html+='<input type="text" id="'+f.id+'" placeholder="'+(f.placeholder||'')+'" maxlength="'+(f.maxlen||50)+'"'+(f.required?' required':'')+'>';
     else if(f.type==='textarea')html+='<textarea id="'+f.id+'" placeholder="'+(f.placeholder||'')+'" maxlength="'+(f.maxlen||300)+'"'+(f.required?' required':'')+' oninput="updateCharCount(this,'+(f.maxlen||300)+')"'+(f.mono?' style="font-family:Courier New,monospace;font-size:.82rem"':'')+'></textarea><div class="char-count" id="'+f.id+'_cc">0/'+(f.maxlen||300)+'</div>';
     else if(f.type==='select'){
       html+='<select id="'+f.id+'">';
@@ -662,6 +689,81 @@ function updateCharCount(el,max){
   if(!cc)return;
   cc.textContent=el.value.length+'/'+max;
   cc.className='char-count'+(el.value.length>max?' over':'');
+}
+
+var uploadedFiles={};
+
+function handleFileSelect(input,fieldId,maxsize){
+  var file=input.files[0];
+  if(!file)return;
+  processFile(file,fieldId,maxsize);
+}
+
+function handleFileDrop(e,fieldId,accept,maxsize){
+  var file=e.dataTransfer.files[0];
+  if(!file)return;
+  var exts=accept.split(',').map(function(s){return s.trim().toLowerCase()});
+  var ext='.'+file.name.split('.').pop().toLowerCase();
+  if(exts.indexOf(ext)===-1){alert('지원하지 않는 파일 형식입니다.\n허용: '+accept);return}
+  processFile(file,fieldId,maxsize);
+}
+
+function processFile(file,fieldId,maxsize){
+  if(file.size>maxsize){alert('파일 크기가 '+Math.round(maxsize/1024)+'KB를 초과합니다.\n현재: '+Math.round(file.size/1024)+'KB');return}
+  var preview=document.getElementById(fieldId+'_preview');
+  var zone=document.getElementById(fieldId+'_zone');
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var content=e.target.result;
+    var maxChars=3000;
+    if(content.length>maxChars)content=content.substring(0,maxChars);
+    uploadedFiles[fieldId]={name:file.name,size:file.size,content:content};
+    zone.style.display='none';
+    var sizeStr=file.size>=1024?Math.round(file.size/1024)+'KB':file.size+'B';
+    preview.style.display='block';
+    preview.innerHTML='<div class="file-preview"><span style="font-size:1.1rem">📄</span><span class="file-preview-name">'+esc(file.name)+'</span><span class="file-preview-size">'+sizeStr+'</span><button class="file-preview-remove" onclick="removeFile(\''+fieldId+'\')" title="파일 제거">&times;</button></div>'
+      +'<div class="file-content-preview">'+esc(content.substring(0,500))+(content.length>500?'\n...(이하 생략)':'')+'</div>';
+    autoFillFromFile(fieldId,content);
+  };
+  reader.readAsText(file,'UTF-8');
+}
+
+function removeFile(fieldId){
+  delete uploadedFiles[fieldId];
+  var preview=document.getElementById(fieldId+'_preview');
+  var zone=document.getElementById(fieldId+'_zone');
+  if(preview)preview.style.display='none';
+  if(zone)zone.style.display='';
+  var input=document.getElementById(fieldId);
+  if(input)input.value='';
+}
+
+function autoFillFromFile(fieldId,content){
+  var lines=content.split('\n').filter(function(s){return s.trim()});
+  if(fieldId==='a_file'){
+    var ta=document.getElementById('a_tasks');
+    if(ta&&!ta.value.trim()){ta.value=lines.slice(0,5).join('\n');updateCharCount(ta,300)}
+  }
+  else if(fieldId==='k_file'){
+    var ta=document.getElementById('k_content');
+    if(ta&&!ta.value.trim()){ta.value=lines.slice(0,10).join('\n');updateCharCount(ta,500)}
+    var title=document.getElementById('k_title');
+    if(title&&!title.value.trim()){
+      var fname=uploadedFiles[fieldId].name.replace(/\.[^.]+$/,'').replace(/[_-]/g,' ');
+      title.value=fname.substring(0,30);
+    }
+  }
+  else if(fieldId==='d_file'){
+    var ta=document.getElementById('d_code');
+    if(ta&&!ta.value.trim()){ta.value=lines.slice(0,30).join('\n');updateCharCount(ta,800)}
+    var ext=uploadedFiles[fieldId].name.split('.').pop().toLowerCase();
+    var langMap={py:'Python',js:'JavaScript',ts:'TypeScript',java:'Java',go:'Go'};
+    if(langMap[ext]){var sel=document.getElementById('d_lang');if(sel){sel.value=langMap[ext]}}
+  }
+  else if(fieldId==='o_file'){
+    var ta=document.getElementById('o_logs');
+    if(ta&&!ta.value.trim()){ta.value=lines.slice(0,15).join('\n');updateCharCount(ta,600)}
+  }
 }
 
 function submitDataForm(){
