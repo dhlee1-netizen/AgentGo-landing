@@ -1,8 +1,8 @@
 # AgentGo Landing Page
 
-> **AgentGo** — AI 도입을 넘어, 기업 AI 운영 체계를 구축하는 플랫폼
+> **AgentGo** — AI를 안전하게 운영하는 엔터프라이즈 플랫폼
 
-엔터프라이즈 대상 AgentGo 제품 소개 랜딩 페이지 및 인터랙티브 Agent 데모 페이지입니다.
+데모 신청 전환율 중심으로 설계된 AgentGo 제품 랜딩 페이지 및 인터랙티브 Agent 데모 페이지입니다.
 
 🔗 **Live**: [https://dhlee1-netizen.github.io/AgentGo-landing/](https://dhlee1-netizen.github.io/AgentGo-landing/)
 
@@ -12,23 +12,27 @@
 
 ### 1. 랜딩 페이지 (`docs/index.html`)
 
-비즈니스 가치를 먼저 보여주고, 이후 플랫폼 구성을 설명하는 전환 중심 구조입니다.
+고객 가치 → 체험 → 차별점 → 제품 상세 순서로, 전환을 유도하는 CRO 최적화 구조입니다.
 
 | 순서 | 섹션 | 역할 |
 |:---:|------|------|
-| 1 | **Hero** | 핵심 메시지 + 데모 신청 / 소개서 다운로드 CTA |
-| 2 | **Problem** | 고객 Pain point 3가지 — 데이터 유출, 책임 공백, 관리 사각지대 |
-| 3 | **Value** | AgentGo의 차별 가치 4가지 — 전 주기 관리, 멀티 에이전트, 유연한 배포, 거버넌스 |
-| 4 | **Use Cases** | 대표 업무 시나리오 4개 + Agent 체험 링크 |
-| 5 | **Core** | 6대 모듈 상세 — Platform, Guard, Management, Marketplace, Coder, Flow |
-| 6 | **Editions** | 에디션 비교 — Chatbot / Standard / Enterprise |
-| 7 | **Process** | 3단계 도입 프로세스 — 시나리오 검토 → PoC 검증 → 전사 확산 |
-| 8 | **FAQ** | 도입 전 핵심 질문 5개 |
-| 9 | **CTA** | 최종 전환 — 데모 신청 + 소개서 다운로드 |
+| 1 | **Hero** | 핵심 메시지 + KPI (80%/60%) + 30분 데모 요청 CTA |
+| 2 | **Problem** | Pain point 3가지 — 데이터 유출, 책임 공백, 관리 사각지대 |
+| 3 | **Use Cases** | 결과 중심 시나리오 4개 + 티저 영상 + 체험 CTA |
+| 4 | **Value** | 도입 효과 4가지 + KPI 카드 (80% / 60% / 100%) |
+| 5 | **Why AgentGo** | Claude/일반 LLM vs AgentGo 비교 테이블 |
+| 6 | **Core** | 6대 모듈 — Platform, Guard, Management, Marketplace, Coder, Flow |
+| 7 | **Editions** | 에디션 비교 — Chatbot / Standard / Enterprise |
+| 8 | **Process** | 3단계 도입 — 시나리오 검토 → PoC 검증 → 전사 확산 |
+| 9 | **FAQ** | 도입 핵심 질문 5개 (업무 적용, Claude 차이, 연동, 보안, ROI) |
+| 10 | **CTA** | 최종 전환 — 30분 데모 요청 + 직접 체험하기 |
 
-**주요 기능:**
-- 데모 신청 모달 폼 (회사명, 담당자명, 이메일, 연락처, 관심 에디션)
-- 소개서 PDF 다운로드
+**전환 최적화 요소:**
+- CTA 6곳 배치 (Hero, Use Cases, Why AgentGo, Final CTA)
+- Primary: "30분 데모 요청" / Secondary: "직접 체험하기"
+- 소개서 다운로드는 텍스트 링크로 축소 (전환 집중)
+- 데모 신청 모달 (48시간 이내 안내 신뢰 요소)
+- 티저 영상 삽입 (Use Cases 하단)
 - 캔버스 네트워크 그래프 배경 애니메이션
 - 반응형 대응 (Desktop / Tablet / Mobile)
 
@@ -36,19 +40,19 @@
 
 4가지 Agent 시나리오를 인터랙티브 채팅 UI로 체험할 수 있는 페이지입니다.
 
-| 시나리오 | 체험 내용 | 연결 모듈 |
+| 시나리오 | 체험 내용 | 기대 효과 |
 |---------|---------|----------|
-| 업무 자동화 | 보고서 자동 생성, 메일 초안 (Human-in-the-Loop), 결재 요청 | Flow + Marketplace |
-| 지식 검색 | 연차 규정, 보안 정책, 제품 스펙 조회 | Platform + Management |
-| 개발 지원 | API 생성, 코드 보안 점검, 테스트 설계 | Coder + Guard |
-| 운영 분석 | 장애 원인 분석, 시스템 상태, 이상 탐지 | Management + Guard |
+| 업무 비서 Agent | 보고서 자동 생성, 메일 초안 (Human-in-the-Loop), 결재 요청 | 시간 80% 절감 |
+| 사내 지식 Agent | 연차 규정, 보안 정책, 제품 스펙 조회 | 검색 시간 90% 절감 |
+| 개발 Copilot | API 생성, 코드 보안 점검, 테스트 설계 | 생산성 40% 향상 |
+| 운영 관제 Agent | 장애 원인 분석, 시스템 상태, 이상 탐지 | 분석 60% 단축 |
 
 **주요 기능:**
-- 분기형 대화 흐름 (퀵 액션 버튼 → 후속 시나리오)
+- "2분 안에 체험하기" 전환 중심 웰컴 화면
+- 분기형 대화 흐름 (퀵 액션 → 후속 시나리오)
 - 자유 텍스트 입력 + 키워드 기반 자동 응답
-- 사용자 데이터 입력 폼 (시나리오별 크기/유형 제한)
+- "내 업무로 테스트하기" 데이터 입력 폼 (시나리오별 크기/유형 제한)
 - Human-in-the-Loop (메일 발송 전 Guard 검증 + 사용자 승인)
-- 타이핑 인디케이터, 테이블/코드 블록 렌더링
 
 ---
 
@@ -56,20 +60,21 @@
 
 | 항목 | 스펙 |
 |------|------|
-| 프론트엔드 | HTML + CSS + Vanilla JS (단일 파일, 외부 프레임워크 없음) |
+| 프론트엔드 | HTML + CSS + Vanilla JS (단일 파일, 프레임워크 없음) |
 | 외부 의존성 | Google Fonts CDN만 사용 |
+| 영상 | Git LFS (150MB MP4) |
 | 배포 | GitHub Pages (`/docs` 폴더) |
 | 이미지 | 없음 — CSS, SVG, Canvas만 사용 |
-| 접근성 | `prefers-reduced-motion` 대응, TAB 이동, ARIA 속성, 색상 대비 고려 |
+| 접근성 | `prefers-reduced-motion`, TAB 이동, ARIA, 색상 대비 고려 |
 
 ---
 
 ## 디자인 시스템
 
 - **테마**: Anthropic Light Theme 기반
-- **폰트**: Plus Jakarta Sans (제목, 800) + Noto Sans KR (본문, 400/500/700)
+- **폰트**: Plus Jakarta Sans (제목) + Noto Sans KR (본문)
 
-### 컬러 시스템
+### 컬러
 
 | 역할 | 이름 | HEX |
 |------|------|-----|
@@ -98,17 +103,19 @@ npx http-server docs -p 3000 -c-1
 ```
 ├── README.md
 ├── .gitignore
+├── .gitattributes        # Git LFS 설정 (MP4)
 └── docs/
-    ├── index.html          # 메인 랜딩 페이지 (HTML+CSS+JS 인라인)
-    ├── demo.html           # Agent 시나리오 체험 페이지
-    └── AgentGo_소개서.pdf   # 제품 소개서 다운로드 파일
+    ├── index.html         # 메인 랜딩 페이지
+    ├── demo.html          # Agent 시나리오 체험 페이지
+    ├── AgentGo_소개서.pdf  # 제품 소개서 (다운로드)
+    └── AgentGo_티저.mp4   # 제품 티저 영상 (LFS)
 ```
 
 ---
 
 ## 배포
 
-GitHub Pages에서 `main` 브랜치의 `/docs` 폴더를 소스로 설정하여 자동 배포됩니다.
+GitHub Pages — `main` 브랜치 `/docs` 폴더
 
 Settings → Pages → Source: `main` / `/docs`
 
