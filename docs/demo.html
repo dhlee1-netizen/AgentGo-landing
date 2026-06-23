@@ -128,7 +128,7 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
     AgentGo
   </a>
   <span class="topbar-divider"></span>
-  <span class="topbar-title">Agent 시나리오 체험</span>
+  <span class="topbar-title">AgentGo 체험</span>
   <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">시나리오 선택</button>
   <a href="index.html" class="topbar-back">← 메인으로 돌아가기</a>
 </div>
@@ -136,33 +136,33 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 <div class="app">
   <div class="sidebar">
     <div class="sidebar-header">
-      <h2>시나리오 선택</h2>
-      <p>체험하고 싶은 Agent를 선택하세요</p>
+      <h2>업무를 선택하세요</h2>
+      <p>2분 안에 AgentGo를 체험할 수 있습니다</p>
     </div>
     <div class="scenario-list">
       <button class="scenario-btn" data-scenario="automation" onclick="loadScenario('automation')">
         <span class="scenario-icon">⚡</span>
-        <h3>업무 자동화 Agent</h3>
-        <p>보고서 작성, 메일 초안, 승인 요청 등 반복 업무 자동화</p>
-        <div class="scenario-modules"><span class="scenario-mod">Flow</span><span class="scenario-mod">Marketplace</span></div>
+        <h3>업무 비서 Agent</h3>
+        <p>보고서 자동 작성 · 메일 초안 · 결재 요청</p>
+        <div class="scenario-modules"><span class="scenario-mod">시간 80% 절감</span></div>
       </button>
       <button class="scenario-btn" data-scenario="knowledge" onclick="loadScenario('knowledge')">
         <span class="scenario-icon">🔍</span>
-        <h3>지식 검색 Agent</h3>
-        <p>사내 문서·매뉴얼·정책을 대화형으로 검색</p>
-        <div class="scenario-modules"><span class="scenario-mod">Platform</span><span class="scenario-mod">Management</span></div>
+        <h3>사내 지식 Agent</h3>
+        <p>사내 문서·규정·정책을 질문 하나로 검색</p>
+        <div class="scenario-modules"><span class="scenario-mod">검색 시간 90% 절감</span></div>
       </button>
       <button class="scenario-btn" data-scenario="dev" onclick="loadScenario('dev')">
         <span class="scenario-icon">💻</span>
-        <h3>개발 지원 Agent</h3>
-        <p>코드 생성, 리뷰, 테스트, 개발 가이드 적용</p>
-        <div class="scenario-modules"><span class="scenario-mod">Coder</span><span class="scenario-mod">Guard</span></div>
+        <h3>개발 Copilot</h3>
+        <p>코드 생성 · 보안 점검 · 테스트 자동화</p>
+        <div class="scenario-modules"><span class="scenario-mod">생산성 40% 향상</span></div>
       </button>
       <button class="scenario-btn" data-scenario="ops" onclick="loadScenario('ops')">
         <span class="scenario-icon">📊</span>
-        <h3>운영 분석 Agent</h3>
-        <p>로그·장애·오류 패턴 기반 원인 분석과 대응</p>
-        <div class="scenario-modules"><span class="scenario-mod">Management</span><span class="scenario-mod">Guard</span></div>
+        <h3>운영 관제 Agent</h3>
+        <p>장애 분석 · 이상 탐지 · 대응 자동화</p>
+        <div class="scenario-modules"><span class="scenario-mod">분석 60% 단축</span></div>
       </button>
     </div>
   </div>
@@ -171,8 +171,14 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
     <div class="welcome" id="welcomeScreen">
       <div class="welcome-inner">
         <div class="welcome-icon">🤖</div>
-        <h2>AgentGo 시나리오 체험</h2>
-        <p>왼쪽에서 체험하고 싶은 Agent 시나리오를 선택하세요.<br>실제 업무 환경에서 AgentGo가 어떻게 동작하는지 확인할 수 있습니다.</p>
+        <h2>2분 안에 AgentGo 체험하기</h2>
+        <p>아래 업무 중 하나를 선택하면<br>샘플 데이터 기반으로 Agent 동작을 바로 확인할 수 있습니다.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:24px;max-width:280px;margin-left:auto;margin-right:auto">
+          <button class="scenario-btn" onclick="loadScenario('automation')" style="text-align:center;padding:14px"><h3 style="margin:0;font-size:.95rem">⚡ 보고서 자동 작성</h3></button>
+          <button class="scenario-btn" onclick="loadScenario('knowledge')" style="text-align:center;padding:14px"><h3 style="margin:0;font-size:.95rem">🔍 사내 문서 검색</h3></button>
+          <button class="scenario-btn" onclick="loadScenario('dev')" style="text-align:center;padding:14px"><h3 style="margin:0;font-size:.95rem">💻 개발 지원</h3></button>
+          <button class="scenario-btn" onclick="loadScenario('ops')" style="text-align:center;padding:14px"><h3 style="margin:0;font-size:.95rem">📊 운영 분석</h3></button>
+        </div>
       </div>
     </div>
     <div class="chat-header" id="chatHeader" style="display:none">
@@ -187,7 +193,7 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
       <div class="data-panel" id="dataPanel"></div>
       <div class="quick-actions" id="quickActions"></div>
       <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
-        <button class="data-toggle" id="dataToggle" onclick="toggleDataPanel()" style="display:none">📋 내 데이터로 체험</button>
+        <button class="data-toggle" id="dataToggle" onclick="toggleDataPanel()" style="display:none">📋 내 업무로 테스트하기</button>
       </div>
       <div class="chat-input-row">
         <input type="text" class="chat-text-input" id="chatTextInput" placeholder="메시지를 입력하세요..." onkeydown="if(event.key==='Enter')sendUserInput()">
@@ -200,8 +206,8 @@ body{font-family:'Noto Sans KR','Plus Jakarta Sans',system-ui,sans-serif;color:v
 <script>
 var SCENARIOS={
   automation:{
-    name:'업무 자동화 Agent',icon:'⚡',short:'Auto',
-    greeting:'안녕하세요! 업무 자동화 Agent입니다. 반복적인 업무를 자동화해 드릴 수 있습니다. 아래에서 체험하고 싶은 기능을 선택해 주세요.',
+    name:'업무 비서 Agent',icon:'⚡',short:'비서',
+    greeting:'안녕하세요! 업무 비서 Agent입니다. 보고서, 메일, 결재 등 반복 업무를 대신 처리해 드립니다. 아래에서 체험할 업무를 선택하세요.',
     actions:[
       {label:'📋 주간 보고서 자동 생성',key:'report'},
       {label:'✉️ 미팅 후 메일 초안 작성',key:'email'},
@@ -258,8 +264,8 @@ var SCENARIOS={
     }
   },
   knowledge:{
-    name:'지식 검색 Agent',icon:'🔍',short:'KB',
-    greeting:'안녕하세요! 지식 검색 Agent입니다. 사내 문서, 매뉴얼, 정책을 대화형으로 검색할 수 있습니다. 아래에서 체험해 보세요.',
+    name:'사내 지식 Agent',icon:'🔍',short:'지식',
+    greeting:'안녕하세요! 사내 지식 Agent입니다. 사내 문서, 규정, 정책을 질문 하나로 검색할 수 있습니다. 아래에서 체험해 보세요.',
     actions:[
       {label:'📖 연차 사용 규정 검색',key:'leave'},
       {label:'🔐 보안 정책 확인',key:'security'},
@@ -301,8 +307,8 @@ var SCENARIOS={
     }
   },
   dev:{
-    name:'개발 지원 Agent',icon:'💻',short:'Dev',
-    greeting:'안녕하세요! 개발 지원 Agent입니다. 코드 생성, 리뷰, 보안 점검까지 지원합니다. 아래에서 체험해 보세요.',
+    name:'개발 Copilot',icon:'💻',short:'Dev',
+    greeting:'안녕하세요! 개발 Copilot입니다. 코드 생성, 보안 점검, 테스트 자동화까지 지원합니다. 아래에서 체험해 보세요.',
     actions:[
       {label:'🔧 API 엔드포인트 생성',key:'api'},
       {label:'🛡️ 코드 보안 점검',key:'review'},
@@ -332,8 +338,8 @@ var SCENARIOS={
     }
   },
   ops:{
-    name:'운영 분석 Agent',icon:'📊',short:'Ops',
-    greeting:'안녕하세요! 운영 분석 Agent입니다. 시스템 장애, 로그 분석, 이상 탐지를 지원합니다. 아래에서 체험해 보세요.',
+    name:'운영 관제 Agent',icon:'📊',short:'관제',
+    greeting:'안녕하세요! 운영 관제 Agent입니다. 장애 분석, 이상 탐지, 실시간 대응을 지원합니다. 아래에서 체험해 보세요.',
     actions:[
       {label:'🔴 장애 원인 분석',key:'incident'},
       {label:'📈 시스템 상태 조회',key:'status'},

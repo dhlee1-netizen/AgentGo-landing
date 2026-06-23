@@ -195,6 +195,31 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 .modal-success h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy);margin-bottom:8px}
 .modal-success p{font-size:.9rem;color:var(--text2);line-height:1.6}
 
+/* === WHY AGENTGO === */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--border)}
+.compare-col{padding:36px 32px}
+.compare-col.col-other{background:var(--bg2)}
+.compare-col.col-agentgo{background:var(--white)}
+.compare-col h3{font-weight:800;font-size:1.2rem;color:var(--navy);margin-bottom:6px}
+.compare-col .compare-sub{font-size:.8rem;color:var(--slate);margin-bottom:20px;display:block}
+.compare-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.compare-list li{font-size:.88rem;color:var(--text2);padding-left:24px;position:relative;line-height:1.5}
+.compare-list li::before{position:absolute;left:0;font-size:.85rem}
+.col-other .compare-list li::before{content:'—';color:var(--slate)}
+.col-agentgo .compare-list li{color:var(--text);font-weight:500}
+.col-agentgo .compare-list li::before{content:'✓';color:var(--blue);font-weight:700}
+
+/* === KPI STATS === */
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.kpi-card{text-align:center;padding:24px 16px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius)}
+.kpi-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:2.2rem;color:var(--blue);letter-spacing:-1px}
+.kpi-label{font-size:.82rem;color:var(--text2);margin-top:4px}
+
+/* === INLINE CTA === */
+.inline-cta{text-align:center;padding:48px 24px;background:var(--ice);border-radius:20px;margin-top:48px}
+.inline-cta h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy);margin-bottom:8px}
+.inline-cta p{font-size:.9rem;color:var(--text2);margin-bottom:20px}
+
 /* === SCROLL ANIMATION === */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -219,6 +244,8 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
   .sec-header-split{flex-direction:column;align-items:flex-start}
   .persona-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
+  .compare-grid{grid-template-columns:1fr}
+  .kpi-row{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   .hero h1{font-size:2rem}
@@ -247,14 +274,13 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
       <span class="nav-logo-text">AgentGo</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#value">왜 AgentGo인가</a></li>
       <li><a href="#usecases">활용 사례</a></li>
-      <li><a href="#core">플랫폼 구성</a></li>
+      <li><a href="#why">왜 AgentGo</a></li>
+      <li><a href="#core">플랫폼</a></li>
       <li><a href="#editions">에디션</a></li>
-      <li><a href="#process">도입 프로세스</a></li>
-      <li><a href="demo.html" style="color:var(--blue)">Agent 체험</a></li>
+      <li><a href="#process">도입</a></li>
     </ul>
-    <a href="#" class="nav-cta desktop" onclick="openDemoModal(event)">데모 신청</a>
+    <a href="#" class="nav-cta desktop" onclick="openDemoModal(event)">30분 데모 요청</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
       <span></span><span></span><span></span>
     </button>
@@ -265,13 +291,14 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="hero" id="hero">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> 엔터프라이즈 AI 운영 플랫폼</div>
-    <h1>AI 도입을 넘어<br><span class="grad">기업 AI 운영 체계</span>를<br>구축하세요</h1>
-    <p class="hero-sub">에이전트 개발부터 운영·보안·거버넌스까지<br>하나의 플랫폼에서 통합 관리합니다</p>
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Enterprise AI Agent Platform</div>
+    <h1>AI를 안전하게 운영하는<br><span class="grad">엔터프라이즈 플랫폼</span></h1>
+    <p class="hero-sub">보안·권한·감사를 갖춘 AI 운영 체계.<br>보고서 작성 시간 80% 단축, 장애 분석 60% 단축.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청</a>
-      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
+      <a href="#" class="btn-primary" onclick="openDemoModal(event)">30분 데모 요청</a>
+      <a href="demo.html" class="btn-secondary">직접 체험하기</a>
     </div>
+    <p style="font-size:.75rem;color:var(--slate);margin-top:16px">소개서가 필요하신가요? <a href="AgentGo_소개서.pdf" download style="color:var(--blue);text-decoration:underline">PDF 다운로드</a></p>
   </div>
   <div class="scroll-indicator"><span class="line"></span>scroll</div>
 </section>
@@ -280,7 +307,7 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="section section-alt" id="problem">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">현실</span>
+      <span class="sec-label">현실 인식</span>
       <h2 class="sec-h2">AI가 확산될수록<br>운영은 복잡해집니다</h2>
     </div>
     <div class="problem-grid">
@@ -303,12 +330,52 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
   </div>
 </section>
 
+<!-- USE CASES -->
+<section class="section" id="usecases">
+  <div class="container">
+    <div class="sec-header-center">
+      <span class="sec-label">활용 사례</span>
+      <h2 class="sec-h2">실제 업무에서<br>이렇게 활용합니다</h2>
+    </div>
+    <div class="usecase-grid">
+      <div class="usecase-card reveal">
+        <span class="usecase-icon">⚡</span>
+        <h3>업무 비서 Agent</h3>
+        <p>보고서 작성 80% 단축. 메일·결재를 대화로 자동 처리합니다.</p>
+      </div>
+      <div class="usecase-card reveal">
+        <span class="usecase-icon">🔍</span>
+        <h3>사내 지식 Agent</h3>
+        <p>사내 문서를 질문 하나로 검색. 정책 확인 시간 90% 절감.</p>
+      </div>
+      <div class="usecase-card reveal">
+        <span class="usecase-icon">💻</span>
+        <h3>개발 Copilot</h3>
+        <p>코드 생성·보안 점검·테스트까지. 개발 생산성 40% 향상.</p>
+      </div>
+      <div class="usecase-card reveal">
+        <span class="usecase-icon">📊</span>
+        <h3>운영 관제 Agent</h3>
+        <p>장애 원인 분석 60% 단축. 이상 탐지부터 대응까지 자동화.</p>
+      </div>
+    </div>
+    <div class="inline-cta reveal">
+      <h3>2분 안에 직접 체험해 보세요</h3>
+      <p>샘플 데이터로 Agent 동작을 바로 확인할 수 있습니다.</p>
+      <div class="hero-buttons">
+        <a href="demo.html" class="btn-primary">직접 체험하기 →</a>
+        <a href="#" class="btn-secondary" onclick="openDemoModal(event)">30분 데모 요청</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- VALUE -->
 <section class="section section-ice" id="value">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">AgentGo의 가치</span>
-      <h2 class="sec-h2">흩어진 AI 활용을<br>운영 가능한 체계로 바꿉니다</h2>
+      <span class="sec-label">도입 효과</span>
+      <h2 class="sec-h2">도입 후 달라지는<br>운영 지표</h2>
     </div>
     <div class="value-grid">
       <div class="value-card reveal">
@@ -348,44 +415,48 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
         </div>
       </div>
     </div>
+    <div class="kpi-row">
+      <div class="kpi-card reveal"><div class="kpi-num">80%</div><div class="kpi-label">반복 업무 시간 절감</div></div>
+      <div class="kpi-card reveal"><div class="kpi-num">60%</div><div class="kpi-label">장애 분석 시간 단축</div></div>
+      <div class="kpi-card reveal"><div class="kpi-num">100%</div><div class="kpi-label">AI 운영 정책 적용률</div></div>
+    </div>
   </div>
 </section>
 
-<!-- USE CASES -->
-<section class="section" id="usecases">
+<!-- WHY AGENTGO -->
+<section class="section" id="why">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">활용 사례</span>
-      <h2 class="sec-h2">AgentGo로 실행할 수 있는<br>대표 업무 시나리오</h2>
+      <span class="sec-label">왜 AgentGo인가</span>
+      <h2 class="sec-h2">좋은 모델만으로는<br>운영되지 않습니다</h2>
+      <p class="sec-desc">AI 도구가 아닌, AI 운영 플랫폼이 필요합니다.</p>
     </div>
-    <div class="usecase-grid">
-      <div class="usecase-card reveal">
-        <span class="usecase-icon">⚡</span>
-        <h3>업무 자동화</h3>
-        <p>보고서 작성, 메일 초안, 결재 요청 등 반복 업무를 자동화합니다.</p>
-        <span class="usecase-modules">Flow + Marketplace</span>
+    <div class="compare-grid reveal">
+      <div class="compare-col col-other">
+        <h3>Claude / 일반 LLM</h3>
+        <span class="compare-sub">AI 도구</span>
+        <ul class="compare-list">
+          <li>답변 생성 중심</li>
+          <li>개인 단위 생산성</li>
+          <li>단일 인터페이스</li>
+          <li>제한적 접근 통제</li>
+          <li>감사·승인 체계 없음</li>
+        </ul>
       </div>
-      <div class="usecase-card reveal">
-        <span class="usecase-icon">🔍</span>
-        <h3>지식 검색</h3>
-        <p>사내 문서·매뉴얼·정책을 대화형으로 빠르고 정확하게 검색합니다.</p>
-        <span class="usecase-modules">Platform + Management</span>
-      </div>
-      <div class="usecase-card reveal">
-        <span class="usecase-icon">💻</span>
-        <h3>개발 지원</h3>
-        <p>코드 생성, 리뷰, 보안 점검, 테스트 설계를 지원합니다.</p>
-        <span class="usecase-modules">Coder + Guard</span>
-      </div>
-      <div class="usecase-card reveal">
-        <span class="usecase-icon">📊</span>
-        <h3>운영 분석</h3>
-        <p>로그·장애 패턴을 분석하고, 원인 파악과 대응을 지원합니다.</p>
-        <span class="usecase-modules">Management + Guard</span>
+      <div class="compare-col col-agentgo">
+        <h3>AgentGo</h3>
+        <span class="compare-sub">AI 운영 플랫폼</span>
+        <ul class="compare-list">
+          <li>업무 실행·자동화</li>
+          <li>조직 단위 운영</li>
+          <li>멀티 에이전트 관리</li>
+          <li>권한·정책·가드레일</li>
+          <li>전체 감사 로그·승인 체계</li>
+        </ul>
       </div>
     </div>
     <div style="text-align:center;margin-top:32px">
-      <a href="demo.html" class="btn-primary">시나리오 직접 체험하기 →</a>
+      <a href="#" class="btn-primary" onclick="openDemoModal(event)">30분 데모 요청</a>
     </div>
   </div>
 </section>
@@ -551,12 +622,13 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="final-cta" id="cta">
   <div class="container">
     <span class="sec-label">지금 시작하세요</span>
-    <h2 class="sec-h2">AI 운영 체계 구축,<br><span class="grad">맞춤형 데모</span>로 시작합니다</h2>
-    <p class="sec-desc">현재 조직의 과제를 공유해 주시면,<br>맞춤형 데모와 PoC 설계를 제공해 드립니다.</p>
+    <h2 class="sec-h2">AI 운영의 첫 단계,<br><span class="grad">30분 데모</span>로 충분합니다</h2>
+    <p class="sec-desc">현재 조직의 과제를 공유해 주시면,<br>맞춤형 시나리오와 PoC 설계를 제공합니다.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">데모 신청</a>
-      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
+      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">30분 데모 요청</a>
+      <a href="demo.html" class="btn-secondary">직접 체험하기</a>
     </div>
+    <p style="font-size:.75rem;color:var(--slate);margin-top:16px">소개서가 필요하신가요? <a href="AgentGo_소개서.pdf" download style="color:var(--blue);text-decoration:underline">PDF 다운로드</a></p>
   </div>
 </section>
 
@@ -564,8 +636,8 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <div class="modal-overlay" id="demoModal">
   <div class="modal">
     <button class="modal-close" onclick="closeDemoModal()" aria-label="닫기">&times;</button>
-    <h2 class="modal-title">데모 신청</h2>
-    <p class="modal-desc">정보를 입력해 주시면 일정을 안내드립니다.</p>
+    <h2 class="modal-title">30분 데모 요청</h2>
+    <p class="modal-desc">아래 정보를 입력해 주시면, 48시간 이내 맞춤형 데모 일정을 안내드립니다.</p>
     <form id="demoForm" onsubmit="submitDemo(event)">
       <div class="form-group">
         <label for="company">회사명 <span class="required">*</span></label>
