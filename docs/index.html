@@ -247,12 +247,12 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
       <span class="nav-logo-text">AgentGo</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#value">가치</a></li>
-      <li><a href="#core">구성</a></li>
-      <li><a href="#usecases">사례</a></li>
+      <li><a href="#value">왜 AgentGo인가</a></li>
+      <li><a href="#usecases">활용 사례</a></li>
+      <li><a href="#core">플랫폼 구성</a></li>
       <li><a href="#editions">에디션</a></li>
-      <li><a href="#process">도입</a></li>
-      <li><a href="demo.html" style="color:var(--blue)">체험</a></li>
+      <li><a href="#process">도입 프로세스</a></li>
+      <li><a href="demo.html" style="color:var(--blue)">Agent 체험</a></li>
     </ul>
     <a href="#" class="nav-cta desktop" onclick="openDemoModal(event)">데모 신청</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
@@ -265,12 +265,12 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="hero" id="hero">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> Enterprise Agentic AI</div>
-    <h1>기업 AI 에이전트<br><span class="grad">개발 · 운영 · 통제</span></h1>
-    <p class="hero-sub">보안·거버넌스·운영을 하나의 플랫폼에서.</p>
+    <div class="hero-badge"><span class="hero-badge-dot"></span> 엔터프라이즈 AI 운영 플랫폼</div>
+    <h1>AI 도입을 넘어<br><span class="grad">기업 AI 운영 체계</span>를<br>구축하세요</h1>
+    <p class="hero-sub">에이전트 개발부터 운영·보안·거버넌스까지<br>하나의 플랫폼에서 통합 관리합니다</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청 →</a>
-      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서</a>
+      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
     </div>
   </div>
   <div class="scroll-indicator"><span class="line"></span>scroll</div>
@@ -280,75 +280,24 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="section section-alt" id="problem">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">문제</span>
-      <h2 class="sec-h2">확산되는 AI,<br>복잡해지는 운영</h2>
+      <span class="sec-label">현실</span>
+      <h2 class="sec-h2">AI가 확산될수록<br>운영은 복잡해집니다</h2>
     </div>
     <div class="problem-grid">
       <div class="problem-card reveal">
         <span class="problem-icon">🔒</span>
         <h3>데이터 유출 위험</h3>
-        <p>승인되지 않은 외부 AI 사용으로 기업 데이터가 유출될 수 있으며, 활용 범위와 이력을 추적하기 어렵습니다.</p>
+        <p>승인되지 않은 외부 AI에 기업 데이터가 노출되고, 활용 범위와 이력을 추적하기 어렵습니다.</p>
       </div>
       <div class="problem-card reveal">
         <span class="problem-icon">⚠️</span>
         <h3>불분명한 책임 체계</h3>
-        <p>AI 결과에 대한 검증·승인·감사 체계가 없어 운영 리스크가 발생합니다.</p>
+        <p>AI 결과에 대한 검증·승인·감사 체계가 없어, 문제 발생 시 원인 파악이 어렵습니다.</p>
       </div>
       <div class="problem-card reveal">
         <span class="problem-icon">🗺️</span>
         <h3>관리 사각지대</h3>
-        <p>부서별로 AI 도구가 개별 도입되어 사용 현황, 비용, 정책을 통합 관리하기 어렵습니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CORE STRUCTURE -->
-<section class="section" id="core">
-  <div class="container">
-    <div class="sec-header-split">
-      <div>
-        <span class="sec-label">플랫폼 구성</span>
-        <h2 class="sec-h2">개발부터 거버넌스까지<br>하나의 플랫폼</h2>
-      </div>
-      <p class="sec-desc">에이전트 전체 라이프사이클을 단일 환경에서 관리합니다.</p>
-    </div>
-    <div class="core-grid">
-      <div class="core-cell reveal">
-        <div class="core-tag">인프라</div>
-        <h3>Platform</h3>
-        <p>온프레 · 클라우드 · 폐쇄망. 벤더 Lock-in 없이 배포.</p>
-        <div class="core-pills"><span class="core-pill">K8s</span><span class="core-pill">온프레</span><span class="core-pill">폐쇄망</span></div>
-      </div>
-      <div class="core-cell reveal">
-        <div class="core-tag">보안</div>
-        <h3>Guard</h3>
-        <p>권한·가드레일·감사 로그. 업무 규정을 자동 반영.</p>
-        <div class="core-pills"><span class="core-pill">접근 제어</span><span class="core-pill">감사 로그</span><span class="core-pill">데이터 주권</span></div>
-      </div>
-      <div class="core-cell reveal">
-        <div class="core-tag">운영</div>
-        <h3>Management</h3>
-        <p>상태·사용량·비용을 실시간 대시보드로 통합.</p>
-        <div class="core-pills"><span class="core-pill">모니터링</span><span class="core-pill">비용 분석</span><span class="core-pill">상태 관리</span></div>
-      </div>
-      <div class="core-cell reveal">
-        <div class="core-tag">마켓플레이스</div>
-        <h3>Marketplace</h3>
-        <p>검증된 에이전트를 즉시 배포. 개발 없이 자동화 시작.</p>
-        <div class="core-pills"><span class="core-pill">즉시 배포</span><span class="core-pill">원클릭 설치</span></div>
-      </div>
-      <div class="core-cell reveal">
-        <div class="core-tag">개발</div>
-        <h3>Coder</h3>
-        <p>MCP 기반 에이전트 개발. 파편화된 AI를 하나로 통합.</p>
-        <div class="core-pills"><span class="core-pill">MCP</span><span class="core-pill">SDK</span><span class="core-pill">API 연동</span></div>
-      </div>
-      <div class="core-cell reveal">
-        <div class="core-tag">자동화</div>
-        <h3>Flow</h3>
-        <p>노코드 워크플로 설계·실행. 대화로 업무 시작.</p>
-        <div class="core-pills"><span class="core-pill">노코드</span><span class="core-pill">스케줄링</span></div>
+        <p>부서별로 AI 도구가 개별 도입되어 사용 현황, 비용, 보안 정책을 통합 관리할 수 없습니다.</p>
       </div>
     </div>
   </div>
@@ -358,8 +307,8 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="section section-ice" id="value">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">가치</span>
-      <h2 class="sec-h2">흩어진 AI를<br>운영 체계로</h2>
+      <span class="sec-label">AgentGo의 가치</span>
+      <h2 class="sec-h2">흩어진 AI 활용을<br>운영 가능한 체계로 바꿉니다</h2>
     </div>
     <div class="value-grid">
       <div class="value-card reveal">
@@ -367,8 +316,8 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
           <svg viewBox="0 0 80 80"><rect x="4" y="36" width="14" height="8" rx="3" fill="#1A56C8" opacity=".25"/><rect x="22" y="36" width="14" height="8" rx="3" fill="#1A56C8" opacity=".5"/><rect x="40" y="36" width="14" height="8" rx="3" fill="#1A56C8" opacity=".75"/><rect x="58" y="36" width="14" height="8" rx="3" fill="#1A56C8"/><path d="M18 40h4M36 40h4M54 40h4" stroke="#1A56C8" stroke-width="1.5" stroke-dasharray="2 2"/></svg>
         </div>
         <div class="value-body">
-          <h3>전 주기 관리</h3>
-          <p>개발 → 배포 → 운영 → 통제</p>
+          <h3>AI 운영 전 영역 지원</h3>
+          <p>개발 → 배포 → 운영 → 통제까지 하나의 흐름으로</p>
         </div>
       </div>
       <div class="value-card reveal">
@@ -376,26 +325,26 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
           <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="10" fill="#1A56C8"/><circle cx="20" cy="20" r="6" fill="#1A56C8" opacity=".4"/><circle cx="60" cy="20" r="6" fill="#1A56C8" opacity=".4"/><circle cx="20" cy="60" r="6" fill="#1A56C8" opacity=".4"/><circle cx="60" cy="60" r="6" fill="#1A56C8" opacity=".4"/><line x1="25" y1="24" x2="34" y2="34" stroke="#1A56C8" stroke-width="1.2" opacity=".3"/><line x1="55" y1="24" x2="46" y2="34" stroke="#1A56C8" stroke-width="1.2" opacity=".3"/><line x1="25" y1="56" x2="34" y2="46" stroke="#1A56C8" stroke-width="1.2" opacity=".3"/><line x1="55" y1="56" x2="46" y2="46" stroke="#1A56C8" stroke-width="1.2" opacity=".3"/></svg>
         </div>
         <div class="value-body">
-          <h3>멀티 에이전트</h3>
-          <p>분산 AI를 하나의 체계로 조율</p>
+          <h3>멀티 에이전트 통합 관리</h3>
+          <p>여러 AI 에이전트를 하나의 체계로 조율</p>
         </div>
       </div>
       <div class="value-card reveal">
         <div class="value-visual">
-          <svg viewBox="0 0 80 80"><rect x="10" y="30" width="18" height="20" rx="4" fill="#1A56C8" opacity=".3"/><rect x="31" y="30" width="18" height="20" rx="4" fill="#1A56C8" opacity=".6"/><rect x="52" y="30" width="18" height="20" rx="4" fill="#1A56C8"/><path d="M28 40h3M49 40h3" stroke="#1A56C8" stroke-width="1.5"/><text x="14" y="43" font-size="7" fill="#1A56C8" opacity=".6" font-family="Inter">Cloud</text><text x="35" y="43" font-size="6" fill="#fff" font-family="Inter">Hybrid</text><text x="54" y="43" font-size="6" fill="#fff" font-family="Inter">Private</text></svg>
+          <svg viewBox="0 0 80 80"><rect x="10" y="30" width="18" height="20" rx="4" fill="#1A56C8" opacity=".3"/><rect x="31" y="30" width="18" height="20" rx="4" fill="#1A56C8" opacity=".6"/><rect x="52" y="30" width="18" height="20" rx="4" fill="#1A56C8"/><path d="M28 40h3M49 40h3" stroke="#1A56C8" stroke-width="1.5"/><text x="12" y="43" font-size="6.5" fill="#1A56C8" opacity=".6" font-family="sans-serif">Cloud</text><text x="33" y="43" font-size="6" fill="#fff" font-family="sans-serif">Hybrid</text><text x="54" y="43" font-size="6" fill="#fff" font-family="sans-serif">Private</text></svg>
         </div>
         <div class="value-body">
-          <h3>유연한 배포</h3>
-          <p>클라우드 · 온프레 · 폐쇄망</p>
+          <h3>환경 제약 없는 배포</h3>
+          <p>클라우드 · 온프레미스 · 폐쇄망 모두 지원</p>
         </div>
       </div>
       <div class="value-card reveal">
         <div class="value-visual">
-          <svg viewBox="0 0 80 80"><rect x="15" y="18" width="50" height="10" rx="4" fill="#1A56C8" opacity=".2"/><rect x="15" y="31" width="50" height="10" rx="4" fill="#1A56C8" opacity=".4"/><rect x="15" y="44" width="50" height="10" rx="4" fill="#1A56C8" opacity=".6"/><rect x="15" y="57" width="50" height="10" rx="4" fill="#1A56C8" opacity=".85"/><text x="22" y="26" font-size="6" fill="#1A56C8" font-family="Inter">권한</text><text x="22" y="39" font-size="6" fill="#1A56C8" font-family="Inter">정책</text><text x="22" y="52" font-size="6" fill="#fff" font-family="Inter">감사</text><text x="22" y="65" font-size="6" fill="#fff" font-family="Inter">로그</text></svg>
+          <svg viewBox="0 0 80 80"><rect x="15" y="18" width="50" height="10" rx="4" fill="#1A56C8" opacity=".2"/><rect x="15" y="31" width="50" height="10" rx="4" fill="#1A56C8" opacity=".4"/><rect x="15" y="44" width="50" height="10" rx="4" fill="#1A56C8" opacity=".6"/><rect x="15" y="57" width="50" height="10" rx="4" fill="#1A56C8" opacity=".85"/><text x="22" y="26" font-size="6" fill="#1A56C8" font-family="sans-serif">권한</text><text x="22" y="39" font-size="6" fill="#1A56C8" font-family="sans-serif">정책</text><text x="22" y="52" font-size="6" fill="#fff" font-family="sans-serif">감사</text><text x="22" y="65" font-size="6" fill="#fff" font-family="sans-serif">로그</text></svg>
         </div>
         <div class="value-body">
-          <h3>거버넌스</h3>
-          <p>보안 · 권한 · 감사 통합</p>
+          <h3>거버넌스 내장 운영</h3>
+          <p>보안 · 권한 · 감사를 플랫폼 단에서 통합 관리</p>
         </div>
       </div>
     </div>
@@ -406,129 +355,132 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="section" id="usecases">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">사례</span>
-      <h2 class="sec-h2">대표 업무 시나리오</h2>
+      <span class="sec-label">활용 사례</span>
+      <h2 class="sec-h2">AgentGo로 실행할 수 있는<br>대표 업무 시나리오</h2>
     </div>
     <div class="usecase-grid">
       <div class="usecase-card reveal">
         <span class="usecase-icon">⚡</span>
         <h3>업무 자동화</h3>
-        <p>보고서 · 메일 · 결재 자동화</p>
+        <p>보고서 작성, 메일 초안, 결재 요청 등 반복 업무를 자동화합니다.</p>
         <span class="usecase-modules">Flow + Marketplace</span>
       </div>
       <div class="usecase-card reveal">
         <span class="usecase-icon">🔍</span>
         <h3>지식 검색</h3>
-        <p>사내 문서·정책 대화형 검색</p>
+        <p>사내 문서·매뉴얼·정책을 대화형으로 빠르고 정확하게 검색합니다.</p>
         <span class="usecase-modules">Platform + Management</span>
       </div>
       <div class="usecase-card reveal">
         <span class="usecase-icon">💻</span>
         <h3>개발 지원</h3>
-        <p>코드 생성 · 리뷰 · 테스트</p>
+        <p>코드 생성, 리뷰, 보안 점검, 테스트 설계를 지원합니다.</p>
         <span class="usecase-modules">Coder + Guard</span>
       </div>
       <div class="usecase-card reveal">
         <span class="usecase-icon">📊</span>
         <h3>운영 분석</h3>
-        <p>로그·장애 원인 분석</p>
+        <p>로그·장애 패턴을 분석하고, 원인 파악과 대응을 지원합니다.</p>
         <span class="usecase-modules">Management + Guard</span>
       </div>
     </div>
     <div style="text-align:center;margin-top:32px">
-      <a href="demo.html" class="btn-primary">시나리오 체험 →</a>
+      <a href="demo.html" class="btn-primary">시나리오 직접 체험하기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CORE STRUCTURE -->
+<section class="section section-alt" id="core">
+  <div class="container">
+    <div class="sec-header-split">
+      <div>
+        <span class="sec-label">플랫폼 구성</span>
+        <h2 class="sec-h2">개발부터 거버넌스까지<br>하나의 플랫폼에서</h2>
+      </div>
+      <p class="sec-desc">AI 에이전트의 전체 라이프사이클을 단일 환경에서 관리합니다.</p>
+    </div>
+    <div class="core-grid">
+      <div class="core-cell reveal">
+        <div class="core-tag">인프라</div>
+        <h3>Platform</h3>
+        <p>온프레미스·클라우드·폐쇄망 어디서든 배포. 벤더 종속 없이 운영합니다.</p>
+        <div class="core-pills"><span class="core-pill">K8s 오토스케일링</span><span class="core-pill">온프레미스</span><span class="core-pill">폐쇄망</span></div>
+      </div>
+      <div class="core-cell reveal">
+        <div class="core-tag">보안</div>
+        <h3>Guard</h3>
+        <p>접근 권한·가드레일·감사 로그. 업무 규정을 자동으로 반영합니다.</p>
+        <div class="core-pills"><span class="core-pill">접근 제어</span><span class="core-pill">감사 로그</span><span class="core-pill">데이터 주권</span></div>
+      </div>
+      <div class="core-cell reveal">
+        <div class="core-tag">운영</div>
+        <h3>Management</h3>
+        <p>에이전트 상태, 사용량, 비용을 실시간 대시보드로 한눈에 파악합니다.</p>
+        <div class="core-pills"><span class="core-pill">실시간 모니터링</span><span class="core-pill">비용 분석</span><span class="core-pill">상태 관리</span></div>
+      </div>
+      <div class="core-cell reveal">
+        <div class="core-tag">마켓플레이스</div>
+        <h3>Marketplace</h3>
+        <p>검증된 에이전트를 즉시 배포. 개발 리소스 없이 자동화를 시작합니다.</p>
+        <div class="core-pills"><span class="core-pill">즉시 배포</span><span class="core-pill">원클릭 설치</span></div>
+      </div>
+      <div class="core-cell reveal">
+        <div class="core-tag">개발</div>
+        <h3>Coder</h3>
+        <p>MCP 표준 기반 에이전트 개발 도구. 분산된 AI 시스템을 하나로 통합합니다.</p>
+        <div class="core-pills"><span class="core-pill">MCP 표준</span><span class="core-pill">SDK</span><span class="core-pill">API 연동</span></div>
+      </div>
+      <div class="core-cell reveal">
+        <div class="core-tag">자동화</div>
+        <h3>Flow</h3>
+        <p>노코드로 워크플로를 설계하고 실행합니다. 대화 한 마디로 업무를 시작합니다.</p>
+        <div class="core-pills"><span class="core-pill">노코드 워크플로</span><span class="core-pill">스케줄링</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- EDITIONS -->
-<section class="section section-alt" id="editions">
+<section class="section" id="editions">
   <div class="container">
     <div class="sec-header-center">
       <span class="sec-label">에디션</span>
-      <h2 class="sec-h2">조직 규모에 맞는 선택</h2>
+      <h2 class="sec-h2">조직에 맞는<br>에디션을 선택하세요</h2>
     </div>
     <div class="edition-grid">
       <div class="edition-card reveal">
-        <h3>Chatbot</h3>
-        <p class="edition-subtitle">지식 검색</p>
-        <p class="edition-desc">사내 문서 RAG Q&A</p>
+        <h3>AgentGo Chatbot</h3>
+        <p class="edition-subtitle">사내 지식 검색의 시작</p>
+        <p class="edition-desc">흩어진 사내 문서를 대화형으로 빠르게 검색합니다.</p>
         <ul class="edition-features">
-          <li>RAG 문서 Q&A</li>
-          <li>Management 포함</li>
-          <li>에이전트 모니터링</li>
+          <li>RAG 기반 문서 Q&A</li>
+          <li>Management 모듈 포함</li>
+          <li>에이전트 설정 및 모니터링</li>
         </ul>
       </div>
       <div class="edition-card reveal">
-        <h3>Standard</h3>
-        <p class="edition-subtitle">업무 자동화</p>
-        <p class="edition-desc">시스템 연동 · 워크플로 자동화</p>
+        <h3>AgentGo Standard</h3>
+        <p class="edition-subtitle">업무 자동화의 핵심</p>
+        <p class="edition-desc">시스템 연동과 워크플로 자동화로 업무 효율을 높입니다.</p>
         <ul class="edition-features">
-          <li>Chatbot 전체 포함</li>
+          <li>Chatbot 기능 전체 포함</li>
           <li>Platform · Guard · Coder · Flow</li>
-          <li>Public LLM · 시스템 연동</li>
+          <li>Public LLM 활용 · 시스템 연동</li>
         </ul>
       </div>
       <div class="edition-card featured reveal">
         <span class="edition-badge">추천</span>
-        <h3>Enterprise</h3>
-        <p class="edition-subtitle">AI 주권 · 통제</p>
-        <p class="edition-desc">전용 인프라 · 폐쇄망 · Private LLM</p>
+        <h3>AgentGo Enterprise</h3>
+        <p class="edition-subtitle">완전한 AI 주권과 통제</p>
+        <p class="edition-desc">전용 인프라와 폐쇄망으로 운영 완결성을 실현합니다.</p>
         <ul class="edition-features">
-          <li>Standard 전체 포함</li>
-          <li>Private LLM 운영</li>
-          <li>폐쇄망 · GPU 관리</li>
-          <li>추론 최적화</li>
+          <li>Standard 기능 전체 포함</li>
+          <li>Private LLM 운영 자동화</li>
+          <li>완전 폐쇄망 · GPU 자원 관리</li>
+          <li>엔터프라이즈급 추론 최적화</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERSONA -->
-<section class="section" id="persona">
-  <div class="container">
-    <div class="sec-header-center">
-      <span class="sec-label">페르소나</span>
-      <h2 class="sec-h2">역할별 솔루션</h2>
-    </div>
-    <div class="persona-tabs" role="tablist">
-      <button class="persona-tab active" data-tab="0" role="tab" aria-selected="true">CIO / CDO</button>
-      <button class="persona-tab" data-tab="1" role="tab" aria-selected="false">현업 팀장</button>
-      <button class="persona-tab" data-tab="2" role="tab" aria-selected="false">IT 인프라</button>
-      <button class="persona-tab" data-tab="3" role="tab" aria-selected="false">CFO / 경영진</button>
-    </div>
-    <div class="persona-content active" data-content="0">
-      <div class="persona-text">
-        <h3>CIO / CDO</h3>
-        <div class="persona-msg">폐쇄 인프라와 감사 로그로 AI 운영의 책임과 통제를 확보합니다.</div>
-        <div class="persona-modules"><span>Guard</span><span>Platform</span></div>
-      </div>
-      <div class="persona-visual"><div class="persona-initial">C</div></div>
-    </div>
-    <div class="persona-content" data-content="1">
-      <div class="persona-text">
-        <h3>현업 팀장</h3>
-        <div class="persona-msg">대화 한 번으로 반복 업무를 자동화. 별도 교육 없이 즉시 시작.</div>
-        <div class="persona-modules"><span>Flow</span><span>Marketplace</span></div>
-      </div>
-      <div class="persona-visual"><div class="persona-initial">T</div></div>
-    </div>
-    <div class="persona-content" data-content="2">
-      <div class="persona-text">
-        <h3>IT 인프라</h3>
-        <div class="persona-msg">MCP로 ERP·그룹웨어를 그대로 연결. 새 인프라 없이 통합.</div>
-        <div class="persona-modules"><span>Platform</span><span>Coder</span></div>
-      </div>
-      <div class="persona-visual"><div class="persona-initial">I</div></div>
-    </div>
-    <div class="persona-content" data-content="3">
-      <div class="persona-text">
-        <h3>CFO / 경영진</h3>
-        <div class="persona-msg">비용·효과를 실시간 대시보드로 증명. ROI를 숫자로 확인.</div>
-        <div class="persona-modules"><span>Management</span></div>
-      </div>
-      <div class="persona-visual"><div class="persona-initial">F</div></div>
     </div>
   </div>
 </section>
@@ -543,21 +495,21 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
     <div class="process-timeline">
       <div class="process-step reveal">
         <span class="step-num">1</span>
-        <h3>Pain Point 진단 & Demo</h3>
+        <h3>업무 적용 시나리오 검토</h3>
         <span class="process-duration">1~2주</span>
-        <p>현 Pain point 진단 → 맞춤형 데모 진행 → 적용 시나리오 검토</p>
+        <p>현업 과제 도출 → 맞춤형 데모 → 적용 시나리오 정의</p>
       </div>
       <div class="process-step reveal">
         <span class="step-num">2</span>
-        <h3>PoC & 검증</h3>
+        <h3>PoC 검증</h3>
         <span class="process-duration">1~2개월</span>
-        <p>Use Case 선정 → 적용 가능성 검증</p>
+        <p>핵심 Use Case 선정 → 적용 가능성 검증</p>
       </div>
       <div class="process-step reveal">
         <span class="step-num">3</span>
-        <h3>전사 확산 & 운영 고도화</h3>
+        <h3>전사 확산 및 운영 체계 구축</h3>
         <span class="process-duration">3개월~</span>
-        <p>파일럿 부서 적용 → 전사 확장 → 거버넌스 체계 구축</p>
+        <p>파일럿 적용 → 운영 확대 → 거버넌스 정착</p>
       </div>
     </div>
   </div>
@@ -567,25 +519,29 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <section class="section" id="faq">
   <div class="container">
     <div class="sec-header-center">
-      <span class="sec-label">FAQ</span>
-      <h2 class="sec-h2">자주 묻는 질문</h2>
+      <span class="sec-label">자주 묻는 질문</span>
+      <h2 class="sec-h2">도입 전 궁금한 점을<br>미리 확인하세요</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">데이터가 외부로 나가지 않나요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">온프레·폐쇄망 배포를 지원합니다. Guard가 접근을 암호화하고 감사 로그를 기록합니다.</div></div>
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">우리 회사 업무에도 적용할 수 있나요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">업무·데이터·시스템 환경을 검토하여 우선 적용 가능한 시나리오부터 PoC로 검증합니다.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">AI 오류 시 책임은?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">전체 감사 로그로 지시·행동·시점을 추적합니다. 원인과 책임을 명확히 파악할 수 있습니다.</div></div>
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">Claude와 무엇이 다른가요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Claude가 하나의 AI를 활용하는 도구라면, AgentGo는 여러 AI와 업무 시스템을 연결하고 운영하는 엔터프라이즈 플랫폼입니다. 기업 환경에 필요한 보안, 권한, 운영, 거버넌스를 통합 관리할 수 있습니다.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">기존 시스템과 연동되나요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">MCP 표준으로 ERP·그룹웨어 등과 연동됩니다. 기존 인프라 변경 없이 도입 가능합니다.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">ERP·그룹웨어·문서 저장소 등 기존 환경과 연계하여 단계적으로 적용할 수 있습니다.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">ROI는 어떻게 증명하나요?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><div class="faq-a-inner">Management 대시보드에서 사용량·처리 건수·절감 시간을 실시간 확인합니다.</div></div>
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">데이터가 외부로 유출되지는 않나요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">온프레미스·폐쇄망·권한 정책을 지원하며, 접근 이력과 감사 로그를 관리합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">도입 효과는 어떻게 확인하나요?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">PoC 단계에서 사용량, 처리 시간, 업무 성과 지표를 기반으로 효과를 검증합니다.</div></div>
       </div>
     </div>
   </div>
@@ -594,12 +550,12 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
 <!-- FINAL CTA -->
 <section class="final-cta" id="cta">
   <div class="container">
-    <span class="sec-label">시작</span>
-    <h2 class="sec-h2"><span class="grad">30분 데모</span>로 시작하세요</h2>
-    <p class="sec-desc">맞춤 데모와 POC 설계를 무료로 제공합니다.</p>
+    <span class="sec-label">지금 시작하세요</span>
+    <h2 class="sec-h2">AI 운영 체계 구축,<br><span class="grad">맞춤형 데모</span>로 시작합니다</h2>
+    <p class="sec-desc">현재 조직의 과제를 공유해 주시면,<br>맞춤형 데모와 PoC 설계를 제공해 드립니다.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">데모 신청 →</a>
-      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서</a>
+      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:16px 40px" onclick="openDemoModal(event)">데모 신청</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
     </div>
   </div>
 </section>
