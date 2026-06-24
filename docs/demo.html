@@ -175,7 +175,7 @@ body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:var
       <button class="scenario-btn" data-scenario="ops" onclick="loadScenario('ops')">
         <span class="scenario-icon">📊</span>
         <h3>운영 관제 Agent</h3>
-        <p>장애 분석 · 이상 탐지 · 대응 자동화</p>
+        <p>운영 모니터링 · 사용량 분석 · 이상 대응</p>
         <div class="scenario-modules"><span class="scenario-mod">분석 60% 단축</span></div>
       </button>
     </div>
@@ -353,11 +353,12 @@ var SCENARIOS={
   },
   ops:{
     name:'운영 관제 Agent',icon:'📊',short:'관제',
-    greeting:'안녕하세요! 운영 관제 Agent입니다. 장애 분석, 이상 탐지, 실시간 대응을 지원합니다. 아래에서 체험해 보세요.',
+    greeting:'안녕하세요! 운영 관제 Agent입니다. AI 운영 상태를 지속적으로 관찰·관리·최적화합니다. 아래에서 체험해 보세요.',
     actions:[
       {label:'🔴 장애 원인 분석',key:'incident'},
       {label:'📈 시스템 상태 조회',key:'status'},
-      {label:'🔔 이상 탐지 알림',key:'anomaly'}
+      {label:'🔔 이상 탐지 알림',key:'anomaly'},
+      {label:'📊 AI 사용량 모니터링',key:'usage'}
     ],
     flows:{
       incident:[
@@ -384,6 +385,19 @@ var SCENARIOS={
       anomaly_security:[
         {from:'user',text:'보안 알림을 더 자세히 보여줘.'},
         {from:'bot',html:'<strong>🔒 보안 이상 탐지 상세 — 비정상 로그인 시도</strong><br><br><strong>탐지 시각:</strong> 11:45:22<br><strong>출발 IP:</strong> 203.248.xx.xx (한국, 서울)<br><strong>시도 횟수:</strong> 15회 (10분 내)<br><strong>타깃 계정:</strong> admin@company.com<br><br><strong>패턴 분석:</strong><ul><li>사전 공격(Dictionary Attack) 패턴 — 비밀번호를 순차적으로 시도</li><li>동일 IP에서 반복 요청, User-Agent 고정</li><li>기존 접속 이력에 없는 신규 IP</li></ul><strong>Guard 자동 조치:</strong><ul><li>✅ 해당 IP 자동 차단 (24시간)</li><li>✅ admin 계정 임시 잠금 (30분)</li><li>✅ 보안팀 Slack 채널에 즉시 알림 발송</li><li>✅ 전체 이벤트 감사 로그 기록 완료</li></ul>'}
+      ],
+      usage:[
+        {from:'user',text:'이번 달 AI 사용량 리포트를 보여줘.'},
+        {from:'bot',text:'AI 사용량 데이터를 조회합니다...\n\n📊 Management 모듈에서 전사 운영 지표를 수집 중...'},
+        {from:'bot',html:'<strong>📊 AI 사용량 리포트</strong> (2026년 6월)<br><br><table><tr><th>지표</th><th>수치</th><th>전월 대비</th></tr><tr><td>총 사용자</td><td><strong>1,248명</strong></td><td class="status-ok">+12%</td></tr><tr><td>총 호출 수</td><td><strong>8,420,000건</strong></td><td class="status-warn">+34%</td></tr><tr><td>평균 응답 시간</td><td><strong>1.2초</strong></td><td class="status-ok">-8%</td></tr><tr><td>월 사용 비용</td><td><strong>₩18,420,000</strong></td><td class="status-warn">+34%</td></tr></table><br><strong>📋 조직별 사용 비중</strong><table><tr><th>조직</th><th>비중</th><th>주요 Agent</th></tr><tr><td>개발본부</td><td>42%</td><td>Dev Copilot</td></tr><tr><td>전략기획</td><td>28%</td><td>Knowledge Agent</td></tr><tr><td>운영팀</td><td>18%</td><td>Ops Agent</td></tr><tr><td>기타</td><td>12%</td><td>Work Assistant</td></tr></table>','actions':[{label:'⚠️ 이상 감지 항목',key:'usage_anomaly'},{label:'💡 비용 최적화 제안',key:'usage_optimize'}]},
+      ],
+      usage_anomaly:[
+        {from:'user',text:'이상 감지된 항목을 보여줘.'},
+        {from:'bot',html:'<strong>⚠️ 사용량 이상 감지</strong> (최근 7일)<br><br><table><tr><th>항목</th><th>심각도</th><th>상세</th></tr><tr><td>개발 환경 호출 급증</td><td class="status-warn">Warning</td><td>개발본부 테스트 호출량 전주 대비 180% 증가 (일 평균 2,400→6,700건)</td></tr><tr><td>특정 Agent 집중</td><td class="status-warn">Warning</td><td>Dev Copilot 단일 Agent가 전체 호출의 38% 차지</td></tr><tr><td>비용 증가 추세</td><td class="status-err">Alert</td><td>현 추세 유지 시 월말 예산 초과 예상 (₩22,100,000 / 한도 ₩20,000,000)</td></tr></table><br>🛡️ Guard: 비용 한도 초과 시 자동 제한 정책이 적용됩니다.','actions':[{label:'💡 비용 최적화 제안',key:'usage_optimize'}]}
+      ],
+      usage_optimize:[
+        {from:'user',text:'비용 최적화 방안을 제안해 줘.'},
+        {from:'bot',html:'<strong>💡 비용 최적화 제안</strong><br><br><strong>즉시 적용 가능:</strong><ul><li>✅ <strong>테스트 환경 분리</strong> — 개발 환경 호출에 사용량 제한 정책 적용 (일 3,000건 상한)</li><li>✅ <strong>캐싱 활성화</strong> — 반복 질의에 대한 응답 캐싱으로 호출 20~30% 절감</li></ul><br><strong>중기 적용 권장:</strong><ul><li>📌 <strong>Private LLM 우선 적용</strong> — 내부 모델로 전환 시 API 비용 60% 절감 예상</li><li>📌 <strong>조직별 예산 할당</strong> — 부서별 월 사용 한도 설정으로 비용 예측 가능성 확보</li></ul><br><strong>예상 효과:</strong><table><tr><th>조치</th><th>절감 예상</th></tr><tr><td>테스트 환경 제한</td><td>₩2,800,000/월</td></tr><tr><td>캐싱 활성화</td><td>₩1,500,000/월</td></tr><tr><td>Private LLM 전환</td><td>₩7,200,000/월</td></tr></table><br>📊 Management 대시보드에서 정책 적용 후 효과를 실시간 추적할 수 있습니다.'}
       ]
     }
   }
@@ -830,6 +844,8 @@ var FREE_RESPONSES={
     {keywords:['장애','에러','오류','느려','다운','timeout','500','503'],response:'장애 원인 분석을 체험해 보세요!',flow:'incident'},
     {keywords:['상태','모니터링','대시보드','헬스','health'],response:'시스템 상태 조회를 체험해 보세요!',flow:'status'},
     {keywords:['이상','탐지','알림','경고','alert','anomaly'],response:'이상 탐지 알림을 확인해 보세요!',flow:'anomaly'},
+    {keywords:['사용량','비용','cost','usage','호출','예산','과금','요금'],response:'AI 사용량 모니터링을 체험해 보세요!',flow:'usage'},
+    {keywords:['최적화','절감','절약','효율','private llm'],response:'비용 최적화 제안을 확인해 보세요!',flow:'usage_optimize'},
     {keywords:['cpu','메모리','디스크','memory','용량'],response:'📊 <strong>리소스 현황 요약</strong>\n\n<table><tr><th>서버</th><th>CPU</th><th>메모리</th><th>디스크</th></tr><tr><td>app-01</td><td>45%</td><td>72%</td><td>58%</td></tr><tr><td>app-02</td><td>38%</td><td>65%</td><td>55%</td></tr><tr><td>db-primary</td><td>52%</td><td>81%</td><td>73%</td></tr><tr><td>redis-01</td><td>12%</td><td>55%</td><td>22%</td></tr></table>\n\n⚠️ db-primary 메모리 사용률이 80%를 초과했습니다.\n시스템 상태 조회에서 더 자세한 정보를 확인하세요.'},
     {keywords:['로그','log','트래픽','요청'],response:'📋 <strong>최근 트래픽 요약</strong> (최근 1시간)\n\n• 총 요청 수: 24,580건\n• 평균 응답 시간: 187ms\n• 에러율: 0.3% (72건)\n• 최다 호출 API: GET /api/users (8,420건)\n• 최장 응답 API: POST /api/reports (2.1초)\n\n장애 원인 분석 시나리오에서 더 자세한 로그를 확인할 수 있습니다.'},
   ]
