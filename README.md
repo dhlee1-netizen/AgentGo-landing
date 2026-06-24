@@ -21,13 +21,19 @@
 | 2 | **Video** | — | 60초 티저 영상 — 제품 개념 즉시 전달 |
 | 3 | **Problem** | — | Pain point 3가지 — 데이터 유출, 책임 공백, 관리 사각지대 |
 | 4 | **Use Cases** | Use Cases | 결과 중심 시나리오 4개 + 직접 체험 CTA |
-| 5 | **Value** | — | 도입 효과 4가지 + KPI 카드 (80% / 60% / 100%) |
+| 5 | **Value** | — | 도입 후 기대 효과 4가지 + KPI 카드 (80% / 60%) |
 | 6 | **Why AgentGo** | Why AgentGo? | Claude/Copilot vs AgentGo 비교 테이블 |
 | 7 | **Core** | Platform Modules | 6대 모듈 — Platform, Guard, Management, Marketplace, Coder, Flow |
 | 8 | **Editions** | Editions | 에디션 비교 — Chatbot / Standard / Enterprise |
 | 9 | **Process** | Implementation | 3단계 도입 — 시나리오 검토 → PoC 검증 → 전사 확산 |
 | 10 | **FAQ** | — | 도입 핵심 질문 5개 |
 | 11 | **CTA** | — | 최종 전환 — 데모 신청 + 소개서 다운로드 |
+
+**도입 효과 카드 (Outcome 관점):**
+- AI 운영 프로세스 표준화
+- 운영 복잡도 감소
+- 운영 환경 유연성 확보
+- 운영 통제 체계 강화
 
 **전환 최적화:**
 - CTA 3곳 배치 (Hero, Why AgentGo, Final CTA)
@@ -47,7 +53,13 @@
 | 업무 비서 Agent | 보고서 자동 생성, 메일 초안 (HITL), 결재 요청 | 시간 80% 절감 |
 | 사내 지식 Agent | 연차 규정, 보안 정책, 제품 스펙 조회 | 검색 90% 절감 |
 | 개발 Copilot | API 생성, 코드 보안 점검, 테스트 설계 | 생산성 40% 향상 |
-| 운영 관제 Agent | 장애 원인 분석, 시스템 상태, 이상 탐지 | 분석 60% 단축 |
+| 운영 관제 Agent | 장애 분석, 시스템 상태, 이상 탐지, AI 사용량 모니터링 | 분석 60% 단축 |
+
+**운영 관제 시나리오 상세:**
+- 장애 원인 분석 → 즉시 조치 방안 / 상세 로그
+- 시스템 상태 대시보드 (서비스별 CPU/메모리/응답시간)
+- 이상 탐지 알림 (성능/보안/비용) → Guard 자동 조치
+- AI 사용량 리포트 (사용자/호출/비용/조직별) → 이상 감지 → 비용 최적화 제안
 
 **주요 기능:**
 - "2분 안에 체험하기" 전환 중심 웰컴 화면
@@ -58,7 +70,6 @@
   - 사내 지식: TXT, MD, CSV, JSON (500KB)
   - 개발 Copilot: PY, JS, TS, JAVA, GO (100KB)
   - 운영 관제: LOG, TXT, CSV, JSON (500KB)
-  - 파일 내용 미리보기 + textarea 자동 채움 + 언어 자동 감지
 - Human-in-the-Loop (메일 발송 전 Guard 검증 + 사용자 승인)
 
 ---
@@ -70,8 +81,9 @@
 | 프론트엔드 | HTML + CSS + Vanilla JS (단일 파일, 프레임워크 없음) |
 | 폰트 | SUIT Variable (제목) + Pretendard (본문) — jsDelivr CDN |
 | 영상 | MP4 15MB (ffmpeg CRF 28 압축) |
+| 로고 | 소개서 PDF에서 추출, 흰 배경 처리 |
 | 배포 | GitHub Pages (`/docs` 폴더) |
-| 이미지 | 없음 — CSS, SVG, Canvas만 사용 |
+| 이미지 | CSS, SVG, Canvas + 로고 PNG |
 | 접근성 | `prefers-reduced-motion`, TAB 이동, ARIA, 색상 대비 |
 
 ---
@@ -114,6 +126,7 @@ npx http-server docs -p 3000 -c-1
 └── docs/
     ├── index.html                    # 메인 랜딩 페이지
     ├── demo.html                     # Agent 시나리오 체험 페이지
+    ├── agentgo-logo.png              # 브랜드 로고 (3D 삼각형)
     ├── AgentGo_teaser_compressed.mp4 # 제품 티저 영상 (15MB)
     └── AgentGo_소개서.pdf             # 제품 소개서 (PDF)
 ```
