@@ -170,25 +170,25 @@ body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:var
         <span class="scenario-icon">⚡</span>
         <h3>업무 비서 Agent</h3>
         <p>보고서 작성 · 메일·결재 자동화 · 반복 업무 지원</p>
-        <div class="scenario-modules"><span class="scenario-mod">Flow</span><span class="scenario-mod">Workflow</span><span class="scenario-mod">Guard</span></div>
+        <div class="scenario-modules"><span class="scenario-mod">Flow</span><span class="scenario-mod">Workflow</span></div>
       </button>
       <button class="scenario-btn" data-scenario="knowledge" onclick="loadScenario('knowledge')">
         <span class="scenario-icon">🔍</span>
         <h3>사내 지식 Agent</h3>
         <p>사내 문서 검색 · 정책 확인 · 지식 활용</p>
-        <div class="scenario-modules"><span class="scenario-mod">Platform</span><span class="scenario-mod">DB</span><span class="scenario-mod">Guard</span></div>
+        <div class="scenario-modules"><span class="scenario-mod">Platform</span><span class="scenario-mod">DB</span></div>
       </button>
       <button class="scenario-btn" data-scenario="dev" onclick="loadScenario('dev')">
         <span class="scenario-icon">💻</span>
         <h3>개발 Copilot Agent</h3>
         <p>코드 생성 · 품질 검토 · 테스트 지원</p>
-        <div class="scenario-modules"><span class="scenario-mod">Coder</span><span class="scenario-mod">Guard</span><span class="scenario-mod">Workflow</span></div>
+        <div class="scenario-modules"><span class="scenario-mod">Coder</span><span class="scenario-mod">Workflow</span></div>
       </button>
       <button class="scenario-btn" data-scenario="ops" onclick="loadScenario('ops')">
         <span class="scenario-icon">📊</span>
         <h3>운영 관제 Agent</h3>
         <p>운영 모니터링 · 사용량 분석 · 이상 대응</p>
-        <div class="scenario-modules"><span class="scenario-mod">Management</span><span class="scenario-mod">Guard</span><span class="scenario-mod">Workflow</span></div>
+        <div class="scenario-modules"><span class="scenario-mod">Management</span><span class="scenario-mod">Workflow</span></div>
       </button>
     </div>
   </div>
@@ -244,7 +244,7 @@ var SCENARIOS={
       report:[
         {from:'user',text:'이번 주 팀 주간 보고서를 작성해 줘.'},
         {from:'bot',html:'연동 시스템에서 데이터를 수집합니다.<br>Jira 완료 태스크 12건, Confluence 문서 5건, Teams 논의 3건'},
-        {from:'bot',html:'<strong>📝 주간 보고서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><strong>1. 완료</strong><ul><li>랜딩 페이지 v2.1 배포</li><li>A/B 테스트 분석 완료</li><li>도메인 맞춤 소개서 작성</li></ul><strong>2. 진행 중</strong><ul><li>Q3 웨비나 기획 (60%)</li><li>고객사 인터뷰 조율</li></ul><strong>3. 계획</strong><ul><li>발표자료 제작</li><li>콘텐츠 3건 발행</li></ul><br>🛡️ Guard: 기밀 정보 포함 여부 검사 완료 — 이상 없음<br><br>⚠️ <strong>담당자 검토가 필요합니다.</strong> 초안을 확인하고 승인해 주세요.','actions':[{label:'✅ 승인 — 전송',key:'report_send'},{label:'📎 승인 — 저장',key:'report_save'},{label:'✏️ 수정 요청',key:'report_edit'}]},
+        {from:'bot',html:'<strong>📝 주간 보고서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><strong>1. 완료</strong><ul><li>랜딩 페이지 v2.1 배포</li><li>A/B 테스트 분석 완료</li><li>도메인 맞춤 소개서 작성</li></ul><strong>2. 진행 중</strong><ul><li>Q3 웨비나 기획 (60%)</li><li>고객사 인터뷰 조율</li></ul><strong>3. 계획</strong><ul><li>발표자료 제작</li><li>콘텐츠 3건 발행</li></ul><br><br>⚠️ <strong>담당자 검토가 필요합니다.</strong> 초안을 확인하고 승인해 주세요.','actions':[{label:'✅ 승인 — 전송',key:'report_send'},{label:'📎 승인 — 저장',key:'report_save'},{label:'✏️ 수정 요청',key:'report_edit'}]},
       ],
       report_send:[
         {from:'user',text:'승인합니다. 팀장에게 전송해 주세요.'},
@@ -261,15 +261,15 @@ var SCENARIOS={
       email:[
         {from:'user',text:'고객 미팅 후속 메일 초안을 작성해 줘.'},
         {from:'bot',html:'미팅 정보를 확인합니다.<br>참석자: 박부장 (A제조), 김과장 (A제조), 이매니저 (AgentGo BD)<br>주제: AgentGo Enterprise POC 논의'},
-        {from:'bot',html:'<strong>✉️ 메일 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br>제목: [AgentGo] A제조 POC 논의 후속 안내<br><br>박부장님, 김과장님 안녕하세요.<br>미팅에서 논의된 내용을 정리하여 공유드립니다.<br><br><strong>합의 사항</strong><ul><li>POC 범위: 품질검사 자동화 + 이상 탐지</li><li>기간: 4주 (7/1~7/28)</li><li>환경: 온프레미스 폐쇄망</li></ul><strong>다음 단계</strong><ul><li>AgentGo: 체크리스트 송부 (이번 주)</li><li>A제조: IT 담당자 지정 및 서버 확인</li></ul><br>🛡️ Guard: 기밀 정보 스캔 — 이상 없음<br><br>⚠️ <strong>발송 전 검토가 필요합니다.</strong>','actions':[{label:'✅ 승인 — 발송',key:'email_send'},{label:'✏️ 톤 수정',key:'email_formal'},{label:'❌ 취소',key:'email_cancel'}]},
+        {from:'bot',html:'<strong>✉️ 메일 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br>제목: [AgentGo] A제조 POC 논의 후속 안내<br><br>박부장님, 김과장님 안녕하세요.<br>미팅에서 논의된 내용을 정리하여 공유드립니다.<br><br><strong>합의 사항</strong><ul><li>POC 범위: 품질검사 자동화 + 이상 탐지</li><li>기간: 4주 (7/1~7/28)</li><li>환경: 온프레미스 폐쇄망</li></ul><strong>다음 단계</strong><ul><li>AgentGo: 체크리스트 송부 (이번 주)</li><li>A제조: IT 담당자 지정 및 서버 확인</li></ul><br><br>⚠️ <strong>발송 전 검토가 필요합니다.</strong>','actions':[{label:'✅ 승인 — 발송',key:'email_send'},{label:'✏️ 톤 수정',key:'email_formal'},{label:'❌ 취소',key:'email_cancel'}]},
       ],
       email_formal:[
         {from:'user',text:'톤을 더 격식체로 수정해 줘.'},
-        {from:'bot',html:'격식체로 수정 완료. <span class="status-badge badge-review">Review</span><br><br>변경 사항:<br>• "안녕하세요" → "안녕하십니까"<br>• "공유드립니다" → "공유 드리오니 검토 부탁드리겠습니다"<br><br>🛡️ Guard: 수정 내용 기밀 정보 재검사 — 이상 없음<br><br>⚠️ <strong>발송 전 최종 확인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 발송',key:'email_send'},{label:'❌ 취소',key:'email_cancel'}]}
+        {from:'bot',html:'격식체로 수정 완료. <span class="status-badge badge-review">Review</span><br><br>변경 사항:<br>• "안녕하세요" → "안녕하십니까"<br>• "공유드립니다" → "공유 드리오니 검토 부탁드리겠습니다"<br><br>⚠️ <strong>발송 전 최종 확인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 발송',key:'email_send'},{label:'❌ 취소',key:'email_cancel'}]}
       ],
       email_send:[
         {from:'user',text:'승인합니다. 발송해 주세요.'},
-        {from:'bot',html:'<strong>✅ 메일 발송 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>수신: park.bj@a-manufacturing.co.kr, kim.gj@a-manufacturing.co.kr<br>CC: lee.mgr@itcen.com<br><br>📋 감사 로그: 승인자·발송 시각·수신자·Guard 검증 결과 기록 완료'}
+        {from:'bot',html:'<strong>✅ 메일 발송 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>수신: park.bj@a-manufacturing.co.kr, kim.gj@a-manufacturing.co.kr<br>CC: lee.mgr@itcen.com<br><br>📋 감사 로그: 승인자·발송 시각·수신자·검증 결과 기록 완료'}
       ],
       email_cancel:[
         {from:'user',text:'취소합니다.'},
@@ -278,7 +278,7 @@ var SCENARIOS={
       approval:[
         {from:'user',text:'클라우드 비용 정산 결재를 요청해 줘.'},
         {from:'bot',html:'비용 데이터를 조회합니다...'},
-        {from:'bot',html:'<strong>💰 결재 요청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>비용</th></tr><tr><td>AWS EC2</td><td>₩3,240,000</td></tr><tr><td>AWS S3</td><td>₩870,000</td></tr><tr><td>Azure OpenAI</td><td>₩1,560,000</td></tr><tr><td>GCP BigQuery</td><td>₩420,000</td></tr><tr><td><strong>합계</strong></td><td><strong>₩6,090,000</strong></td></tr></table><br>🛡️ Guard: 금액 정합성 검증 — 이상 없음<br><br>⚠️ <strong>결재 상신 전 담당자 확인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 결재 상신',key:'approval_submit'},{label:'📉 비용 분석',key:'approval_detail'}]},
+        {from:'bot',html:'<strong>💰 결재 요청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>비용</th></tr><tr><td>AWS EC2</td><td>₩3,240,000</td></tr><tr><td>AWS S3</td><td>₩870,000</td></tr><tr><td>Azure OpenAI</td><td>₩1,560,000</td></tr><tr><td>GCP BigQuery</td><td>₩420,000</td></tr><tr><td><strong>합계</strong></td><td><strong>₩6,090,000</strong></td></tr></table><br><br>⚠️ <strong>결재 상신 전 담당자 확인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 결재 상신',key:'approval_submit'},{label:'📉 비용 분석',key:'approval_detail'}]},
       ],
       approval_submit:[
         {from:'user',text:'승인합니다. 결재 라인에 제출해 주세요.'},
@@ -287,31 +287,31 @@ var SCENARIOS={
       leave_request:[
         {from:'user',text:'연차 신청을 하고 싶어.'},
         {from:'bot',text:'HR 시스템에서 잔여 연차를 조회합니다...'},
-        {from:'bot',html:'<strong>잔여 연차 조회 완료</strong><br><br>👤 이다혜 (마케팅팀) <em style="font-size:.72rem;color:var(--slate)">— 예시 데이터</em><br><br><table><tr><th>항목</th><th>일수</th></tr><tr><td>총 연차</td><td><strong>17일</strong></td></tr><tr><td>사용</td><td>8일</td></tr><tr><td>잔여</td><td><strong>9일</strong></td></tr><tr><td>하반기 만료</td><td class="status-warn">3일 (12/31)</td></tr></table><br>🛡️ Guard: 조회 권한 확인 완료<br><br>휴가 유형을 선택해 주세요.','actions':[{label:'📝 연차',key:'leave_annual'},{label:'📝 오전 반차',key:'leave_half_am'},{label:'📝 오후 반차',key:'leave_half_pm'},{label:'📝 반반차 (2시간)',key:'leave_quarter'},{label:'📝 대체 휴가',key:'leave_alt'},{label:'📝 경조 휴가',key:'leave_family'}]},
+        {from:'bot',html:'<strong>잔여 연차 조회 완료</strong><br><br>👤 이다혜 (마케팅팀) <em style="font-size:.72rem;color:var(--slate)">— 예시 데이터</em><br><br><table><tr><th>항목</th><th>일수</th></tr><tr><td>총 연차</td><td><strong>17일</strong></td></tr><tr><td>사용</td><td>8일</td></tr><tr><td>잔여</td><td><strong>9일</strong></td></tr><tr><td>하반기 만료</td><td class="status-warn">3일 (12/31)</td></tr></table><br><br>휴가 유형을 선택해 주세요.','actions':[{label:'📝 연차',key:'leave_annual'},{label:'📝 오전 반차',key:'leave_half_am'},{label:'📝 오후 반차',key:'leave_half_pm'},{label:'📝 반반차 (2시간)',key:'leave_quarter'},{label:'📝 대체 휴가',key:'leave_alt'},{label:'📝 경조 휴가',key:'leave_family'}]},
       ],
       leave_annual:[
         {from:'user',text:'7월 3일~4일 연차 2일을 신청할게.'},
-        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>연차</td></tr><tr><td>시작일</td><td>2026.07.03 (목)</td></tr><tr><td>종료일</td><td>2026.07.04 (금)</td></tr><tr><td>사용 일수</td><td>2일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>김과장에게 진행 중 업무 공유</td></tr><tr><td>긴급 연락</td><td>가능 (010-xxxx-xxxx)</td></tr></table><br><strong>차감 계산</strong><table><tr><th>항목</th><th>일수</th></tr><tr><td>현재 잔여</td><td>9일</td></tr><tr><td>신청</td><td class="status-warn">-2일</td></tr><tr><td>차감 후 잔여</td><td><strong>7일</strong></td></tr></table><br>🛡️ Guard 검증:<br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 필수 입력값 — <span class="status-ok">통과</span><br>• 신청 규정 (3일 전) — <span class="status-ok">충족</span><br>• 휴일 중복 — <span class="status-ok">없음</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>연차</td></tr><tr><td>시작일</td><td>2026.07.03 (목)</td></tr><tr><td>종료일</td><td>2026.07.04 (금)</td></tr><tr><td>사용 일수</td><td>2일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>김과장에게 진행 중 업무 공유</td></tr><tr><td>긴급 연락</td><td>가능 (010-xxxx-xxxx)</td></tr></table><br><strong>차감 계산</strong><table><tr><th>항목</th><th>일수</th></tr><tr><td>현재 잔여</td><td>9일</td></tr><tr><td>신청</td><td class="status-warn">-2일</td></tr><tr><td>차감 후 잔여</td><td><strong>7일</strong></td></tr></table><br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 필수 입력값 — <span class="status-ok">통과</span><br>• 신청 규정 (3일 전) — <span class="status-ok">충족</span><br>• 휴일 중복 — <span class="status-ok">없음</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_half_am:[
         {from:'user',text:'7월 3일 오전 반차를 신청할게.'},
-        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오전 반차</td></tr><tr><td>일자</td><td>2026.07.03 (목) 09:00~13:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>오후 출근 후 처리</td></tr></table><br><strong>차감 계산</strong><table><tr><th>항목</th><th>일수</th></tr><tr><td>현재 잔여</td><td>9일</td></tr><tr><td>신청</td><td class="status-warn">-0.5일</td></tr><tr><td>차감 후 잔여</td><td><strong>8.5일</strong></td></tr></table><br>🛡️ Guard 검증: 모두 <span class="status-ok">통과</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오전 반차</td></tr><tr><td>일자</td><td>2026.07.03 (목) 09:00~13:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>오후 출근 후 처리</td></tr></table><br><strong>차감 계산</strong><table><tr><th>항목</th><th>일수</th></tr><tr><td>현재 잔여</td><td>9일</td></tr><tr><td>신청</td><td class="status-warn">-0.5일</td></tr><tr><td>차감 후 잔여</td><td><strong>8.5일</strong></td></tr></table><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_half_pm:[
         {from:'user',text:'7월 3일 오후 반차를 신청할게.'},
-        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오후 반차</td></tr><tr><td>일자</td><td>2026.07.03 (목) 14:00~18:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr></table><br><strong>차감 계산</strong>: 잔여 9일 → <strong>8.5일</strong><br><br>🛡️ Guard 검증: 모두 <span class="status-ok">통과</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오후 반차</td></tr><tr><td>일자</td><td>2026.07.03 (목) 14:00~18:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr></table><br><strong>차감 계산</strong>: 잔여 9일 → <strong>8.5일</strong><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_quarter:[
         {from:'user',text:'7월 3일 반반차(2시간)를 신청할게.'},
-        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>반반차 (2시간)</td></tr><tr><td>일자</td><td>2026.07.03 (목)</td></tr><tr><td>사용 시간</td><td>09:00~11:00 (2시간)</td></tr><tr><td>사용 일수</td><td>0.25일</td></tr><tr><td>사유</td><td>병원 방문</td></tr></table><br><strong>차감 계산</strong>: 잔여 9일 → <strong>8.75일</strong><br><br>🛡️ Guard 검증:<br>• 반반차 최소 단위 (2시간) — <span class="status-ok">충족</span><br>• 잔여 연차 — <span class="status-ok">충분</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>반반차 (2시간)</td></tr><tr><td>일자</td><td>2026.07.03 (목)</td></tr><tr><td>사용 시간</td><td>09:00~11:00 (2시간)</td></tr><tr><td>사용 일수</td><td>0.25일</td></tr><tr><td>사유</td><td>병원 방문</td></tr></table><br><strong>차감 계산</strong>: 잔여 9일 → <strong>8.75일</strong><br><br>• 반반차 최소 단위 (2시간) — <span class="status-ok">충족</span><br>• 잔여 연차 — <span class="status-ok">충분</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_alt:[
         {from:'user',text:'대체 휴가를 신청할게. 7월 7일 1일.'},
-        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>대체 휴가</td></tr><tr><td>일자</td><td>2026.07.07 (월)</td></tr><tr><td>사용 일수</td><td>1일</td></tr><tr><td>대체 근거</td><td>2026.06.28 (토) 휴일 근무</td></tr><tr><td>사유</td><td>휴일 근무 대체</td></tr></table><br><strong>차감</strong>: 대체 휴가 잔여 2일 → <strong>1일</strong> (연차 차감 없음)<br><br>🛡️ Guard 검증:<br>• 대체 휴가 잔여 — <span class="status-ok">충분</span><br>• 휴일 근무 이력 — <span class="status-ok">확인 완료</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>대체 휴가</td></tr><tr><td>일자</td><td>2026.07.07 (월)</td></tr><tr><td>사용 일수</td><td>1일</td></tr><tr><td>대체 근거</td><td>2026.06.28 (토) 휴일 근무</td></tr><tr><td>사유</td><td>휴일 근무 대체</td></tr></table><br><strong>차감</strong>: 대체 휴가 잔여 2일 → <strong>1일</strong> (연차 차감 없음)<br><br>• 대체 휴가 잔여 — <span class="status-ok">충분</span><br>• 휴일 근무 이력 — <span class="status-ok">확인 완료</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_family:[
         {from:'user',text:'경조 휴가를 신청할게.'},
-        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>경조 휴가</td></tr><tr><td>경조 사유</td><td>형제 결혼</td></tr><tr><td>시작일</td><td>2026.07.10 (목)</td></tr><tr><td>종료일</td><td>2026.07.11 (금)</td></tr><tr><td>사용 일수</td><td>2일</td></tr></table><br><strong>차감</strong>: 경조 휴가 별도 부여 (연차 차감 없음)<br>📄 근거: 인사규정 제28조 (형제 결혼 — 2일)<br><br>🛡️ Guard 검증:<br>• 경조 규정 확인 — <span class="status-ok">충족</span><br>• 증빙 서류 — <span class="status-warn">상신 후 제출 필요</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>경조 휴가</td></tr><tr><td>경조 사유</td><td>형제 결혼</td></tr><tr><td>시작일</td><td>2026.07.10 (목)</td></tr><tr><td>종료일</td><td>2026.07.11 (금)</td></tr><tr><td>사용 일수</td><td>2일</td></tr></table><br><strong>차감</strong>: 경조 휴가 별도 부여 (연차 차감 없음)<br>📄 근거: 인사규정 제28조 (형제 결혼 — 2일)<br><br>• 경조 규정 확인 — <span class="status-ok">충족</span><br>• 증빙 서류 — <span class="status-warn">상신 후 제출 필요</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_submit:[
         {from:'user',text:'승인합니다. 그룹웨어에 상신해 주세요.'},
@@ -343,7 +343,7 @@ var SCENARIOS={
       leave:[
         {from:'user',text:'연차 사용 규정을 알려줘. 반차도 가능한지?'},
         {from:'bot',text:'문서 조회 중... 권한 검증 및 정책 검토를 수행합니다.'},
-        {from:'bot',html:'<strong>📄 연차 사용 규정</strong><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Source</td><td>인사규정 제24조 (연차유급휴가)</td></tr><tr><td>최종 수정</td><td>2026.03.15</td></tr><tr><td>Confidence</td><td class="status-ok">High</td></tr><tr><td>Guard Check</td><td class="status-ok">통과 — 개인정보 미포함</td></tr></table><br><strong>연차 부여</strong><ul><li>1년 미만: 월 1일 (최대 11일)</li><li>1년 이상: 15일</li><li>3년 이상: 매 2년마다 1일 추가 (최대 25일)</li></ul><strong>반차 제도</strong><ul><li>오전 반차: 09:00~13:00</li><li>오후 반차: 14:00~18:00</li><li>반차 2회 = 연차 1일</li></ul><strong>신청</strong><ul><li>사용일 3일 전 그룹웨어 신청</li><li>긴급 시 당일 가능 (팀장 구두 승인)</li></ul><br>📌 위 내용은 검증된 사내 정책 문서 기반입니다.<br><br>💡 연차 신청은 <strong>업무 비서 Agent</strong>에서 진행할 수 있습니다.','actions':[{label:'📤 Teams로 공유',key:'leave_share'},{label:'⚡ 업무 비서에서 연차 신청',key:'leave_to_automation'}]},
+        {from:'bot',html:'<strong>📄 연차 사용 규정</strong><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Source</td><td>인사규정 제24조 (연차유급휴가)</td></tr><tr><td>최종 수정</td><td>2026.03.15</td></tr><tr><td>Confidence</td><td class="status-ok">High</td></tr><tr><td>보안 확인</td><td class="status-ok">통과 — 개인정보 미포함</td></tr></table><br><strong>연차 부여</strong><ul><li>1년 미만: 월 1일 (최대 11일)</li><li>1년 이상: 15일</li><li>3년 이상: 매 2년마다 1일 추가 (최대 25일)</li></ul><strong>반차 제도</strong><ul><li>오전 반차: 09:00~13:00</li><li>오후 반차: 14:00~18:00</li><li>반차 2회 = 연차 1일</li></ul><strong>신청</strong><ul><li>사용일 3일 전 그룹웨어 신청</li><li>긴급 시 당일 가능 (팀장 구두 승인)</li></ul><br>📌 위 내용은 검증된 사내 정책 문서 기반입니다.<br><br>💡 연차 신청은 <strong>업무 비서 Agent</strong>에서 진행할 수 있습니다.','actions':[{label:'📤 Teams로 공유',key:'leave_share'},{label:'⚡ 업무 비서에서 연차 신청',key:'leave_to_automation'}]},
       ],
       leave_to_automation:[
         {from:'user',text:'업무 비서 Agent에서 연차 신청을 진행할게.'},
@@ -351,12 +351,12 @@ var SCENARIOS={
       ],
       leave_share:[
         {from:'user',text:'이 내용을 Teams로 공유해 줘.'},
-        {from:'bot',html:'<strong>✅ Teams 공유 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>채널: 마케팅팀 > 일반<br>내용: 연차 사용 규정 요약 (인사규정 제24조 기반)<br><br>🛡️ Guard: 공유 내용 기밀 정보 검증 — 이상 없음<br>📋 감사 로그: 공유 이력 기록 완료'}
+        {from:'bot',html:'<strong>✅ Teams 공유 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>채널: 마케팅팀 > 일반<br>내용: 연차 사용 규정 요약 (인사규정 제24조 기반)<br><br>📋 감사 로그: 공유 이력 기록 완료'}
       ],
       security:[
         {from:'user',text:'외부 클라우드 서비스에 회사 데이터를 업로드해도 되나?'},
         {from:'bot',text:'정책 문서를 조회합니다... 권한 검증 및 최신 버전 확인 중...'},
-        {from:'bot',html:'<strong>🔐 외부 서비스 데이터 업로드 정책</strong><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Source</td><td>정보보안규정 제12조 (외부 서비스 이용)</td></tr><tr><td>최종 수정</td><td>2026.04.02</td></tr><tr><td>Confidence</td><td class="status-ok">High</td></tr><tr><td>Guard Check</td><td class="status-ok">통과 — 최신 정책 확인</td></tr></table><br>⛔ <strong>원칙적으로 금지</strong><br><br>• 보안팀 미승인 외부 클라우드 업로드 금지<br>• 개인 Drive, Dropbox 등 업무 자료 저장 금지<br>• 외부 AI 서비스에 사내 데이터 입력 금지<br><br><strong>예외 절차:</strong> 보안팀 심의 → CISO 승인 → 서약서 제출<br><br>⚠️ 위반 시 보안 사고로 분류됩니다.','actions':[{label:'📋 승인 서비스 목록',key:'security_list'},{label:'📤 Teams로 공유',key:'security_share'}]},
+        {from:'bot',html:'<strong>🔐 외부 서비스 데이터 업로드 정책</strong><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Source</td><td>정보보안규정 제12조 (외부 서비스 이용)</td></tr><tr><td>최종 수정</td><td>2026.04.02</td></tr><tr><td>Confidence</td><td class="status-ok">High</td></tr><tr><td>보안 확인</td><td class="status-ok">통과 — 최신 정책 확인</td></tr></table><br>⛔ <strong>원칙적으로 금지</strong><br><br>• 보안팀 미승인 외부 클라우드 업로드 금지<br>• 개인 Drive, Dropbox 등 업무 자료 저장 금지<br>• 외부 AI 서비스에 사내 데이터 입력 금지<br><br><strong>예외 절차:</strong> 보안팀 심의 → CISO 승인 → 서약서 제출<br><br>⚠️ 위반 시 보안 사고로 분류됩니다.','actions':[{label:'📋 승인 서비스 목록',key:'security_list'},{label:'📤 Teams로 공유',key:'security_share'}]},
       ],
       security_list:[
         {from:'user',text:'승인된 외부 서비스 목록을 보여줘.'},
@@ -364,7 +364,7 @@ var SCENARIOS={
       ],
       security_share:[
         {from:'user',text:'이 정책을 Teams로 공유해 줘.'},
-        {from:'bot',html:'<strong>✅ Teams 공유 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>채널: 마케팅팀 > 일반<br>내용: 외부 서비스 데이터 업로드 정책 요약<br><br>🛡️ Guard: 공유 내용 검증 — 이상 없음<br>📋 감사 로그: 정책 공유 이력 기록 완료'}
+        {from:'bot',html:'<strong>✅ Teams 공유 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>채널: 마케팅팀 > 일반<br>내용: 외부 서비스 데이터 업로드 정책 요약<br><br>📋 감사 로그: 정책 공유 이력 기록 완료'}
       ],
       spec:[
         {from:'user',text:'AgentGo Enterprise 최소 서버 사양을 알려줘.'},
@@ -373,44 +373,40 @@ var SCENARIOS={
       ],
       spec_share:[
         {from:'user',text:'이 사양을 Teams로 공유해 줘.'},
-        {from:'bot',html:'<strong>✅ Teams 공유 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>채널: IT인프라팀 > 일반<br>내용: AgentGo Enterprise 서버 사양 (기술 문서 v3.2 기반)<br><br>🛡️ Guard: 공유 내용 검증 — 이상 없음<br>📋 감사 로그: 기록 완료'}
+        {from:'bot',html:'<strong>✅ Teams 공유 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>채널: IT인프라팀 > 일반<br>내용: AgentGo Enterprise 서버 사양 (기술 문서 v3.2 기반)<br><br>📋 감사 로그: 기록 완료'}
       ]
     }
   },
   dev:{
     name:'개발 Copilot Agent',icon:'💻',short:'Dev',
-    greeting:'AgentGo 개발 Copilot Agent입니다.<br>요구사항 → 코드 생성 → Guard 보안 점검 → 개발자 Review → 승인 → 반영 순서로 진행됩니다.<br>아래 업무를 선택하세요.',
+    greeting:'AgentGo 개발 Copilot Agent입니다.<br>요구사항 → 코드 생성 → 보안 점검 → 개발자 Review → 승인 → 반영 순서로 진행됩니다.<br>아래 업무를 선택하세요.',
     actions:[
       {label:'🔧 API 엔드포인트 생성',key:'api'},
-      {label:'🛡️ 코드 보안 점검',key:'review'},
+      {label:'🔒 코드 보안 점검',key:'review'},
       {label:'🧪 테스트 설계',key:'test'}
     ],
     flows:{
       api:[
         {from:'user',text:'사용자 목록 조회 REST API를 만들어 줘.'},
         {from:'bot',text:'Repository를 조회합니다... 기존 코드 구조와 패턴을 분석 중...'},
-        {from:'bot',html:'<strong>코드 생성 완료</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Repo</td><td>agentgo-api / main</td></tr><tr><td>경로</td><td>app/api/v1/users.py</td></tr><tr><td>Guard</td><td class="status-warn">검사 대기</td></tr></table><br><pre>from fastapi import FastAPI, Query\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n@app.get("/api/v1/users")\nasync def get_users(\n    department: str | None = Query(None),\n    page: int = Query(1, ge=1),\n    size: int = Query(20, ge=1, le=100)\n):\n    offset = (page - 1) * size\n    users = await db.fetch_users(\n        department=department,\n        offset=offset, limit=size\n    )\n    return {"total": len(users), "items": users}</pre><br>⚠️ <strong>Guard 보안 검사를 진행해 주세요.</strong>','actions':[{label:'🛡️ Guard 보안 검사',key:'api_guard'},{label:'🧪 테스트 코드 생성',key:'api_test'}]},
-      ],
-      api_guard:[
-        {from:'user',text:'Guard 보안 검사를 진행해 줘.'},
-        {from:'bot',html:'<strong>🛡️ Guard 보안 점검 결과</strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>항목</th><th>상태</th><th>설명</th></tr><tr><td>SQL Injection</td><td class="status-ok">안전</td><td>ORM 파라미터 바인딩</td></tr><tr><td>인증/인가</td><td class="status-err">미적용</td><td>API 인증 미들웨어 없음</td></tr><tr><td>Rate Limiting</td><td class="status-warn">권장</td><td>대량 호출 방어 없음</td></tr><tr><td>입력 검증</td><td class="status-ok">안전</td><td>Pydantic 검증 적용</td></tr></table><br>⚠️ <strong>개발자 Review 필요</strong> — 인증 미들웨어 추가 후 Merge 가능','actions':[{label:'✅ 승인 — MR 생성',key:'api_merge'},{label:'✏️ 수정 후 재검사',key:'api'}]}
+        {from:'bot',html:'<strong>코드 생성 완료</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Repo</td><td>agentgo-api / main</td></tr><tr><td>경로</td><td>app/api/v1/users.py</td></tr><tr><td>보안 점검</td><td class="status-warn">검사 대기</td></tr></table><br><pre>from fastapi import FastAPI, Query\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n@app.get("/api/v1/users")\nasync def get_users(\n    department: str | None = Query(None),\n    page: int = Query(1, ge=1),\n    size: int = Query(20, ge=1, le=100)\n):\n    offset = (page - 1) * size\n    users = await db.fetch_users(\n        department=department,\n        offset=offset, limit=size\n    )\n    return {"total": len(users), "items": users}</pre><br>⚠️ <strong>보안 점검를 진행해 주세요.</strong>','actions':[{label:'<strong></strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>항목</th><th>상태</th><th>설명</th></tr><tr><td>SQL Injection</td><td class="status-ok">안전</td><td>ORM 파라미터 바인딩</td></tr><tr><td>인증/인가</td><td class="status-err">미적용</td><td>API 인증 미들웨어 없음</td></tr><tr><td>Rate Limiting</td><td class="status-warn">권장</td><td>대량 호출 방어 없음</td></tr><tr><td>입력 검증</td><td class="status-ok">안전</td><td>Pydantic 검증 적용</td></tr></table><br>⚠️ <strong>개발자 Review 필요</strong> — 인증 미들웨어 추가 후 Merge 가능','actions':[{label:'✅ 승인 — MR 생성',key:'api_merge'},{label:'✏️ 수정 후 재검사',key:'api'}]}
       ],
       api_merge:[
         {from:'user',text:'승인합니다. Merge Request를 생성해 주세요.'},
-        {from:'bot',html:'<strong>✅ Merge Request 생성 완료</strong> <span class="status-badge badge-approved">Approved</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>MR</td><td>#347 — feat: add user list API</td></tr><tr><td>Branch</td><td>feat/user-list-api → main</td></tr><tr><td>Guard</td><td class="status-ok">통과</td></tr><tr><td>Reviewer</td><td>김시니어 (배정됨)</td></tr></table><br>📱 Teams 알림: Reviewer에게 코드 리뷰 요청 발송<br><br>⚠️ <strong>배포는 Reviewer 승인 후 진행됩니다.</strong><br>📋 감사 로그: MR 생성·Guard 결과·변경 이력 기록 완료'}
+        {from:'bot',html:'<strong>✅ Merge Request 생성 완료</strong> <span class="status-badge badge-approved">Approved</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>MR</td><td>#347 — feat: add user list API</td></tr><tr><td>Branch</td><td>feat/user-list-api → main</td></tr><tr><td>보안 점검</td><td class="status-ok">통과</td></tr><tr><td>Reviewer</td><td>김시니어 (배정됨)</td></tr></table><br>📱 Teams 알림: Reviewer에게 코드 리뷰 요청 발송<br><br>⚠️ <strong>배포는 Reviewer 승인 후 진행됩니다.</strong><br>📋 감사 로그: MR 생성·점검 결과·변경 이력 기록 완료'}
       ],
       api_test:[
         {from:'user',text:'테스트 코드를 작성해 줘.'},
-        {from:'bot',html:'<strong>테스트 코드 생성</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Repo</td><td>agentgo-api / tests/</td></tr><tr><td>Guard</td><td class="status-ok">통과</td></tr></table><br><pre>import pytest\nfrom httpx import AsyncClient\n\n@pytest.mark.asyncio\nasync def test_get_users():\n    async with AsyncClient(app=app) as c:\n        res = await c.get("/api/v1/users")\n        assert res.status_code == 200\n\n@pytest.mark.asyncio\nasync def test_filter():\n    async with AsyncClient(app=app) as c:\n        res = await c.get("/api/v1/users?department=마케팅")\n        assert res.status_code == 200</pre><br>⚠️ <strong>개발자 Review 후 반영 가능</strong>','actions':[{label:'✅ 승인 — MR에 추가',key:'api_merge'}]}
+        {from:'bot',html:'<strong>테스트 코드 생성</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Repo</td><td>agentgo-api / tests/</td></tr><tr><td>보안 점검</td><td class="status-ok">통과</td></tr></table><br><pre>import pytest\nfrom httpx import AsyncClient\n\n@pytest.mark.asyncio\nasync def test_get_users():\n    async with AsyncClient(app=app) as c:\n        res = await c.get("/api/v1/users")\n        assert res.status_code == 200\n\n@pytest.mark.asyncio\nasync def test_filter():\n    async with AsyncClient(app=app) as c:\n        res = await c.get("/api/v1/users?department=마케팅")\n        assert res.status_code == 200</pre><br>⚠️ <strong>개발자 Review 후 반영 가능</strong>','actions':[{label:'✅ 승인 — MR에 추가',key:'api_merge'}]}
       ],
       review:[
         {from:'user',text:'이 코드를 보안 점검해 줘.\n\nquery = f"SELECT * FROM users WHERE id = {user_id}"'},
-        {from:'bot',text:'Guard 보안 스캔을 수행합니다... Repository 패턴 분석 중...'},
-        {from:'bot',html:'🚨 <strong>심각한 취약점 발견</strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>취약점</th><th>심각도</th><th>설명</th></tr><tr><td>SQL Injection</td><td class="status-err">Critical</td><td>f-string 직접 삽입 — DB 전체 노출 위험</td></tr></table><br><strong>수정 권고:</strong><pre>query = "SELECT * FROM users WHERE id = %s"\ncursor.execute(query, (user_id,))</pre><br>⚠️ <strong>개발자가 수정 후 Guard 재검사가 필요합니다.</strong><br>📋 취약점 탐지 이력이 감사 로그에 기록됩니다.','actions':[{label:'🛡️ 수정 후 재검사',key:'review'}]}
+        {from:'bot',text:'보안 스캔을 수행합니다... Repository 패턴 분석 중...'},
+        {from:'bot',html:'🚨 <strong>심각한 취약점 발견</strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>취약점</th><th>심각도</th><th>설명</th></tr><tr><td>SQL Injection</td><td class="status-err">Critical</td><td>f-string 직접 삽입 — DB 전체 노출 위험</td></tr></table><br><strong>수정 권고:</strong><pre>query = "SELECT * FROM users WHERE id = %s"\ncursor.execute(query, (user_id,))</pre><br>⚠️ <strong>개발자가 수정 후 보안 점검 재검사가 필요합니다.</strong><br>📋 취약점 탐지 이력이 감사 로그에 기록됩니다.','actions':[{label:'🔒 수정 후 재검사',key:'review'}]}
       ],
       test:[
         {from:'user',text:'로그인 기능 테스트 시나리오를 설계해 줘.'},
-        {from:'bot',html:'<strong>🧪 테스트 시나리오</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>#</th><th>시나리오</th><th>기대 결과</th></tr><tr><td>1</td><td>정상 로그인</td><td class="status-ok">200 + JWT</td></tr><tr><td>2</td><td>비밀번호 오류</td><td class="status-warn">401</td></tr><tr><td>3</td><td>5회 실패 → 잠금</td><td class="status-err">423 Locked</td></tr><tr><td>4</td><td>SQL Injection</td><td class="status-ok">401 (차단)</td></tr><tr><td>5</td><td>토큰 만료</td><td class="status-warn">401 Expired</td></tr></table><br>📌 Guard: 테스트 3, 4번 정책 자동 적용<br>⚠️ <strong>개발자 Review 후 테스트 실행 가능</strong>','actions':[{label:'✅ 승인 — MR 생성',key:'api_merge'}]}
+        {from:'bot',html:'<strong>🧪 테스트 시나리오</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>#</th><th>시나리오</th><th>기대 결과</th></tr><tr><td>1</td><td>정상 로그인</td><td class="status-ok">200 + JWT</td></tr><tr><td>2</td><td>비밀번호 오류</td><td class="status-warn">401</td></tr><tr><td>3</td><td>5회 실패 → 잠금</td><td class="status-err">423 Locked</td></tr><tr><td>4</td><td>SQL Injection</td><td class="status-ok">401 (차단)</td></tr><tr><td>5</td><td>토큰 만료</td><td class="status-warn">401 Expired</td></tr></table><br>📌 보안: 테스트 3, 4번 정책 자동 적용<br>⚠️ <strong>개발자 Review 후 테스트 실행 가능</strong>','actions':[{label:'✅ 승인 — MR 생성',key:'api_merge'}]}
       ]
     }
   },
@@ -443,7 +439,7 @@ var SCENARIOS={
       ],
       anomaly:[
         {from:'user',text:'이상 탐지 알림을 확인해 줘.'},
-        {from:'bot',html:'<strong>🔔 이상 탐지</strong> (24시간)<table><tr><th>시각</th><th>유형</th><th>심각도</th><th>내용</th></tr><tr><td>14:23</td><td>성능</td><td class="status-err">Critical</td><td>API 응답 3,200ms</td></tr><tr><td>11:45</td><td>보안</td><td class="status-warn">Warning</td><td>비정상 로그인 15회</td></tr><tr><td>08:30</td><td>비용</td><td class="status-warn">Warning</td><td>호출량 180% 초과</td></tr></table><br>Guard 자동 조치:<br>• 11:45 비정상 IP 차단 완료<br>• 08:30 관리자 알림 발송<br><br>⚠️ <strong>추가 조치가 필요한 항목은 운영자 승인 후 실행됩니다.</strong>'}
+        {from:'bot',html:'<strong>🔔 이상 탐지</strong> (24시간)<table><tr><th>시각</th><th>유형</th><th>심각도</th><th>내용</th></tr><tr><td>14:23</td><td>성능</td><td class="status-err">Critical</td><td>API 응답 3,200ms</td></tr><tr><td>11:45</td><td>보안</td><td class="status-warn">Warning</td><td>비정상 로그인 15회</td></tr><tr><td>08:30</td><td>비용</td><td class="status-warn">Warning</td><td>호출량 180% 초과</td></tr></table><br>자동 조치:<br>• 11:45 비정상 IP 차단 완료<br>• 08:30 관리자 알림 발송<br><br>⚠️ <strong>추가 조치가 필요한 항목은 운영자 승인 후 실행됩니다.</strong>'}
       ],
       usage:[
         {from:'user',text:'AI 사용량 리포트를 보여줘.'},
@@ -452,11 +448,11 @@ var SCENARIOS={
       ],
       usage_anomaly:[
         {from:'user',text:'이상 감지 항목을 보여줘.'},
-        {from:'bot',html:'<strong>⚠️ 사용량 이상 감지</strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>항목</th><th>심각도</th><th>상세</th><th>Guard 상태</th></tr><tr><td>호출 급증</td><td class="status-warn">Warning</td><td>개발 테스트 180% 증가</td><td>모니터링 중</td></tr><tr><td>Agent 집중</td><td class="status-warn">Warning</td><td>Dev Copilot 38% 차지</td><td>모니터링 중</td></tr><tr><td>예산 초과</td><td class="status-err">Alert</td><td>월말 ₩22.1M 예상 (한도 ₩20M)</td><td class="status-warn">차단 대기</td></tr></table><br>⚠️ <strong>정책 변경은 운영자 승인 후 적용됩니다.</strong>','actions':[{label:'💡 최적화 조치안',key:'usage_optimize'}]}
+        {from:'bot',html:'<strong>⚠️ 사용량 이상 감지</strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>항목</th><th>심각도</th><th>상세</th><th>상태</th></tr><tr><td>호출 급증</td><td class="status-warn">Warning</td><td>개발 테스트 180% 증가</td><td>모니터링 중</td></tr><tr><td>Agent 집중</td><td class="status-warn">Warning</td><td>Dev Copilot 38% 차지</td><td>모니터링 중</td></tr><tr><td>예산 초과</td><td class="status-err">Alert</td><td>월말 ₩22.1M 예상 (한도 ₩20M)</td><td class="status-warn">차단 대기</td></tr></table><br>⚠️ <strong>정책 변경은 운영자 승인 후 적용됩니다.</strong>','actions':[{label:'💡 최적화 조치안',key:'usage_optimize'}]}
       ],
       usage_optimize:[
         {from:'user',text:'비용 최적화 조치안을 보여줘.'},
-        {from:'bot',html:'<strong>💡 최적화 조치안</strong> <span class="status-badge badge-draft">Draft</span><br><br><strong>즉시 적용 가능:</strong><ul><li>테스트 환경 사용량 제한 (일 3,000건)</li><li>반복 질의 캐싱 활성화</li></ul><strong>중기 권장:</strong><ul><li>Private LLM 전환</li><li>조직별 예산 할당</li></ul><br>⚠️ <strong>운영자 승인 후 Guard 정책에 반영됩니다.</strong>','actions':[{label:'✅ 승인 — 정책 적용',key:'usage_apply'},{label:'✏️ 조치안 수정',key:'usage_optimize'}]}
+        {from:'bot',html:'<strong>💡 최적화 조치안</strong> <span class="status-badge badge-draft">Draft</span><br><br><strong>즉시 적용 가능:</strong><ul><li>테스트 환경 사용량 제한 (일 3,000건)</li><li>반복 질의 캐싱 활성화</li></ul><strong>중기 권장:</strong><ul><li>Private LLM 전환</li><li>조직별 예산 할당</li></ul><br>⚠️ <strong>운영자 승인 후 정책에 반영됩니다.</strong>','actions':[{label:'✅ 승인 — 정책 적용',key:'usage_apply'},{label:'✏️ 조치안 수정',key:'usage_optimize'}]}
       ],
       usage_apply:[
         {from:'user',text:'승인합니다. 정책을 적용해 주세요.'},
@@ -642,12 +638,12 @@ var DATA_FORMS={
         if(code.indexOf('//')===-1&&code.indexOf('#')===-1)issues.push({item:'주석 부족',sev:'Info',desc:'핵심 로직에 주석을 추가하면 유지보수성이 향상됩니다.'});
       }
       if(d.d_task==='보안 점검'){
-        var html='🛡️ <strong>Guard 보안 점검 결과</strong> ('+esc(d.d_lang)+')<br><br><table><tr><th>항목</th><th>심각도</th><th>설명</th></tr>';
+        var html='🔒 <strong>보안 점검 결과</strong> ('+esc(d.d_lang)+')<br><br><table><tr><th>항목</th><th>심각도</th><th>설명</th></tr>';
         issues.forEach(function(i){
           var cls=i.sev==='Critical'?'status-err':i.sev==='Warning'?'status-warn':'status-ok';
           html+='<tr><td>'+esc(i.item)+'</td><td class="'+cls+'">'+i.sev+'</td><td>'+esc(i.desc)+'</td></tr>';
         });
-        html+='</table><br>📌 Guard 모듈은 커밋 전 자동으로 위 패턴을 감지하고 차단합니다.';
+        html+='</table><br>📌 보안 모듈은 커밋 전 자동으로 위 패턴을 감지하고 차단합니다.';
         return [{from:'bot',text:d.d_lang+' 코드를 분석합니다...\n\n🔍 '+codeLines.length+'줄 스캔 중...'},
           {from:'bot',html:html}];
       } else if(d.d_task==='테스트 코드 작성'){
@@ -659,7 +655,7 @@ var DATA_FORMS={
           html+='<li><code>test_'+esc(n)+'_정상_동작</code> — 기본 입력으로 정상 결과 확인</li>';
           html+='<li><code>test_'+esc(n)+'_예외_처리</code> — 잘못된 입력 시 예외 발생 확인</li>';
         });
-        html+='</ul><br>✅ 총 '+testNames.length*2+'개 테스트 케이스 생성. Guard 보안 테스트도 함께 추가되었습니다.';
+        html+='</ul><br>✅ 총 '+testNames.length*2+'개 테스트 케이스 생성. 보안 점검 보안 테스트도 함께 추가되었습니다.';
         return [{from:'bot',text:'코드를 분석하여 테스트 케이스를 생성합니다...'},
           {from:'bot',html:html}];
       } else {
@@ -716,10 +712,10 @@ var DATA_FORMS={
       if(low.indexOf('503')!==-1||low.indexOf('502')!==-1)suggestions.push('서버 가용성 확인 및 로드밸런서 설정 점검');
       if(low.indexOf('cpu')!==-1)suggestions.push('CPU 바운드 프로세스 식별 및 수평 확장 검토');
       if(low.indexOf('disk')!==-1||low.indexOf('storage')!==-1)suggestions.push('디스크 용량 확보 및 로그 로테이션 설정 확인');
-      if(low.indexOf('denied')!==-1||low.indexOf('unauthorized')!==-1||low.indexOf('forbidden')!==-1)suggestions.push('접근 권한 설정 확인 및 Guard 보안 로그 검토');
+      if(low.indexOf('denied')!==-1||low.indexOf('unauthorized')!==-1||low.indexOf('forbidden')!==-1)suggestions.push('접근 권한 설정 확인 및 보안 점검 보안 로그 검토');
       if(!suggestions.length)suggestions.push('로그 패턴을 기반으로 추가 모니터링 설정 권장');
       html+='<strong>💡 조치 제안:</strong><ul>'+suggestions.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul>';
-      html+='<br>🛡️ Guard: 분석 이력이 감사 로그에 기록되었습니다.<br>📊 Management: '+esc(svc)+' 대시보드에서 실시간 추적 가능합니다.';
+      html+='<br>📊 Management: '+esc(svc)+' 대시보드에서 실시간 추적 가능합니다.';
       return [{from:'bot',text:svc+' 로그를 분석합니다...\n\n📋 '+lines.length+'줄 스캔 중...'},
         {from:'bot',html:html,actions:[{label:'🔧 즉시 조치 방안',key:'incident_fix'},{label:'📈 시스템 상태 조회',key:'status'}]}];
     }
@@ -899,17 +895,8 @@ var FREE_RESPONSES={
     {keywords:['api','엔드포인트','rest','endpoint'],response:'API 생성 시나리오를 체험해 보세요!',flow:'api'},
     {keywords:['보안','점검','취약','injection','xss'],response:'코드 보안 점검을 체험해 보세요!',flow:'review'},
     {keywords:['테스트','test','단위','통합','pytest'],response:'테스트 코드 작성을 체험해 보세요!',flow:'test'},
-    {keywords:['파이썬','python','함수','클래스','코드'],response:'코드 생성을 지원합니다. 어떤 기능의 코드가 필요하신가요?\n\n현재 체험 가능한 시나리오:\n• 🔧 REST API 엔드포인트 생성\n• 🛡️ 코드 보안 점검\n• 🧪 테스트 코드 작성\n\n아래 버튼을 눌러 체험해 보세요!'},
-    {keywords:['리뷰','review','코드리뷰','PR'],response:'코드 리뷰 기능은 Guard 모듈과 연동하여 보안 취약점까지 함께 점검합니다.\n\n🛡️ Guard 자동 검사 항목:\n• SQL Injection, XSS, CSRF\n• 하드코딩된 시크릿 키\n• 인증/인가 누락\n• 의존성 취약점\n\n코드 보안 점검 시나리오를 체험해 보세요!'},
-    {keywords:['배포','deploy','ci','cd'],response:'배포 관련 지원 기능입니다.\n\n🚀 Coder 모듈 배포 지원:\n• CI/CD 파이프라인 자동 생성\n• K8s 매니페스트 작성\n• Docker 이미지 빌드 설정\n• 배포 전 Guard 보안 게이트 자동 적용\n\n현재 체험에서는 API 생성 → 보안 점검 → 테스트 플로우를 체험할 수 있습니다.'},
-  ],
-  ops:[
-    {keywords:['장애','에러','오류','느려','다운','timeout','500','503'],response:'장애 원인 분석을 체험해 보세요!',flow:'incident'},
-    {keywords:['상태','모니터링','대시보드','헬스','health'],response:'시스템 상태 조회를 체험해 보세요!',flow:'status'},
-    {keywords:['이상','탐지','알림','경고','alert','anomaly'],response:'이상 탐지 알림을 확인해 보세요!',flow:'anomaly'},
-    {keywords:['사용량','비용','cost','usage','호출','예산','과금','요금'],response:'AI 사용량 모니터링을 체험해 보세요!',flow:'usage'},
-    {keywords:['최적화','절감','절약','효율','private llm'],response:'비용 최적화 제안을 확인해 보세요!',flow:'usage_optimize'},
-    {keywords:['cpu','메모리','디스크','memory','용량'],response:'📊 <strong>리소스 현황 요약</strong>\n\n<table><tr><th>서버</th><th>CPU</th><th>메모리</th><th>디스크</th></tr><tr><td>app-01</td><td>45%</td><td>72%</td><td>58%</td></tr><tr><td>app-02</td><td>38%</td><td>65%</td><td>55%</td></tr><tr><td>db-primary</td><td>52%</td><td>81%</td><td>73%</td></tr><tr><td>redis-01</td><td>12%</td><td>55%</td><td>22%</td></tr></table>\n\n⚠️ db-primary 메모리 사용률이 80%를 초과했습니다.\n시스템 상태 조회에서 더 자세한 정보를 확인하세요.'},
+    {keywords:['파이썬','python','함수','클래스','코드'],response:'코드 생성을 지원합니다. 어떤 기능의 코드가 필요하신가요?\n\n현재 체험 가능한 시나리오:\n• 🔧 REST API 엔드포인트 생성\n• 🔒 코드 보안 점검\n• 🧪 테스트 코드 작성\n\n아래 버튼을 눌러 체험해 보세요!'},
+    {keywords:['리뷰','review','코드리뷰','PR'],response:'코드 리뷰 기능은 보안 모듈과 연동하여 보안 취약점까지 함께 점검합니다.\n\n<strong>리소스 현황 요약</strong>\n\n<table><tr><th>서버</th><th>CPU</th><th>메모리</th><th>디스크</th></tr><tr><td>app-01</td><td>45%</td><td>72%</td><td>58%</td></tr><tr><td>app-02</td><td>38%</td><td>65%</td><td>55%</td></tr><tr><td>db-primary</td><td>52%</td><td>81%</td><td>73%</td></tr><tr><td>redis-01</td><td>12%</td><td>55%</td><td>22%</td></tr></table>\n\n⚠️ db-primary 메모리 사용률이 80%를 초과했습니다.\n시스템 상태 조회에서 더 자세한 정보를 확인하세요.'},
     {keywords:['로그','log','트래픽','요청'],response:'📋 <strong>최근 트래픽 요약</strong> (최근 1시간)\n\n• 총 요청 수: 24,580건\n• 평균 응답 시간: 187ms\n• 에러율: 0.3% (72건)\n• 최다 호출 API: GET /api/users (8,420건)\n• 최장 응답 API: POST /api/reports (2.1초)\n\n장애 원인 분석 시나리오에서 더 자세한 로그를 확인할 수 있습니다.'},
   ]
 };
