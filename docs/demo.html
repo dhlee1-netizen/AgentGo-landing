@@ -237,7 +237,8 @@ var SCENARIOS={
     actions:[
       {label:'📋 주간 보고서 생성',key:'report'},
       {label:'✉️ 미팅 후속 메일',key:'email'},
-      {label:'✅ 결재 요청',key:'approval'}
+      {label:'✅ 결재 요청',key:'approval'},
+      {label:'📝 연차 신청 상신',key:'leave_request'}
     ],
     flows:{
       report:[
@@ -283,6 +284,31 @@ var SCENARIOS={
         {from:'user',text:'승인합니다. 결재 라인에 제출해 주세요.'},
         {from:'bot',html:'<strong>✅ 결재 요청 제출 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>결재 라인: 이매니저 → 김팀장 → 박이사<br>현재 상태: 이매니저 승인 대기<br><br>📋 감사 로그: 요청자·금액·승인 이력 기록 완료'}
       ],
+      leave_request:[
+        {from:'user',text:'연차 신청을 하고 싶어.'},
+        {from:'bot',text:'HR 시스템에서 잔여 연차를 조회합니다...'},
+        {from:'bot',html:'<strong>잔여 연차 조회 완료</strong><br><br>👤 이다혜 (마케팅팀) <em style="font-size:.72rem;color:var(--slate)">— 예시 데이터</em><br><br><table><tr><th>항목</th><th>일수</th></tr><tr><td>총 연차</td><td><strong>17일</strong></td></tr><tr><td>사용</td><td>8일</td></tr><tr><td>잔여</td><td><strong>9일</strong></td></tr></table><br>🛡️ Guard: 조회 권한 확인 완료<br><br>신청 정보를 입력해 주세요.','actions':[{label:'📝 연차 1일 신청',key:'leave_input'},{label:'📝 반차 신청',key:'leave_input_half'}]},
+      ],
+      leave_input:[
+        {from:'user',text:'7월 3일에 연차 1일을 신청하고 싶어.'},
+        {from:'bot',html:'<strong>📝 연차 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>연차</td></tr><tr><td>시작일</td><td>2026.07.03 (목)</td></tr><tr><td>종료일</td><td>2026.07.03 (목)</td></tr><tr><td>사용 일수</td><td>1일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>김과장에게 진행 중 업무 공유</td></tr><tr><td>신청 후 잔여</td><td>8일</td></tr></table><br>🛡️ Guard 검증:<br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 필수 입력값 — <span class="status-ok">통과</span><br>• 신청 규정 (3일 전) — <span class="status-ok">충족</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'❌ 취소',key:'leave_cancel'}]},
+      ],
+      leave_input_half:[
+        {from:'user',text:'7월 3일 오전 반차를 신청하고 싶어.'},
+        {from:'bot',html:'<strong>📝 연차 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오전 반차</td></tr><tr><td>시작일</td><td>2026.07.03 (목) 09:00~13:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>오후 출근 후 처리</td></tr><tr><td>신청 후 잔여</td><td>8.5일</td></tr></table><br>🛡️ Guard 검증:<br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 반차 규정 — <span class="status-ok">충족</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'❌ 취소',key:'leave_cancel'}]},
+      ],
+      leave_submit:[
+        {from:'user',text:'승인합니다. 그룹웨어에 상신해 주세요.'},
+        {from:'bot',html:'<strong>✅ 연차 신청 상신 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>결재 라인: 팀장 → 부서장<br>현재 상태: 팀장 승인 대기<br><br>📱 Teams 알림: 결재자에게 알림 발송 완료<br>📋 감사 로그: 신청자·일자·승인 이력 기록 완료'}
+      ],
+      leave_edit:[
+        {from:'user',text:'내용을 수정하고 싶어.'},
+        {from:'bot',text:'초안이 임시 저장되었습니다. <span class="status-badge badge-review">Review</span>\n\n수정할 항목(일자, 유형, 사유 등)을 알려주시면 반영합니다.','actions':[{label:'📝 연차 1일 재신청',key:'leave_input'},{label:'📝 반차 재신청',key:'leave_input_half'}]}
+      ],
+      leave_cancel:[
+        {from:'user',text:'취소하겠습니다.'},
+        {from:'bot',text:'연차 신청이 취소되었습니다.\n\n초안은 삭제되었습니다.','actions':[{label:'📝 연차 신청 다시 시작',key:'leave_request'}]}
+      ],
       approval_detail:[
         {from:'user',text:'비용 상세 분석을 보여줘.'},
         {from:'bot',html:'<strong>📉 전월 대비 증감</strong><table><tr><th>항목</th><th>이번 달</th><th>지난 달</th><th>증감</th></tr><tr><td>AWS EC2</td><td>₩3,240,000</td><td>₩3,100,000</td><td class="status-warn">+4.5%</td></tr><tr><td>Azure OpenAI</td><td>₩1,560,000</td><td>₩980,000</td><td class="status-err">+59.2%</td></tr></table><br>⚠️ Azure OpenAI 비용 급증 — 테스트 호출 급증이 원인<br>💡 테스트 환경 분리 및 호출 제한 권장','actions':[{label:'✅ 승인 — 결재 상신',key:'approval_submit'}]}
@@ -301,23 +327,11 @@ var SCENARIOS={
       leave:[
         {from:'user',text:'연차 사용 규정을 알려줘. 반차도 가능한지?'},
         {from:'bot',text:'문서 조회 중... 권한 검증 및 정책 검토를 수행합니다.'},
-        {from:'bot',html:'<strong>📄 연차 사용 규정</strong><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Source</td><td>인사규정 제24조 (연차유급휴가)</td></tr><tr><td>최종 수정</td><td>2026.03.15</td></tr><tr><td>Confidence</td><td class="status-ok">High</td></tr><tr><td>Guard Check</td><td class="status-ok">통과 — 개인정보 미포함</td></tr></table><br><strong>연차 부여</strong><ul><li>1년 미만: 월 1일 (최대 11일)</li><li>1년 이상: 15일</li><li>3년 이상: 매 2년마다 1일 추가 (최대 25일)</li></ul><strong>반차 제도</strong><ul><li>오전 반차: 09:00~13:00</li><li>오후 반차: 14:00~18:00</li><li>반차 2회 = 연차 1일</li></ul><strong>신청</strong><ul><li>사용일 3일 전 그룹웨어 신청</li><li>긴급 시 당일 가능 (팀장 구두 승인)</li></ul><br>📌 위 내용은 검증된 사내 정책 문서 기반입니다.','actions':[{label:'🏖️ 잔여 연차 확인',key:'leave_check'},{label:'📤 Teams로 공유',key:'leave_share'}]},
+        {from:'bot',html:'<strong>📄 연차 사용 규정</strong><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Source</td><td>인사규정 제24조 (연차유급휴가)</td></tr><tr><td>최종 수정</td><td>2026.03.15</td></tr><tr><td>Confidence</td><td class="status-ok">High</td></tr><tr><td>Guard Check</td><td class="status-ok">통과 — 개인정보 미포함</td></tr></table><br><strong>연차 부여</strong><ul><li>1년 미만: 월 1일 (최대 11일)</li><li>1년 이상: 15일</li><li>3년 이상: 매 2년마다 1일 추가 (최대 25일)</li></ul><strong>반차 제도</strong><ul><li>오전 반차: 09:00~13:00</li><li>오후 반차: 14:00~18:00</li><li>반차 2회 = 연차 1일</li></ul><strong>신청</strong><ul><li>사용일 3일 전 그룹웨어 신청</li><li>긴급 시 당일 가능 (팀장 구두 승인)</li></ul><br>📌 위 내용은 검증된 사내 정책 문서 기반입니다.<br><br>💡 연차 신청은 <strong>업무 비서 Agent</strong>에서 진행할 수 있습니다.','actions':[{label:'📤 Teams로 공유',key:'leave_share'},{label:'⚡ 업무 비서에서 연차 신청',key:'leave_to_automation'}]},
       ],
-      leave_check:[
-        {from:'user',text:'내 잔여 연차를 확인해 줘.'},
-        {from:'bot',html:'👤 이다혜 (마케팅팀) <em style="font-size:.72rem;color:var(--slate)">— 예시 데이터</em><br><br><table><tr><th>항목</th><th>일수</th></tr><tr><td>올해 총 연차</td><td><strong>17일</strong></td></tr><tr><td>사용</td><td>8일</td></tr><tr><td>잔여</td><td><strong>9일</strong></td></tr><tr><td>하반기 만료 예정</td><td class="status-warn">3일 (12/31)</td></tr></table><br>🛡️ Guard: 개인정보 조회 권한 확인 완료','actions':[{label:'📝 연차 신청 초안 생성',key:'leave_apply'}]}
-      ],
-      leave_apply:[
-        {from:'user',text:'연차 신청 초안을 생성해 줘.'},
-        {from:'bot',html:'<strong>📝 연차 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>연차</td></tr><tr><td>사용 일자</td><td>2026.07.03 (목)</td></tr><tr><td>차감</td><td>1일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>신청 후 잔여</td><td>8일</td></tr></table><br>🛡️ Guard: 연차 잔여일 검증 완료 — 신청 가능<br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'}]}
-      ],
-      leave_submit:[
-        {from:'user',text:'승인합니다. 그룹웨어에 상신해 주세요.'},
-        {from:'bot',html:'<strong>✅ 연차 신청 상신 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>결재 라인: 팀장 → 부서장<br>현재 상태: 팀장 승인 대기<br><br>📱 Teams 알림: 결재자에게 알림 발송 완료<br>📋 감사 로그: 신청자·일자·승인 이력 기록 완료'}
-      ],
-      leave_edit:[
-        {from:'user',text:'내용을 수정하고 싶어.'},
-        {from:'bot',text:'초안이 임시 저장되었습니다. <span class="status-badge badge-review">Review</span>\n\n수정할 항목(일자, 사유 등)을 알려주시면 반영 후 다시 검토를 요청드립니다.','actions':[{label:'📝 연차 신청 초안 재생성',key:'leave_apply'}]}
+      leave_to_automation:[
+        {from:'user',text:'업무 비서 Agent에서 연차 신청을 진행할게.'},
+        {from:'bot',text:'업무 비서 Agent로 이동합니다.\n\n좌측 사이드바에서 <strong>업무 비서 Agent</strong>를 선택한 후\n<strong>📝 연차 신청 상신</strong> 버튼을 클릭해 주세요.'}
       ],
       leave_share:[
         {from:'user',text:'이 내용을 Teams로 공유해 줘.'},
