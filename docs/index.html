@@ -249,6 +249,17 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
 .inline-cta p{font-size:.9rem;color:var(--text2);margin-bottom:20px}
 
 /* === SCROLL ANIMATION === */
+/* === FLOATING BUTTONS === */
+.fab-group{position:fixed;bottom:24px;right:24px;display:flex;gap:8px;z-index:90;align-items:center}
+.fab{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:100px;font-size:.8rem;font-weight:600;text-decoration:none;transition:all .2s;backdrop-filter:blur(8px);cursor:pointer;border:none}
+.fab:hover{transform:translateY(-2px)}
+.fab-primary{background:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,86,200,0.3)}
+.fab-primary:hover{box-shadow:0 8px 24px rgba(26,86,200,0.4)}
+.fab-primary img{width:16px;height:16px;object-fit:contain}
+.fab-secondary{background:#0E0E11;color:#fff;border:1px solid rgba(255,255,255,0.16);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+.fab-secondary:hover{border-color:rgba(255,255,255,0.3);box-shadow:0 8px 20px rgba(0,0,0,0.3)}
+.fab-arrow{font-size:.7rem;opacity:.6}
+
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
@@ -277,6 +288,9 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
   .footer-brand{align-items:center}
   .hero-values{grid-template-columns:1fr;gap:8px;max-width:320px}
   .hero-bg-flow{display:none}
+  .fab-group{bottom:16px;right:16px;flex-direction:column;gap:6px;align-items:flex-end}
+  .fab-secondary .fab-label{display:none}
+  .fab-secondary{padding:10px 12px}
   .compare-grid{grid-template-columns:1fr}
   .kpi-row{grid-template-columns:1fr}
 }
@@ -744,6 +758,12 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
     </div>
   </div>
 </footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="fab-group">
+  <a href="https://itcencloit.com/index.do" target="_blank" rel="noopener" class="fab fab-secondary"><span class="fab-label">ITCEN CLOIT</span><span class="fab-arrow">↗</span></a>
+  <a href="#" class="fab fab-primary" onclick="openDemoModal(event)"><img src="agentgo-logo.png" alt="">AgentGo</a>
+</div>
 
 <script>
 function openDemoModal(e){e.preventDefault();document.getElementById('demoModal').classList.add('open');document.body.style.overflow='hidden'}
