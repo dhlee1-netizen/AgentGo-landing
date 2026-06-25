@@ -287,27 +287,43 @@ var SCENARIOS={
       leave_request:[
         {from:'user',text:'연차 신청을 하고 싶어.'},
         {from:'bot',text:'HR 시스템에서 잔여 연차를 조회합니다...'},
-        {from:'bot',html:'<strong>잔여 연차 조회 완료</strong><br><br>👤 이다혜 (마케팅팀) <em style="font-size:.72rem;color:var(--slate)">— 예시 데이터</em><br><br><table><tr><th>항목</th><th>일수</th></tr><tr><td>총 연차</td><td><strong>17일</strong></td></tr><tr><td>사용</td><td>8일</td></tr><tr><td>잔여</td><td><strong>9일</strong></td></tr></table><br>🛡️ Guard: 조회 권한 확인 완료<br><br>신청 정보를 입력해 주세요.','actions':[{label:'📝 연차 1일 신청',key:'leave_input'},{label:'📝 반차 신청',key:'leave_input_half'}]},
+        {from:'bot',html:'<strong>잔여 연차 조회 완료</strong><br><br>👤 이다혜 (마케팅팀) <em style="font-size:.72rem;color:var(--slate)">— 예시 데이터</em><br><br><table><tr><th>항목</th><th>일수</th></tr><tr><td>총 연차</td><td><strong>17일</strong></td></tr><tr><td>사용</td><td>8일</td></tr><tr><td>잔여</td><td><strong>9일</strong></td></tr><tr><td>하반기 만료</td><td class="status-warn">3일 (12/31)</td></tr></table><br>🛡️ Guard: 조회 권한 확인 완료<br><br>휴가 유형을 선택해 주세요.','actions':[{label:'📝 연차',key:'leave_annual'},{label:'📝 오전 반차',key:'leave_half_am'},{label:'📝 오후 반차',key:'leave_half_pm'},{label:'📝 반반차 (2시간)',key:'leave_quarter'},{label:'📝 대체 휴가',key:'leave_alt'},{label:'📝 경조 휴가',key:'leave_family'}]},
       ],
-      leave_input:[
-        {from:'user',text:'7월 3일에 연차 1일을 신청하고 싶어.'},
-        {from:'bot',html:'<strong>📝 연차 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>연차</td></tr><tr><td>시작일</td><td>2026.07.03 (목)</td></tr><tr><td>종료일</td><td>2026.07.03 (목)</td></tr><tr><td>사용 일수</td><td>1일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>김과장에게 진행 중 업무 공유</td></tr><tr><td>신청 후 잔여</td><td>8일</td></tr></table><br>🛡️ Guard 검증:<br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 필수 입력값 — <span class="status-ok">통과</span><br>• 신청 규정 (3일 전) — <span class="status-ok">충족</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'❌ 취소',key:'leave_cancel'}]},
+      leave_annual:[
+        {from:'user',text:'7월 3일~4일 연차 2일을 신청할게.'},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>연차</td></tr><tr><td>시작일</td><td>2026.07.03 (목)</td></tr><tr><td>종료일</td><td>2026.07.04 (금)</td></tr><tr><td>사용 일수</td><td>2일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>김과장에게 진행 중 업무 공유</td></tr><tr><td>긴급 연락</td><td>가능 (010-xxxx-xxxx)</td></tr></table><br><strong>차감 계산</strong><table><tr><th>항목</th><th>일수</th></tr><tr><td>현재 잔여</td><td>9일</td></tr><tr><td>신청</td><td class="status-warn">-2일</td></tr><tr><td>차감 후 잔여</td><td><strong>7일</strong></td></tr></table><br>🛡️ Guard 검증:<br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 필수 입력값 — <span class="status-ok">통과</span><br>• 신청 규정 (3일 전) — <span class="status-ok">충족</span><br>• 휴일 중복 — <span class="status-ok">없음</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
-      leave_input_half:[
-        {from:'user',text:'7월 3일 오전 반차를 신청하고 싶어.'},
-        {from:'bot',html:'<strong>📝 연차 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오전 반차</td></tr><tr><td>시작일</td><td>2026.07.03 (목) 09:00~13:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>오후 출근 후 처리</td></tr><tr><td>신청 후 잔여</td><td>8.5일</td></tr></table><br>🛡️ Guard 검증:<br>• 잔여 연차 충분 — <span class="status-ok">통과</span><br>• 반차 규정 — <span class="status-ok">충족</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'❌ 취소',key:'leave_cancel'}]},
+      leave_half_am:[
+        {from:'user',text:'7월 3일 오전 반차를 신청할게.'},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오전 반차</td></tr><tr><td>일자</td><td>2026.07.03 (목) 09:00~13:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr><tr><td>업무 인수인계</td><td>오후 출근 후 처리</td></tr></table><br><strong>차감 계산</strong><table><tr><th>항목</th><th>일수</th></tr><tr><td>현재 잔여</td><td>9일</td></tr><tr><td>신청</td><td class="status-warn">-0.5일</td></tr><tr><td>차감 후 잔여</td><td><strong>8.5일</strong></td></tr></table><br>🛡️ Guard 검증: 모두 <span class="status-ok">통과</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+      ],
+      leave_half_pm:[
+        {from:'user',text:'7월 3일 오후 반차를 신청할게.'},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>오후 반차</td></tr><tr><td>일자</td><td>2026.07.03 (목) 14:00~18:00</td></tr><tr><td>사용 일수</td><td>0.5일</td></tr><tr><td>사유</td><td>개인 일정</td></tr></table><br><strong>차감 계산</strong>: 잔여 9일 → <strong>8.5일</strong><br><br>🛡️ Guard 검증: 모두 <span class="status-ok">통과</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+      ],
+      leave_quarter:[
+        {from:'user',text:'7월 3일 반반차(2시간)를 신청할게.'},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>반반차 (2시간)</td></tr><tr><td>일자</td><td>2026.07.03 (목)</td></tr><tr><td>사용 시간</td><td>09:00~11:00 (2시간)</td></tr><tr><td>사용 일수</td><td>0.25일</td></tr><tr><td>사유</td><td>병원 방문</td></tr></table><br><strong>차감 계산</strong>: 잔여 9일 → <strong>8.75일</strong><br><br>🛡️ Guard 검증:<br>• 반반차 최소 단위 (2시간) — <span class="status-ok">충족</span><br>• 잔여 연차 — <span class="status-ok">충분</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+      ],
+      leave_alt:[
+        {from:'user',text:'대체 휴가를 신청할게. 7월 7일 1일.'},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>대체 휴가</td></tr><tr><td>일자</td><td>2026.07.07 (월)</td></tr><tr><td>사용 일수</td><td>1일</td></tr><tr><td>대체 근거</td><td>2026.06.28 (토) 휴일 근무</td></tr><tr><td>사유</td><td>휴일 근무 대체</td></tr></table><br><strong>차감</strong>: 대체 휴가 잔여 2일 → <strong>1일</strong> (연차 차감 없음)<br><br>🛡️ Guard 검증:<br>• 대체 휴가 잔여 — <span class="status-ok">충분</span><br>• 휴일 근무 이력 — <span class="status-ok">확인 완료</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
+      ],
+      leave_family:[
+        {from:'user',text:'경조 휴가를 신청할게.'},
+        {from:'bot',html:'<strong>📝 휴가 신청서 초안</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>휴가 유형</td><td>경조 휴가</td></tr><tr><td>경조 사유</td><td>형제 결혼</td></tr><tr><td>시작일</td><td>2026.07.10 (목)</td></tr><tr><td>종료일</td><td>2026.07.11 (금)</td></tr><tr><td>사용 일수</td><td>2일</td></tr></table><br><strong>차감</strong>: 경조 휴가 별도 부여 (연차 차감 없음)<br>📄 근거: 인사규정 제28조 (형제 결혼 — 2일)<br><br>🛡️ Guard 검증:<br>• 경조 규정 확인 — <span class="status-ok">충족</span><br>• 증빙 서류 — <span class="status-warn">상신 후 제출 필요</span><br><br>⚠️ <strong>내용 확인 후 상신 승인이 필요합니다.</strong>','actions':[{label:'✅ 승인 — 그룹웨어 상신',key:'leave_submit'},{label:'✏️ 내용 수정',key:'leave_edit'},{label:'◀ 이전 단계',key:'leave_request'},{label:'❌ 취소',key:'leave_cancel'}]},
       ],
       leave_submit:[
         {from:'user',text:'승인합니다. 그룹웨어에 상신해 주세요.'},
-        {from:'bot',html:'<strong>✅ 연차 신청 상신 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>결재 라인: 팀장 → 부서장<br>현재 상태: 팀장 승인 대기<br><br>📱 Teams 알림: 결재자에게 알림 발송 완료<br>📋 감사 로그: 신청자·일자·승인 이력 기록 완료'}
+        {from:'bot',html:'<strong>✅ 휴가 신청 상신 완료</strong> <span class="status-badge badge-completed">Completed</span><br><br>결재 라인: 팀장 → 부서장<br>현재 상태: 팀장 승인 대기<br><br>📱 Teams 알림: 결재자에게 알림 발송 완료<br>📋 감사 로그: 신청자·휴가 유형·일자·승인 이력 기록 완료'}
       ],
       leave_edit:[
         {from:'user',text:'내용을 수정하고 싶어.'},
-        {from:'bot',text:'초안이 임시 저장되었습니다. <span class="status-badge badge-review">Review</span>\n\n수정할 항목(일자, 유형, 사유 등)을 알려주시면 반영합니다.','actions':[{label:'📝 연차 1일 재신청',key:'leave_input'},{label:'📝 반차 재신청',key:'leave_input_half'}]}
+        {from:'bot',text:'초안이 임시 저장되었습니다. <span class="status-badge badge-review">Review</span>\n\n수정할 항목(유형, 일자, 사유 등)을 알려주시면 반영합니다.\n\n휴가 유형을 변경하려면 이전 단계로 돌아가 주세요.','actions':[{label:'◀ 휴가 유형 재선택',key:'leave_request'},{label:'📝 수정 후 재생성',key:'leave_annual'}]}
       ],
       leave_cancel:[
         {from:'user',text:'취소하겠습니다.'},
-        {from:'bot',text:'연차 신청이 취소되었습니다.\n\n초안은 삭제되었습니다.','actions':[{label:'📝 연차 신청 다시 시작',key:'leave_request'}]}
+        {from:'bot',text:'휴가 신청이 취소되었습니다.\n\n초안은 삭제되었습니다.','actions':[{label:'📝 휴가 신청 다시 시작',key:'leave_request'}]}
       ],
       approval_detail:[
         {from:'user',text:'비용 상세 분석을 보여줘.'},
