@@ -168,14 +168,31 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
 .final-cta .sec-desc{margin:0 auto 36px}
 .final-cta .btn-primary{font-size:1.05rem;padding:16px 40px}
 
+/* === HERO VALUES === */
+.hero-values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:680px;margin:40px auto 0;position:relative;z-index:1}
+.hero-value{text-align:center;padding:16px 12px}
+.hero-value-icon{font-size:1.5rem;margin-bottom:8px;display:block}
+.hero-value h4{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:700;font-size:.88rem;color:var(--navy);margin-bottom:4px}
+.hero-value p{font-size:.75rem;color:var(--slate);line-height:1.5}
+
+/* === HERO BG FLOW === */
+.hero-bg-flow{position:absolute;right:8%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.06;z-index:0;pointer-events:none}
+.hero-bg-flow span{font-family:'SUIT Variable',sans-serif;font-weight:700;font-size:.85rem;color:var(--navy);letter-spacing:1px}
+.hero-bg-flow .flow-arrow{font-size:.7rem;color:var(--navy)}
+
 /* === FOOTER === */
-.footer{background:var(--navy);padding:48px;display:flex;align-items:flex-end;justify-content:space-between}
-.footer-left{font-size:.75rem;color:rgba(255,255,255,0.35)}
+.footer{background:var(--navy);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.footer-left{display:flex;flex-direction:column;gap:6px}
+.footer-left-copy{font-size:.75rem;color:rgba(255,255,255,0.35)}
+.footer-left-info{font-size:.7rem;color:#C8D1E0;line-height:1.6}
+.footer-right{display:flex;align-items:center;gap:32px}
+.footer-qr{display:flex;flex-direction:column;align-items:center;gap:6px}
+.footer-qr img{width:80px;height:80px;border-radius:6px}
+.footer-qr span{font-size:.65rem;color:#C8D1E0;font-weight:500}
 .footer-brand{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-.footer-brand-name{display:flex;align-items:center;gap:8px;font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:1.1rem;color:rgba(255,255,255,0.85)}
-.footer-brand-name img{width:22px;height:22px;object-fit:contain;opacity:.75}
-.footer-brand-sub{font-size:.7rem;color:rgba(255,255,255,0.35);letter-spacing:.5px}
-.footer-brand-powered{font-size:.65rem;color:rgba(255,255,255,0.25)}
+.footer-brand-name{display:flex;align-items:center;gap:8px;font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:1rem;color:rgba(255,255,255,0.85)}
+.footer-brand-name img{width:18px;height:18px;object-fit:contain;opacity:.7;background:transparent;mix-blend-mode:lighten}
+.footer-brand-sub{font-size:.68rem;color:rgba(255,255,255,0.35);letter-spacing:.5px}
 
 /* === MODAL === */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,22,40,0.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
@@ -254,8 +271,12 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
   .persona-visual{display:none}
   .sec-header-split{flex-direction:column;align-items:flex-start}
   .persona-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
+  .footer{flex-direction:column;gap:20px;text-align:center;padding:24px}
+  .footer-left{align-items:center}
+  .footer-right{flex-direction:column;gap:16px}
   .footer-brand{align-items:center}
+  .hero-values{grid-template-columns:1fr;gap:8px;max-width:320px}
+  .hero-bg-flow{display:none}
   .compare-grid{grid-template-columns:1fr}
   .kpi-row{grid-template-columns:1fr}
 }
@@ -295,13 +316,37 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
 <!-- HERO -->
 <section class="hero" id="hero">
   <canvas id="heroCanvas"></canvas>
+  <div class="hero-bg-flow">
+    <span>Agent</span><span class="flow-arrow">↓</span>
+    <span>Flow</span><span class="flow-arrow">↓</span>
+    <span>Guard</span><span class="flow-arrow">↓</span>
+    <span>Approval</span><span class="flow-arrow">↓</span>
+    <span>Execution</span>
+  </div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> 엔터프라이즈 AI 운영 플랫폼</div>
-    <h1>AI를 도입하는 것이 아니라<br><span class="grad">안전하게 운영</span>하는 것이<br>진짜 과제입니다</h1>
-    <p class="hero-sub">보안·권한·감사 체계를 갖춘 AI 운영 플랫폼.<br>챗봇이 아닌, 기업 AI의 운영 기준을 만듭니다.</p>
+    <div class="hero-badge"><span class="hero-badge-dot"></span> 지금 시작하세요</div>
+    <h1>AI 도입을 넘어,<br><span class="grad">기업에 맞는 운영 체계</span>를<br>설계하세요</h1>
+    <p class="hero-sub">조직 환경에 최적화된 Agent 시나리오와<br>실제 운영 프로세스를 데모로 확인하세요.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" onclick="openDemoModal(event)">데모 신청</a>
-      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개서 다운로드</a>
+      <a href="#" class="btn-primary" style="padding:16px 36px;font-size:1rem" onclick="openDemoModal(event)">맞춤 데모 요청하기</a>
+      <a href="AgentGo_소개서.pdf" download class="btn-secondary">소개자료 다운로드</a>
+    </div>
+    <div class="hero-values">
+      <div class="hero-value">
+        <span class="hero-value-icon">✅</span>
+        <h4>검증 가능한 운영</h4>
+        <p>정책·승인·감사 기반 실행</p>
+      </div>
+      <div class="hero-value">
+        <span class="hero-value-icon">🔗</span>
+        <h4>멀티 Agent 협업</h4>
+        <p>업무 흐름 자동화</p>
+      </div>
+      <div class="hero-value">
+        <span class="hero-value-icon">🏗</span>
+        <h4>기존 인프라 활용</h4>
+        <p>빠른 PoC 및 확산</p>
+      </div>
     </div>
   </div>
   <div class="scroll-indicator"><span class="line"></span>scroll</div>
@@ -684,11 +729,19 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-left">&copy; 2026 ITCEN CLOIT</div>
-  <div class="footer-brand">
-    <div class="footer-brand-name"><img src="agentgo-logo.png" alt="AgentGo">AgentGo</div>
-    <div class="footer-brand-sub">Enterprise AI Operating System</div>
-    <div class="footer-brand-powered">Powered by ITCEN CLOIT</div>
+  <div class="footer-left">
+    <div class="footer-left-copy">&copy; 2026 ITCEN CLOIT</div>
+    <div class="footer-left-info">경기도 과천시 과천대로 12길 117<br>과천펜타원 E동 (아이티센타워)<br><br>대표번호 : 02-3497-8300<br>FAX : 02-571-6052</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-qr">
+      <img src="qr-demo.png" alt="Request Demo QR" onerror="this.style.display='none'">
+      <span>Request Demo</span>
+    </div>
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="agentgo-logo.png" alt="AgentGo">AgentGo</div>
+      <div class="footer-brand-sub">Enterprise AI Operating System</div>
+    </div>
   </div>
 </footer>
 
