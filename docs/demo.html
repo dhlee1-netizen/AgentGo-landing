@@ -21,7 +21,7 @@ body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:var
 .topbar-back{margin-left:auto;font-size:.8rem;color:var(--blue);text-decoration:none;font-weight:600}
 .topbar-back:hover{text-decoration:underline}
 
-.app{flex:1;display:flex;max-width:1200px;width:100%;margin:0 auto;overflow:hidden}
+.app{flex:1;display:flex;max-width:1200px;width:100%;margin:0 auto;overflow:hidden;min-height:0}
 
 .sidebar{width:300px;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
 .sidebar-header{padding:20px;border-bottom:1px solid var(--border)}
@@ -85,8 +85,10 @@ body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:var
 .welcome p{font-size:.9rem;color:var(--slate);line-height:1.6}
 
 @media(max-width:768px){
+  .app{flex-direction:column}
   .sidebar{display:none;position:fixed;inset:0;z-index:50;width:100%}
   .sidebar.open{display:flex}
+  .chat-area{min-height:calc(100vh - 56px)}
   .mobile-toggle{display:flex!important}
 }
 .mobile-toggle{display:none;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--white);cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text)}
@@ -389,7 +391,11 @@ var SCENARIOS={
       api:[
         {from:'user',text:'사용자 목록 조회 REST API를 만들어 줘.'},
         {from:'bot',text:'Repository를 조회합니다... 기존 코드 구조와 패턴을 분석 중...'},
-        {from:'bot',html:'<strong>코드 생성 완료</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Repo</td><td>agentgo-api / main</td></tr><tr><td>경로</td><td>app/api/v1/users.py</td></tr><tr><td>보안 점검</td><td class="status-warn">검사 대기</td></tr></table><br><pre>from fastapi import FastAPI, Query\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n@app.get("/api/v1/users")\nasync def get_users(\n    department: str | None = Query(None),\n    page: int = Query(1, ge=1),\n    size: int = Query(20, ge=1, le=100)\n):\n    offset = (page - 1) * size\n    users = await db.fetch_users(\n        department=department,\n        offset=offset, limit=size\n    )\n    return {"total": len(users), "items": users}</pre><br>⚠️ <strong>보안 점검를 진행해 주세요.</strong>','actions':[{label:'<strong></strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>항목</th><th>상태</th><th>설명</th></tr><tr><td>SQL Injection</td><td class="status-ok">안전</td><td>ORM 파라미터 바인딩</td></tr><tr><td>인증/인가</td><td class="status-err">미적용</td><td>API 인증 미들웨어 없음</td></tr><tr><td>Rate Limiting</td><td class="status-warn">권장</td><td>대량 호출 방어 없음</td></tr><tr><td>입력 검증</td><td class="status-ok">안전</td><td>Pydantic 검증 적용</td></tr></table><br>⚠️ <strong>개발자 Review 필요</strong> — 인증 미들웨어 추가 후 Merge 가능','actions':[{label:'✅ 승인 — MR 생성',key:'api_merge'},{label:'✏️ 수정 후 재검사',key:'api'}]}
+        {from:'bot',html:'<strong>코드 생성 완료</strong> <span class="status-badge badge-draft">Draft</span><br><br><table><tr><th>항목</th><th>내용</th></tr><tr><td>Repo</td><td>agentgo-api / main</td></tr><tr><td>경로</td><td>app/api/v1/users.py</td></tr><tr><td>보안 점검</td><td class="status-warn">검사 대기</td></tr></table><br><pre>from fastapi import FastAPI, Query\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n@app.get("/api/v1/users")\nasync def get_users(\n    department: str | None = Query(None),\n    page: int = Query(1, ge=1),\n    size: int = Query(20, ge=1, le=100)\n):\n    offset = (page - 1) * size\n    users = await db.fetch_users(\n        department=department,\n        offset=offset, limit=size\n    )\n    return {"total": len(users), "items": users}</pre><br>⚠️ <strong>보안 점검을 진행해 주세요.</strong>','actions':[{label:'🔒 보안 점검 결과',key:'api_guard'},{label:'🧪 테스트 코드 생성',key:'api_test'}]},
+      ],
+      api_guard:[
+        {from:'user',text:'보안 점검 결과를 보여줘.'},
+        {from:'bot',html:'<strong>🔒 보안 점검 결과</strong> <span class="status-badge badge-review">Review</span><br><br><table><tr><th>항목</th><th>상태</th><th>설명</th></tr><tr><td>SQL Injection</td><td class="status-ok">안전</td><td>ORM 파라미터 바인딩</td></tr><tr><td>인증/인가</td><td class="status-err">미적용</td><td>API 인증 미들웨어 없음</td></tr><tr><td>Rate Limiting</td><td class="status-warn">권장</td><td>대량 호출 방어 없음</td></tr><tr><td>입력 검증</td><td class="status-ok">안전</td><td>Pydantic 검증 적용</td></tr></table><br>⚠️ <strong>개발자 Review 필요</strong> — 인증 미들웨어 추가 후 Merge 가능','actions':[{label:'✅ 승인 — MR 생성',key:'api_merge'},{label:'✏️ 수정 후 재검사',key:'api'}]}
       ],
       api_merge:[
         {from:'user',text:'승인합니다. Merge Request를 생성해 주세요.'},
