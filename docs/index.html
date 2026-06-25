@@ -181,18 +181,17 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
 .hero-bg-flow .flow-arrow{font-size:.7rem;color:var(--navy)}
 
 /* === FOOTER === */
-.footer{background:var(--navy);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.footer{background:var(--navy);padding:32px 48px;display:flex;align-items:flex-start;justify-content:space-between;gap:40px}
 .footer-left{display:flex;flex-direction:column;gap:6px}
 .footer-left-copy{font-size:.75rem;color:rgba(255,255,255,0.35)}
-.footer-left-info{font-size:.7rem;color:#C8D1E0;line-height:1.6}
-.footer-right{display:flex;align-items:center;gap:32px}
-.footer-qr{display:flex;flex-direction:column;align-items:center;gap:6px}
-.footer-qr img{width:80px;height:80px;border-radius:6px}
-.footer-qr span{font-size:.65rem;color:#C8D1E0;font-weight:500}
-.footer-brand{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-.footer-brand-name{display:flex;align-items:center;gap:8px;font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:1rem;color:rgba(255,255,255,0.85)}
-.footer-brand-name img{width:18px;height:18px;object-fit:contain;opacity:.7;background:transparent;mix-blend-mode:lighten}
-.footer-brand-sub{font-size:.68rem;color:rgba(255,255,255,0.35);letter-spacing:.5px}
+.footer-left-info{font-size:.7rem;color:#C8D1E0;line-height:1.7}
+.footer-right{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.footer-brand-logo{display:flex;align-items:center;gap:8px}
+.footer-brand-logo img{width:32px;height:32px;object-fit:contain;background:transparent;filter:brightness(1.2)}
+.footer-brand-logo span{font-family:'SUIT Variable',SUIT,sans-serif;font-weight:800;font-size:1.05rem;color:rgba(255,255,255,0.85)}
+.footer-brand-desc{font-size:.78rem;color:rgba(255,255,255,0.4);letter-spacing:.3px}
+.footer-brand-link{font-size:.72rem;color:#C8D1E0;text-decoration:none;opacity:.7;transition:opacity .2s}
+.footer-brand-link:hover{opacity:1;text-decoration:underline}
 
 /* === MODAL === */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,22,40,0.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
@@ -284,8 +283,7 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
   .persona-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .footer{flex-direction:column;gap:20px;text-align:center;padding:24px}
   .footer-left{align-items:center}
-  .footer-right{flex-direction:column;gap:16px}
-  .footer-brand{align-items:center}
+  .footer-right{align-items:center}
   .hero-values{grid-template-columns:1fr;gap:8px;max-width:320px}
   .hero-bg-flow{display:none}
   .fab-group{bottom:16px;right:16px;flex-direction:column;gap:6px;align-items:flex-end}
@@ -748,14 +746,9 @@ h1,h2,h3,h4{font-family:'SUIT Variable',SUIT,'Pretendard Variable',sans-serif}
     <div class="footer-left-info">경기도 과천시 과천대로 12길 117<br>과천펜타원 E동 (아이티센타워)<br><br>대표번호 : 02-3497-8300<br>FAX : 02-571-6052</div>
   </div>
   <div class="footer-right">
-    <div class="footer-qr">
-      <img src="qr-demo.png" alt="Request Demo QR" onerror="this.style.display='none'">
-      <span>Request Demo</span>
-    </div>
-    <div class="footer-brand">
-      <div class="footer-brand-name"><img src="agentgo-logo.png" alt="AgentGo">AgentGo</div>
-      <div class="footer-brand-sub">Enterprise AI Operating System</div>
-    </div>
+    <div class="footer-brand-logo"><img src="agentgo-logo.png" alt="AgentGo"><span>AgentGo</span></div>
+    <div class="footer-brand-desc">Enterprise AI Operating System</div>
+    <a href="https://itcencloit.com/index.do" target="_blank" rel="noopener" class="footer-brand-link">Powered by ITCEN CLOIT ↗</a>
   </div>
 </footer>
 
